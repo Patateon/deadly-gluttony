@@ -1,7 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkqg8hwvdfmwn"]
+[gd_scene load_steps=4 format=3 uid="uid://dkqg8hwvdfmwn"]
 
 [ext_resource type="Script" path="res://ennemy.gd" id="1_d5nir"]
+[ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_xvw88"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1n63e"]
+size = Vector2(120, 122)
 
 [node name="Enemy" type="CharacterBody2D" groups=["NPC"]]
 position = Vector2(868, 113)
 script = ExtResource("1_d5nir")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(7, -5)
+texture = ExtResource("2_xvw88")
+
+[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(4, -5)
+shape = SubResource("RectangleShape2D_1n63e")
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(4, -5)
+shape = SubResource("RectangleShape2D_1n63e")
