@@ -23,7 +23,7 @@ position = Vector2(-2, -9)
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_m0080")
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 position = Vector2(187, 68)
 script = ExtResource("1_xwwn7")
 
@@ -32,6 +32,12 @@ position = Vector2(2, 1)
 texture = ExtResource("2_23bgy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-1, 1)
+shape = SubResource("RectangleShape2D_4aexg")
+
+[node name="Area2D" type="Area2D" parent="Player"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Area2D"]
 position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_4aexg")
 
@@ -48,5 +54,11 @@ texture = ExtResource("2_23bgy")
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemy"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(4, -5)
+shape = SubResource("RectangleShape2D_1lknb")
+
+[node name="Area2D" type="Area2D" parent="Enemy"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy/Area2D"]
 position = Vector2(4, -5)
 shape = SubResource("RectangleShape2D_1lknb")
