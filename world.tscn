@@ -4,21 +4,24 @@
 [ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_23bgy"]
 [ext_resource type="Script" path="res://ennemy.gd" id="3_5n1pc"]
 
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
+vertices = PackedVector2Array(993.812, 454.852, 21.7578, 441.156, 99.4766, -26.0781, 985.172, -34.8984)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(91, -36, 995, -45, 1004, 465, 1004, 465, 10, 451)])
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4aexg"]
 size = Vector2(120, 122)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1lknb"]
 size = Vector2(120, 122)
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
-vertices = PackedVector2Array(993.812, 454.852, 21.7578, 441.156, 99.4766, -26.0781, 985.172, -34.8984)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(91, -36, 995, -45, 1004, 465, 1004, 465, 10, 451)])
-
 [node name="World" type="Node2D"]
 
 [node name="Background" type="Node2D" parent="."]
 position = Vector2(-2, -9)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_m0080")
 
 [node name="Player" type="CharacterBody2D" parent="."]
 position = Vector2(187, 68)
@@ -32,19 +35,18 @@ texture = ExtResource("2_23bgy")
 position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_4aexg")
 
-[node name="Ennemy" type="CharacterBody2D" parent="." groups=["NPC"]]
+[node name="EnemyGenerator" type="Node2D" parent="."]
+
+[node name="Enemy" type="CharacterBody2D" parent="." groups=["NPC"]]
 position = Vector2(868, 113)
 script = ExtResource("3_5n1pc")
 
-[node name="Sprite2D" type="Sprite2D" parent="Ennemy"]
+[node name="Sprite2D" type="Sprite2D" parent="Enemy"]
 position = Vector2(7, -5)
 texture = ExtResource("2_23bgy")
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Ennemy"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemy"]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ennemy"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 position = Vector2(4, -5)
 shape = SubResource("RectangleShape2D_1lknb")
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_m0080")

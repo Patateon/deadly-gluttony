@@ -6,6 +6,9 @@ const LIFE = 100.0
 const DAMAGE = 1
 const ATTSPEED = 1
 const MOVESPEED = 1
+const EXPERIENCE = 0
+const LEVEL = 1
+
 
 
 
