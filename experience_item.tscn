@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://caoalyi2pn4mw"]
+
+[ext_resource type="Texture2D" uid="uid://74vh6p030e5a" path="res://sprites/Gems 1.png" id="1_p57rs"]
+
+[node name="Node2D" type="Node2D" groups=["Item"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Item"]]
+position = Vector2(2, -14)
+scale = Vector2(0.533, 0.5)
+texture = ExtResource("1_p57rs")

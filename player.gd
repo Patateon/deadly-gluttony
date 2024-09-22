@@ -1,14 +1,14 @@
 extends CharacterBody2D
 
-const SPEED = 300.0
-const LIFE = 100.0
-const DAMAGE = 1
-const ATTSPEED = 1
-const MOVESPEED = 1
-const EXPERIENCE = 0
-const LEVEL = 1
+var speed = 300.0
+var life = 100.0
+var damage = 1
+var atk_speed = 1
+var movespeed = 1
+var experience = 0
+var level = 1
 
-var current_life: float = LIFE
+var current_life: float = life
 var is_alive: bool = true  
 
 signal player_died  
@@ -18,13 +18,13 @@ func _physics_process(delta: float) -> void:
 		var directionx := Input.get_axis("ui_left", "ui_right")
 		var directiony := Input.get_axis("ui_up", "ui_down")
 		if directionx:
-			velocity.x = directionx * SPEED * MOVESPEED
+			velocity.x = directionx * speed * movespeed
 		else:
-			velocity.x = move_toward(velocity.x, 0, SPEED * MOVESPEED)
+			velocity.x = move_toward(velocity.x, 0, speed * movespeed)
 		if directiony:
-			velocity.y = directiony * SPEED * MOVESPEED
+			velocity.y = directiony * speed * movespeed
 		else:
-			velocity.y = move_toward(velocity.y, 0, SPEED * MOVESPEED)
+			velocity.y = move_toward(velocity.y, 0, speed * movespeed)
 	
 		move_and_slide()
 
