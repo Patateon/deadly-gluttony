@@ -10,16 +10,16 @@ size = Vector2(120, 122)
 position = Vector2(187, 68)
 script = ExtResource("1_vwavs")
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." groups=["Player"]]
 position = Vector2(2, 1)
 texture = ExtResource("2_ocfpb")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." groups=["Player"]]
 position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_2wanr")
 
-[node name="Area2D2" type="Area2D" parent="."]
+[node name="Area2D2" type="Area2D" parent="." groups=["Player"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" groups=["Player"]]
 position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_2wanr")

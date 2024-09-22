@@ -9,25 +9,32 @@ const EXPERIENCE = 0
 const LEVEL = 1
 
 var current_life: float = LIFE
+var is_alive: bool = true  
+
+signal player_died  
 
 func _physics_process(delta: float) -> void:
-	var directionx := Input.get_axis("ui_left", "ui_right")
-	var directiony := Input.get_axis("ui_up", "ui_down")
-	if directionx:
-		velocity.x = directionx * SPEED * MOVESPEED
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED * MOVESPEED)
-	if directiony:
-		velocity.y = directiony * SPEED * MOVESPEED
-	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED * MOVESPEED)
+	if is_alive:  
+		var directionx := Input.get_axis("ui_left", "ui_right")
+		var directiony := Input.get_axis("ui_up", "ui_down")
+		if directionx:
+			velocity.x = directionx * SPEED * MOVESPEED
+		else:
+			velocity.x = move_toward(velocity.x, 0, SPEED * MOVESPEED)
+		if directiony:
+			velocity.y = directiony * SPEED * MOVESPEED
+		else:
+			velocity.y = move_toward(velocity.y, 0, SPEED * MOVESPEED)
 	
-	move_and_slide()
+		move_and_slide()
 
 func take_damage(amount: float):
 	current_life -= amount
+	print(current_life)
 	if current_life <= 0:
-		die()  # Assurez-vous que la méthode die() est définie pour gérer la mort du joueur
+		die() 
 
 func die():
-	queue_free()  # Vous pouvez remplacer cette ligne par la gestion de la mort du joueur
+	is_alive = false 
+	emit_signal("player_died") 
+	queue_free()  

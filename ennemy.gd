@@ -2,11 +2,12 @@ extends CharacterBody2D
 
 var movement_speed: float = 200.0
 var attack_distance: float = 1.0
-var damage: float = 10.0  # Définissez les dégâts que l'ennemi inflige
+var damage: float = 10.0  
 var movement_target_position: Vector2
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
-@onready var area2d: Area2D = $Area2D  # Assurez-vous que le nœud Area2D est correctement nommé
+@onready var area2d: Area2D = $Area2D  
+var player = null  
 
 func _ready():
 	navigation_agent.path_desired_distance = 100.0
@@ -17,13 +18,17 @@ func _ready():
 	area2d.monitoring = true
 	area2d.connect("area_entered", Callable(self, "_on_Area2D_area_entered"))
 
+	
+	player = get_node("/root/World/Player")
+	if player:
+		player.connect("player_died", Callable(self, "_on_Player_died"))
+
 func actor_setup():
 	await get_tree().physics_frame
 	update_movement_target()
 
 func update_movement_target():
-	var player = get_node("/root/World/Player")
-	if player:
+	if player and is_instance_valid(player) and player.is_alive: 
 		movement_target_position = player.global_position
 		set_movement_target(movement_target_position)
 
@@ -31,8 +36,7 @@ func set_movement_target(movement_target: Vector2):
 	navigation_agent.target_position = movement_target
 
 func _physics_process(delta: float) -> void:
-	var player = get_node("/root/World/Player")
-	if not player:
+	if not player or not is_instance_valid(player) or not player.is_alive:  
 		return
 
 	var distance_to_player = global_position.distance_to(player.global_position)
@@ -51,10 +55,21 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
-		# Vous pouvez ajouter d'autres comportements ici si nécessaire
+		
 
 func _on_Area2D_area_entered(area: Area2D):
+	print("Area entered:", area.name)
+	print("Groups of the entered area:")
+	for group in area.get_groups():
+		print(group)
 	if area.is_in_group("Player"):
-		var player = area.get_parent()  # Ou utilisez une autre méthode pour obtenir la référence du joueur
+		print("player")
+		var player = area.get_parent()  
+		print("Player node:", player)
 		if player and player.has_method("take_damage"):
+			print("Player has take_damage method")
 			player.take_damage(damage)
+
+func _on_Player_died():
+	print("Player died")
+	player = null  
