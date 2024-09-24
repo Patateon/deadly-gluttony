@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=8 format=3 uid="uid://ifwq3geifvtp"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_xwwn7"]
 [ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_23bgy"]
@@ -9,8 +9,11 @@ vertices = PackedVector2Array(993.812, 454.852, 21.7578, 441.156, 99.4766, -26.0
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(91, -36, 995, -45, 1004, 465, 1004, 465, 10, 451)])
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gl1q1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfm6c"]
 size = Vector2(120, 122)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvp1u"]
+radius = 130.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sw2v6"]
 size = Vector2(120, 122)
@@ -37,15 +40,21 @@ texture = ExtResource("2_23bgy")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="Player" groups=["Player"]]
 position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_gl1q1")
+shape = SubResource("RectangleShape2D_mfm6c")
 
 [node name="PlayerArea" type="Area2D" parent="Player" groups=["Player"]]
 
 [node name="PlayerAreaShape" type="CollisionShape2D" parent="Player/PlayerArea" groups=["Player"]]
 position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_gl1q1")
+shape = SubResource("RectangleShape2D_mfm6c")
+
+[node name="AttractionArea" type="Area2D" parent="Player" groups=["Player"]]
+
+[node name="AttractionCollider" type="CollisionShape2D" parent="Player/AttractionArea" groups=["Player"]]
+shape = SubResource("CircleShape2D_xvp1u")
 
 [node name="Enemy" type="CharacterBody2D" parent="." groups=["NPC"]]
+rotation = -0.00114975
 script = ExtResource("3_5n1pc")
 
 [node name="EnemySprite" type="Sprite2D" parent="Enemy" groups=["NPC"]]

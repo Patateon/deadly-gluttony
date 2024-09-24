@@ -13,6 +13,11 @@ var is_alive: bool = true
 
 signal player_died  
 
+@onready var attraction_area: Area2D = $AttractionArea
+
+func _ready():
+	attraction_area.body_entered.connect(_on_AttractionArea_body_entered)
+
 func _physics_process(delta: float) -> void:
 	if is_alive:  
 		var directionx := Input.get_axis("ui_left", "ui_right")
@@ -27,11 +32,15 @@ func _physics_process(delta: float) -> void:
 			velocity.y = move_toward(velocity.y, 0, speed * movespeed)
 	
 		move_and_slide()
+		if Input.is_action_just_pressed("kill_enemies"):
+			kill_all_enemies()
 
-	# Vérifie si la touche définie est pressée
-	if Input.is_action_just_pressed("kill_enemies"):
-		kill_all_enemies()
-
+func kill_all_enemies():
+	var enemies = get_tree().get_nodes_in_group("NPC")
+	for enemy in enemies:
+		if enemy.has_method("die"):
+			enemy.die()
+			
 func take_damage(amount: float):
 	current_life -= amount
 	print(current_life)
@@ -43,8 +52,13 @@ func die():
 	emit_signal("player_died") 
 	queue_free()  
 
-func kill_all_enemies():
-	var enemies = get_tree().get_nodes_in_group("NPC")
-	for enemy in enemies:
-		if enemy.has_method("die"):
-			enemy.die()
+func _on_AttractionArea_body_entered(body):
+	print("Detect body entered:", body.name)  
+	if body.is_in_group("Item"):
+		print("DetectG")
+		body.set_target(self)
+
+func gain_experience(amount):
+	experience += amount
+	print("Gained experience:", amount)
+	print("Total experience:", experience)

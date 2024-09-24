@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://choyge02xkei7"]
+[gd_scene load_steps=5 format=3 uid="uid://choyge02xkei7"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_vwavs"]
 [ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_ocfpb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wanr"]
 size = Vector2(120, 122)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r8wsl"]
+radius = 130.0
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 position = Vector2(187, 68)
@@ -23,3 +26,8 @@ shape = SubResource("RectangleShape2D_2wanr")
 [node name="PlayerAreaShape" type="CollisionShape2D" parent="PlayerArea" groups=["Player"]]
 position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_2wanr")
+
+[node name="AttractionArea" type="Area2D" parent="."]
+
+[node name="AttractionCollider" type="CollisionShape2D" parent="AttractionArea"]
+shape = SubResource("CircleShape2D_r8wsl")

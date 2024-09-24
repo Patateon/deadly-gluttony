@@ -48,7 +48,7 @@ func _physics_process(delta: float) -> void:
 		update_movement_target()
 
 		if navigation_agent.is_navigation_finished():
-			print("Navigation finished. Recalculating target.")
+			#print("Navigation finished. Recalculating target.")
 			return
 
 		var current_agent_position: Vector2 = global_position
@@ -91,4 +91,5 @@ func spawn_experience_item():
 	var experience_scene = preload("res://experience_item.tscn")  
 	var experience_instance = experience_scene.instantiate()
 	experience_instance.global_position = global_position  
+	experience_instance.set_xp_value(xp_value)
 	get_parent().add_child(experience_instance)
