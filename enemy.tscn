@@ -10,18 +10,18 @@ size = Vector2(120, 122)
 position = Vector2(868, 113)
 script = ExtResource("1_d5nir")
 
-[node name="Sprite2D2" type="Sprite2D" parent="." groups=["NPC"]]
+[node name="EnemySprite" type="Sprite2D" parent="." groups=["NPC"]]
 position = Vector2(7, -5)
 texture = ExtResource("2_xvw88")
 
-[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="." groups=["NPC"]]
+[node name="EnemyNav" type="NavigationAgent2D" parent="." groups=["NPC"]]
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="." groups=["NPC"]]
+[node name="EnemyCollider" type="CollisionShape2D" parent="." groups=["NPC"]]
 position = Vector2(4, -5)
 shape = SubResource("RectangleShape2D_1n63e")
 
-[node name="Area2D2" type="Area2D" parent="." groups=["NPC"]]
+[node name="EnemyArea" type="Area2D" parent="." groups=["NPC"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2" groups=["NPC"]]
+[node name="EnemyAreaShape" type="CollisionShape2D" parent="EnemyArea" groups=["NPC"]]
 position = Vector2(4, -5)
 shape = SubResource("RectangleShape2D_1n63e")

@@ -28,6 +28,10 @@ func _physics_process(delta: float) -> void:
 	
 		move_and_slide()
 
+	# Vérifie si la touche définie est pressée
+	if Input.is_action_just_pressed("kill_enemies"):
+		kill_all_enemies()
+
 func take_damage(amount: float):
 	current_life -= amount
 	print(current_life)
@@ -38,3 +42,9 @@ func die():
 	is_alive = false 
 	emit_signal("player_died") 
 	queue_free()  
+
+func kill_all_enemies():
+	var enemies = get_tree().get_nodes_in_group("NPC")
+	for enemy in enemies:
+		if enemy.has_method("die"):
+			enemy.die()

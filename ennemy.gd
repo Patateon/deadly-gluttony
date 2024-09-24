@@ -7,11 +7,11 @@ var movement_target_position: Vector2
 
 var life: float = 100.0
 var current_life: float = life
-var xp_rate: float = 0.2  # Taux de chance de générer l'objet d'expérience
+var xp_rate: float = 1 # Taux de chance de générer l'objet d'expérience
 var xp_value: float = 3 
 
-@onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
-@onready var area2d: Area2D = $Area2D  
+@onready var navigation_agent: NavigationAgent2D = $EnemyNav
+@onready var area2d: Area2D = $EnemyArea
 var player = null  
 
 func _ready():
@@ -19,7 +19,6 @@ func _ready():
 	navigation_agent.target_desired_distance = 30.0
 	call_deferred("actor_setup")
 
-	# Configurer la détection des collisions pour l'Area2D
 	area2d.monitoring = true
 	area2d.connect("area_entered", Callable(self, "_on_Area2D_area_entered"))
 
@@ -90,6 +89,6 @@ func die():
 
 func spawn_experience_item():
 	var experience_scene = preload("res://experience_item.tscn")  
-	var experience_instance = experience_scene.instance()
+	var experience_instance = experience_scene.instantiate()
 	experience_instance.global_position = global_position  
 	get_parent().add_child(experience_instance)
