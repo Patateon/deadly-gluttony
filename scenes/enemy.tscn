@@ -1,18 +1,18 @@
 [gd_scene load_steps=4 format=3 uid="uid://dkqg8hwvdfmwn"]
 
-[ext_resource type="Script" path="res://ennemy.gd" id="1_d5nir"]
-[ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_xvw88"]
+[ext_resource type="Script" path="res://script/ennemy.gd" id="1_7gtbv"]
+[ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_43jif"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1n63e"]
 size = Vector2(120, 122)
 
 [node name="Enemy" type="CharacterBody2D" groups=["NPC"]]
 position = Vector2(868, 113)
-script = ExtResource("1_d5nir")
+script = ExtResource("1_7gtbv")
 
 [node name="EnemySprite" type="Sprite2D" parent="." groups=["NPC"]]
 position = Vector2(7, -5)
-texture = ExtResource("2_xvw88")
+texture = ExtResource("2_43jif")
 
 [node name="EnemyNav" type="NavigationAgent2D" parent="." groups=["NPC"]]
 

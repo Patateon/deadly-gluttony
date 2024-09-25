@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://ifwq3geifvtp"]
 
-[ext_resource type="Script" path="res://player.gd" id="1_xwwn7"]
-[ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_23bgy"]
-[ext_resource type="Script" path="res://ennemy.gd" id="3_5n1pc"]
+[ext_resource type="Script" path="res://script/player.gd" id="1_ih21q"]
+[ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_ffstj"]
+[ext_resource type="Script" path="res://script/ennemy.gd" id="3_m2jhw"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
 vertices = PackedVector2Array(993.812, 454.852, 21.7578, 441.156, 99.4766, -26.0781, 985.172, -34.8984)
@@ -32,11 +32,11 @@ navigation_polygon = SubResource("NavigationPolygon_m0080")
 [node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
 position = Vector2(294, 0)
 rotation = 6.28318
-script = ExtResource("1_xwwn7")
+script = ExtResource("1_ih21q")
 
 [node name="PlayerSprite" type="Sprite2D" parent="Player" groups=["Player"]]
 position = Vector2(2, 1)
-texture = ExtResource("2_23bgy")
+texture = ExtResource("2_ffstj")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="Player" groups=["Player"]]
 position = Vector2(-1, 1)
@@ -55,11 +55,11 @@ shape = SubResource("CircleShape2D_xvp1u")
 
 [node name="Enemy" type="CharacterBody2D" parent="." groups=["NPC"]]
 rotation = -0.00114975
-script = ExtResource("3_5n1pc")
+script = ExtResource("3_m2jhw")
 
 [node name="EnemySprite" type="Sprite2D" parent="Enemy" groups=["NPC"]]
 position = Vector2(7, -5)
-texture = ExtResource("2_23bgy")
+texture = ExtResource("2_ffstj")
 
 [node name="EnemyNav" type="NavigationAgent2D" parent="Enemy" groups=["NPC"]]
 
