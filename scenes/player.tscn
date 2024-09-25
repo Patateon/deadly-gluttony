@@ -7,24 +7,21 @@
 size = Vector2(120, 122)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r8wsl"]
-radius = 130.0
+radius = 152.003
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-position = Vector2(187, 68)
+scale = Vector2(0.250707, 0.25)
 script = ExtResource("1_vact7")
 
 [node name="PlayerSprite" type="Sprite2D" parent="." groups=["Player"]]
-position = Vector2(2, 1)
 texture = ExtResource("2_ywgmp")
 
 [node name="PlayerCollider" type="CollisionShape2D" parent="." groups=["Player"]]
-position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_2wanr")
 
 [node name="PlayerArea" type="Area2D" parent="." groups=["Player"]]
 
 [node name="PlayerAreaShape" type="CollisionShape2D" parent="PlayerArea" groups=["Player"]]
-position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_2wanr")
 
 [node name="AttractionArea" type="Area2D" parent="."]
