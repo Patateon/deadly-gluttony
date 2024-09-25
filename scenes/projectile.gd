@@ -15,4 +15,6 @@ func _process(delta: float) -> void:
 	pass
 	
 func _on_area_entered(body):
-	pass
+	if body.is_in_group("NPC"):
+		if body.has_method("die"):
+			body.die()

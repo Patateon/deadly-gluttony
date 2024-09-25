@@ -4,6 +4,7 @@ var speed = 300.0
 var life = 100.0
 var damage = 1
 var atk_speed = 1
+var atk_speed_acc = 0.0;
 var movespeed = 1
 var experience = 0
 var level = 1
@@ -26,6 +27,10 @@ func _ready():
 	
 func _process(delta: float) -> void:
 	set_health_bar()
+	atk_speed_acc += delta
+	if (atk_speed_acc > atk_speed):
+		atk_speed_acc = 0
+		fire_projectile()
 	
 func _physics_process(delta: float) -> void:
 	if is_alive:  
@@ -65,7 +70,7 @@ func fire_projectile():
 	projectile_instance.global_position = global_position
 	var enemies = get_tree().get_nodes_in_group("NPC")
 	if enemies.is_empty():
-		projectile_instance.add_constant_central_force(randi_range(-1, 1), randi_range(-1, 1))
+		projectile_instance.add_constant_central_force(Vector2(randi_range(-1, 1), randi_range(-1, 1)))
 	else:
 		var enemy = enemies.back()
 		var traj = enemy.global_position - global_position
