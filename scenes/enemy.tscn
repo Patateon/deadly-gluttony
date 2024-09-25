@@ -15,6 +15,8 @@ position = Vector2(7, -5)
 texture = ExtResource("2_43jif")
 
 [node name="EnemyNav" type="NavigationAgent2D" parent="." groups=["NPC"]]
+target_desired_distance = 0.1
+path_max_distance = 500.0
 
 [node name="EnemyCollider" type="CollisionShape2D" parent="." groups=["NPC"]]
 position = Vector2(4, -5)

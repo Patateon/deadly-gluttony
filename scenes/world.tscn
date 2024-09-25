@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_ffstj"]
 [ext_resource type="Script" path="res://script/ennemy.gd" id="3_m2jhw"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
-vertices = PackedVector2Array(993.812, 454.852, 21.7578, 441.156, 99.4766, -26.0781, 985.172, -34.8984)
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_p2egk"]
+vertices = PackedVector2Array(1842.91, 650.898, 403, 637.094, 403, -56.0078, 1837.08, -60.9609)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(91, -36, 995, -45, 1004, 465, 1004, 465, 10, 451)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(393, -74, 401, -66, 1847, -71, 1847, -71, 1853, 661, 1853, 661, 393, 647, 393, 647)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mfm6c"]
 size = Vector2(120, 122)
@@ -25,7 +25,7 @@ position = Vector2(-2, -9)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 position = Vector2(-530, -157)
-navigation_polygon = SubResource("NavigationPolygon_m0080")
+navigation_polygon = SubResource("NavigationPolygon_p2egk")
 
 [node name="EnemyGenerator" type="Node2D" parent="."]
 
