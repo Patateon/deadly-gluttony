@@ -88,7 +88,7 @@ func die():
 	queue_free()  
 
 func spawn_experience_item():
-	var experience_scene = preload("res://experience_item.tscn")  
+	var experience_scene = preload("res://scenes/experience_item.tscn")  
 	var experience_instance = experience_scene.instantiate()
 	experience_instance.global_position = global_position  
 	experience_instance.set_xp_value(xp_value)
