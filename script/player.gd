@@ -21,7 +21,12 @@ func _input(event):
 
 func _ready():
 	attraction_area.body_entered.connect(_on_AttractionArea_body_entered)
-
+	$HealthBar.max_value = 100
+	set_health_bar()
+	
+func _process(delta: float) -> void:
+	set_health_bar()
+	
 func _physics_process(delta: float) -> void:
 	if is_alive:  
 		var directionx := Input.get_axis("ui_left", "ui_right")
@@ -49,7 +54,10 @@ func take_damage(amount: float):
 	current_life -= amount
 	print(current_life)
 	if current_life <= 0:
-		die() 
+		die()
+		
+func set_health_bar() -> void:
+	$HealthBar.value = current_life
 
 func fire_projectile():
 	var projectile_scene = preload("res://scenes/projectile.tscn")
