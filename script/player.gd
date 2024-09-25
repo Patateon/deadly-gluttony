@@ -15,6 +15,10 @@ signal player_died
 
 @onready var attraction_area: Area2D = $AttractionArea
 
+func _input(event):
+	if event.is_action_pressed("fire"):
+		fire_projectile()
+
 func _ready():
 	attraction_area.body_entered.connect(_on_AttractionArea_body_entered)
 
@@ -46,6 +50,19 @@ func take_damage(amount: float):
 	print(current_life)
 	if current_life <= 0:
 		die() 
+
+func fire_projectile():
+	var projectile_scene = preload("res://scenes/projectile.tscn")
+	var projectile_instance = projectile_scene.instantiate()
+	projectile_instance.global_position = global_position
+	var enemies = get_tree().get_nodes_in_group("NPC")
+	if enemies.is_empty():
+		projectile_instance.add_constant_central_force(randi_range(-1, 1), randi_range(-1, 1))
+	else:
+		var enemy = enemies.back()
+		var traj = enemy.global_position - global_position
+		projectile_instance.add_constant_central_force(traj)
+	get_parent().add_child(projectile_instance)
 
 func die():
 	is_alive = false 
