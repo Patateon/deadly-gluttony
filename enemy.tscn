@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://dkqg8hwvdfmwn"]
-
-[ext_resource type="Script" path="res://ennemy.gd" id="1_d5nir"]
-
-[node name="Enemy" type="CharacterBody2D" groups=["NPC"]]
-position = Vector2(868, 113)
-script = ExtResource("1_d5nir")
