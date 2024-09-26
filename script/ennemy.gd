@@ -87,7 +87,7 @@ func take_damage(amount: float):
 		
 func die():
 	if randi() % 100 < int(xp_rate * 100):
-		spawn_experience_item()
+		call_deferred("spawn_experience_item")
 	queue_free()  
 
 func spawn_experience_item():
