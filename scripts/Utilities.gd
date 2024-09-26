@@ -16,7 +16,6 @@ func _ready():
 
 	config.set_value("Video", "fullscreen", DisplayServer.WINDOW_MODE_WINDOWED)
 	config.set_value("Video", "borderless", false)
-	config.set_value("Video", "vsync", DisplayServer.VSYNC_ENABLED)
 
 	for i in range(3):
 		config.set_value("Audio", str(i), 0.5)
@@ -49,8 +48,7 @@ func load_video_settings():
 	DisplayServer.window_set_mode(screen_type)
 	var borderless = config.get_value("Video","borderless")
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, borderless)
-	var vsync_index = config.get_value("Video", "vsync")
-	DisplayServer.window_set_vsync_mode(vsync_index)
+
 
 # Scene manager
 func switch_scene(scene_name: StringName, cur_scene: Node):

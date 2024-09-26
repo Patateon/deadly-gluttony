@@ -15,11 +15,10 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_y1n18")
 theme_override_font_sizes/font_size = 16
-current_tab = 2
+current_tab = 0
 script = ExtResource("2_d850m")
 
 [node name="Video" type="TabBar" parent="."]
-visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Controls")
 focus_neighbor_right = NodePath("../Audio")
@@ -78,9 +77,19 @@ size_flags_horizontal = 4
 size_flags_vertical = 6
 focus_neighbor_top = NodePath("../Fullscreen")
 
-[node name="Back" type="Button" parent="Video/HBoxContainer"]
+[node name="Back" type="Button" parent="Video"]
 custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -60.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_y1n18")
 theme_override_font_sizes/font_size = 24
 text = "Retour"
@@ -171,6 +180,7 @@ theme_override_font_sizes/font_size = 24
 text = "Retour"
 
 [node name="Controls" type="TabBar" parent="."]
+visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Audio")
 focus_neighbor_right = NodePath("../Video")
@@ -238,15 +248,15 @@ layout_mode = 2
 
 [node name="Down" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
 layout_mode = 2
-script = null
+action = "Down"
 
 [node name="Left" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
 layout_mode = 2
-script = null
+action = "Left"
 
 [node name="Right" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
 layout_mode = 2
-script = null
+action = "Right"
 
 [node name="Back" type="Button" parent="Controls"]
 custom_minimum_size = Vector2(100, 0)
@@ -266,6 +276,10 @@ theme_override_fonts/font = ExtResource("1_y1n18")
 theme_override_font_sizes/font_size = 24
 text = "Retour"
 
-[connection signal="pressed" from="Video/HBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="Video/HBoxContainer/VBoxContainer2/Fullscreen" to="Video" method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="Video/HBoxContainer/VBoxContainer2/Borderless" to="Video" method="_on_borderless_toggled"]
+[connection signal="pressed" from="Video/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="Audio/HBoxContainer/VBoxContainer2/Master" to="Audio" method="_on_master_value_changed"]
+[connection signal="value_changed" from="Audio/HBoxContainer/VBoxContainer2/Music" to="Audio" method="_on_music_value_changed"]
 [connection signal="pressed" from="Audio/Back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="Controls/Back" to="." method="_on_back_pressed"]

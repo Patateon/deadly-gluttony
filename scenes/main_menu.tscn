@@ -25,6 +25,7 @@ offset_bottom = 648.0
 color = Color(0.975655, 0.608659, 0.658878, 1)
 
 [node name="TextureRect" type="TextureRect" parent="UI/MainMenu"]
+visible = false
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
@@ -70,7 +71,6 @@ size_flags_vertical = 4
 text = "Exit"
 
 [node name="Settings" parent="UI" node_paths=PackedStringArray("pre_scene") instance=ExtResource("4_y3vuu")]
-current_tab = 0
 pre_scene = NodePath("../MainMenu")
 metadata/s = false
 metadata/ssss = false
