@@ -3,7 +3,7 @@ extends Camera2D
 var distdeadzone = 100.
 # Référence au CharacterBody2D (par exemple, le joueur)
   # Assurez-vous que le chemin vers le personnage est correct
-@onready var character = get_node("/root/Node2D/CharacterBody2D")
+@onready var character = get_node("/root/World/Player")
 
 func _ready() -> void:
 	make_current()

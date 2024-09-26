@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=6 format=3 uid="uid://ifwq3geifvtp"]
 
 [ext_resource type="Script" path="res://scenes/enemy_generator.gd" id="1_7djdm"]
 [ext_resource type="PackedScene" uid="uid://choyge02xkei7" path="res://scenes/player.tscn" id="2_vx5u1"]
+[ext_resource type="Script" path="res://script/camera_2d.gd" id="3_fm33l"]
 
 [sub_resource type="GDScript" id="GDScript_vhok5"]
 script/source = "extends Node2D
@@ -36,3 +37,6 @@ script = ExtResource("1_7djdm")
 
 [node name="Player" parent="." instance=ExtResource("2_vx5u1")]
 position = Vector2(835, 261)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_fm33l")
