@@ -22,7 +22,8 @@ func _ready():
 	area2d.monitoring = true
 	area2d.connect("area_entered", Callable(self, "_on_Area2D_area_entered"))
 
-	player = get_node("/root/World/Player")
+	#player = get_node("/root/World/Player")
+	player = get_tree().get_first_node_in_group("Player")
 	if player:
 		player.connect("player_died", Callable(self, "_on_Player_died"))
 
@@ -71,6 +72,8 @@ func _on_Area2D_area_entered(area: Area2D):
 		if player and player.has_method("take_damage"):
 			print("Player has take_damage method")
 			player.take_damage(damage)
+			if player.has_method("set_health_bar"):
+				player.set_health_bar()
 
 func _on_Player_died():
 	print("Player died")

@@ -1,8 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=5 format=3 uid="uid://ifwq3geifvtp"]
 
 [ext_resource type="Script" path="res://scenes/enemy_generator.gd" id="1_7djdm"]
-[ext_resource type="Script" path="res://script/player.gd" id="1_ih21q"]
-[ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_ffstj"]
+[ext_resource type="PackedScene" uid="uid://choyge02xkei7" path="res://scenes/player.tscn" id="2_vx5u1"]
 
 [sub_resource type="GDScript" id="GDScript_vhok5"]
 script/source = "extends Node2D
@@ -23,12 +22,6 @@ vertices = PackedVector2Array(1139.03, 14.9609, 1140.96, 638.008, 11.0312, 639.9
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(3, 1, 995, -45, 1151, 648, 1, 650)])
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfm6c"]
-size = Vector2(120, 122)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xvp1u"]
-radius = 130.0
-
 [node name="World" type="Node2D"]
 script = SubResource("GDScript_vhok5")
 
@@ -41,26 +34,5 @@ navigation_polygon = SubResource("NavigationPolygon_m0080")
 position = Vector2(566, 322)
 script = ExtResource("1_7djdm")
 
-[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
-position = Vector2(910, 239)
-rotation = 6.28318
-script = ExtResource("1_ih21q")
-
-[node name="PlayerSprite" type="Sprite2D" parent="Player" groups=["Player"]]
-position = Vector2(2, 1)
-texture = ExtResource("2_ffstj")
-
-[node name="PlayerCollider" type="CollisionShape2D" parent="Player" groups=["Player"]]
-position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_mfm6c")
-
-[node name="PlayerArea" type="Area2D" parent="Player" groups=["Player"]]
-
-[node name="PlayerAreaShape" type="CollisionShape2D" parent="Player/PlayerArea" groups=["Player"]]
-position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_mfm6c")
-
-[node name="AttractionArea" type="Area2D" parent="Player" groups=["Player"]]
-
-[node name="AttractionCollider" type="CollisionShape2D" parent="Player/AttractionArea" groups=["Player"]]
-shape = SubResource("CircleShape2D_xvp1u")
+[node name="Player" parent="." instance=ExtResource("2_vx5u1")]
+position = Vector2(835, 261)

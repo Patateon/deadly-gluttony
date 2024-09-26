@@ -25,6 +25,7 @@ func _process(delta: float) -> void:
 func createEnemy():
 	var enemy_scene = preload("res://scenes/enemy.tscn")
 	var enemy_instance = enemy_scene.instantiate()
+	var player = get_tree().get_first_node_in_group("Player")
 	enemy_instance.global_position = Vector2(global_position[0] + randi_range(0, 3),
 											 global_position[1] + randi_range(0, 3))
 	get_parent().add_child(enemy_instance)
