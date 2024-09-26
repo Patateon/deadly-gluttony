@@ -3,12 +3,13 @@
 [ext_resource type="Script" path="res://script/experience_item.gd" id="1_pgt8v"]
 [ext_resource type="Texture2D" uid="uid://74vh6p030e5a" path="res://assets/sprites/Gems 1.png" id="2_l0oi4"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_f0asw"]
-radius = 20.5
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5686"]
+radius = 16.0
+height = 52.0
 
 [node name="XP_Object" type="RigidBody2D" groups=["Item"]]
 scale = Vector2(0.25, 0.25)
-collision_mask = 2
+collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_pgt8v")
 
@@ -17,5 +18,5 @@ scale = Vector2(0.213, 0.2)
 texture = ExtResource("2_l0oi4")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Item"]]
-position = Vector2(0, -10)
-shape = SubResource("CircleShape2D_f0asw")
+position = Vector2(-1.585, -5.29)
+shape = SubResource("CapsuleShape2D_t5686")
