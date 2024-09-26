@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://b34q2707nahsg"]
 
 [ext_resource type="Texture2D" uid="uid://f35w7tgw4i6y" path="res://assets/animated-sprites/frame_007_delay-0.07s.png" id="1_g2ojp"]
-[ext_resource type="Script" path="res://scenes/projectile.gd" id="1_r267s"]
+[ext_resource type="Script" path="res://script/projectile.gd" id="1_r267s"]
 [ext_resource type="Texture2D" uid="uid://c2m6guue48u2g" path="res://assets/animated-sprites/frame_016_delay-0.03s.png" id="2_udyia"]
 [ext_resource type="Texture2D" uid="uid://de2tag2v7masc" path="res://assets/animated-sprites/frame_025_delay-0.07s.png" id="3_oj5kk"]
 [ext_resource type="Texture2D" uid="uid://xl7rpm2fc1qj" path="res://assets/animated-sprites/frame_034_delay-0.03s.png" id="4_ueyli"]

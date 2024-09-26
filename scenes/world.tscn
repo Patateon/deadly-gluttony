@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://ifwq3geifvtp"]
 
-[ext_resource type="Script" path="res://scenes/enemy_generator.gd" id="1_7djdm"]
+[ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
 [ext_resource type="PackedScene" uid="uid://choyge02xkei7" path="res://scenes/player.tscn" id="2_vx5u1"]
 [ext_resource type="Script" path="res://script/camera_2d.gd" id="3_fm33l"]
 
