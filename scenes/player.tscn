@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://choyge02xkei7"]
+[gd_scene load_steps=7 format=3 uid="uid://choyge02xkei7"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_vact7"]
 [ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_ywgmp"]
+[ext_resource type="Script" path="res://script/camera_2d.gd" id="3_e3kk8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wanr"]
 size = Vector2(120, 122)
@@ -40,3 +41,7 @@ offset_bottom = -77.0
 theme_override_styles/fill = SubResource("StyleBoxFlat_xc1no")
 step = 1.0
 show_percentage = false
+
+[node name="CameraPlayer" type="Camera2D" parent="."]
+scale = Vector2(3.98872, 4)
+script = ExtResource("3_e3kk8")

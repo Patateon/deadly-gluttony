@@ -8,7 +8,8 @@ func _ready() -> void:
 	make_current()
 	
 func _process(_delta: float) -> void:
-	update_camera_position(_delta)
+	pass
+	#update_camera_position(_delta)
 	
 func update_camera_position(delta: float):
 	var current_dist = character.get_global_position().distance_to(get_screen_center_position())
