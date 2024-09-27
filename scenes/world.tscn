@@ -1,74 +1,42 @@
-[gd_scene load_steps=8 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=6 format=3 uid="uid://ifwq3geifvtp"]
 
-[ext_resource type="Script" path="res://script/player.gd" id="1_ih21q"]
-[ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_ffstj"]
-[ext_resource type="Script" path="res://script/ennemy.gd" id="3_m2jhw"]
+[ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
+[ext_resource type="PackedScene" uid="uid://choyge02xkei7" path="res://scenes/player.tscn" id="2_vx5u1"]
+[ext_resource type="Script" path="res://script/camera_2d.gd" id="3_fm33l"]
 
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_p2egk"]
-vertices = PackedVector2Array(1842.91, 650.898, 403, 637.094, 403, -56.0078, 1837.08, -60.9609)
+[sub_resource type="GDScript" id="GDScript_vhok5"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
+vertices = PackedVector2Array(1139.03, 14.9609, 1140.96, 638.008, 11.0312, 639.977, 12.9609, 11.0312)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(393, -74, 401, -66, 1847, -71, 1847, -71, 1853, 661, 1853, 661, 393, 647, 393, 647)])
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfm6c"]
-size = Vector2(120, 122)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xvp1u"]
-radius = 130.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sw2v6"]
-size = Vector2(120, 122)
+outlines = Array[PackedVector2Array]([PackedVector2Array(3, 1, 995, -45, 1151, 648, 1, 650)])
 
 [node name="World" type="Node2D"]
+script = SubResource("GDScript_vhok5")
 
 [node name="Background" type="Node2D" parent="."]
-position = Vector2(-2, -9)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-position = Vector2(-530, -157)
-navigation_polygon = SubResource("NavigationPolygon_p2egk")
+navigation_polygon = SubResource("NavigationPolygon_m0080")
 
 [node name="EnemyGenerator" type="Node2D" parent="."]
+position = Vector2(566, 322)
+script = ExtResource("1_7djdm")
 
-[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
-position = Vector2(294, 0)
-rotation = 6.28318
-script = ExtResource("1_ih21q")
+[node name="Player" parent="." instance=ExtResource("2_vx5u1")]
+position = Vector2(835, 261)
 
-[node name="PlayerSprite" type="Sprite2D" parent="Player" groups=["Player"]]
-position = Vector2(2, 1)
-texture = ExtResource("2_ffstj")
-
-[node name="PlayerCollider" type="CollisionShape2D" parent="Player" groups=["Player"]]
-position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_mfm6c")
-
-[node name="PlayerArea" type="Area2D" parent="Player" groups=["Player"]]
-
-[node name="PlayerAreaShape" type="CollisionShape2D" parent="Player/PlayerArea" groups=["Player"]]
-position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_mfm6c")
-
-[node name="AttractionArea" type="Area2D" parent="Player" groups=["Player"]]
-
-[node name="AttractionCollider" type="CollisionShape2D" parent="Player/AttractionArea" groups=["Player"]]
-shape = SubResource("CircleShape2D_xvp1u")
-
-[node name="Enemy" type="CharacterBody2D" parent="." groups=["NPC"]]
-rotation = -0.00114975
-script = ExtResource("3_m2jhw")
-
-[node name="EnemySprite" type="Sprite2D" parent="Enemy" groups=["NPC"]]
-position = Vector2(7, -5)
-texture = ExtResource("2_ffstj")
-
-[node name="EnemyNav" type="NavigationAgent2D" parent="Enemy" groups=["NPC"]]
-
-[node name="EnemyCollider" type="CollisionShape2D" parent="Enemy" groups=["NPC"]]
-position = Vector2(4, -5)
-shape = SubResource("RectangleShape2D_sw2v6")
-
-[node name="EnemyArea" type="Area2D" parent="Enemy" groups=["NPC"]]
-
-[node name="EnemyAreaShape" type="CollisionShape2D" parent="Enemy/EnemyArea" groups=["NPC"]]
-position = Vector2(4, -5)
-shape = SubResource("RectangleShape2D_sw2v6")
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_fm33l")

@@ -15,10 +15,11 @@ func _ready() -> void:
 	print("XP Value:", xp_value)
 
 func _process(delta: float) -> void:
-	if target:
-		var direction = global_position.direction_to(target.global_position)
-		global_position += direction * attraction_speed * delta
+	if target and is_instance_valid(target):  
+		if is_instance_valid(self):  
+			var direction = global_position.direction_to(target.global_position)
+			global_position += direction * attraction_speed * delta
 
-		if global_position.distance_to(target.global_position) < 100.0:
-			target.gain_experience(xp_value)
-			queue_free()
+			if global_position.distance_to(target.global_position) < 100.0:
+				target.gain_experience(xp_value)
+				queue_free()
