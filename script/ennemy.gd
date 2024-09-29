@@ -67,7 +67,7 @@ func _on_Area2D_area_entered(area: Area2D):
 		print(group)
 	if area.is_in_group("Player"):
 		print("player")
-		var player = area.get_parent()  
+		player = area.get_parent()  
 		print("Player node:", player)
 		if player and player.has_method("take_damage"):
 			print("Player has take_damage method")
