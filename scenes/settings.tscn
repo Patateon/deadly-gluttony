@@ -1,0 +1,285 @@
+[gd_scene load_steps=7 format=3 uid="uid://cgkkopjoljreq"]
+
+[ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="1_y1n18"]
+[ext_resource type="Script" path="res://scripts/settings.gd" id="2_d850m"]
+[ext_resource type="FontFile" uid="uid://cwhlyffj1j3xm" path="res://assets/font/insaniburger/Insanibc.ttf" id="3_b5nwg"]
+[ext_resource type="Script" path="res://scripts/video.gd" id="3_kdm1b"]
+[ext_resource type="PackedScene" uid="uid://bkllj8l6sywyw" path="res://scenes/action_button.tscn" id="4_4o4ae"]
+[ext_resource type="Script" path="res://scripts/audio.gd" id="5_i5vk1"]
+
+[node name="Settings" type="TabContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_y1n18")
+theme_override_font_sizes/font_size = 16
+current_tab = 0
+script = ExtResource("2_d850m")
+
+[node name="Video" type="TabBar" parent="."]
+layout_mode = 2
+focus_neighbor_left = NodePath("../Controls")
+focus_neighbor_right = NodePath("../Audio")
+theme_override_fonts/font = ExtResource("1_y1n18")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("3_kdm1b")
+metadata/_tab_index = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Video"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -125.5
+offset_top = -108.0
+offset_right = 123.5
+offset_bottom = 82.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Video/HBoxContainer"]
+layout_mode = 2
+
+[node name="Fullscreen" type="Label" parent="Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("3_b5nwg")
+theme_override_font_sizes/font_size = 24
+text = "Fullscreen"
+
+[node name="Borderless" type="Label" parent="Video/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_y1n18")
+theme_override_font_sizes/font_size = 24
+text = "Borderless"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Video/HBoxContainer"]
+layout_mode = 2
+
+[node name="Fullscreen" type="CheckBox" parent="Video/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../../..")
+focus_neighbor_bottom = NodePath("../Borderless")
+focus_next = NodePath("../Borderless")
+
+[node name="Borderless" type="CheckBox" parent="Video/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Fullscreen")
+
+[node name="Back" type="Button" parent="Video"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -60.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_y1n18")
+theme_override_font_sizes/font_size = 24
+text = "Retour"
+
+[node name="Audio" type="TabBar" parent="."]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Video")
+focus_neighbor_right = NodePath("../Controls")
+theme_override_fonts/font = ExtResource("1_y1n18")
+theme_override_font_sizes/font_size = 20
+script = ExtResource("5_i5vk1")
+metadata/_tab_index = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Audio"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -94.0
+offset_right = 156.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Audio/HBoxContainer"]
+layout_mode = 2
+
+[node name="Master" type="Label" parent="Audio/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("3_b5nwg")
+theme_override_font_sizes/font_size = 24
+text = "Master"
+
+[node name="Music" type="Label" parent="Audio/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_y1n18")
+theme_override_font_sizes/font_size = 24
+text = "Music"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Audio/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Master" type="HSlider" parent="Audio/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_neighbor_bottom = NodePath("../Music")
+focus_next = NodePath("../Music")
+max_value = 1.0
+step = 0.05
+
+[node name="Music" type="HSlider" parent="Audio/HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+focus_neighbor_top = NodePath("../Master")
+max_value = 1.0
+step = 0.05
+
+[node name="Back" type="Button" parent="Audio"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -121.0
+offset_top = -60.0
+offset_right = -21.0
+offset_bottom = -22.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_y1n18")
+theme_override_font_sizes/font_size = 24
+text = "Retour"
+
+[node name="Controls" type="TabBar" parent="."]
+visible = false
+layout_mode = 2
+focus_neighbor_left = NodePath("../Audio")
+focus_neighbor_right = NodePath("../Video")
+theme_override_fonts/font = ExtResource("1_y1n18")
+theme_override_font_sizes/font_size = 20
+metadata/_tab_index = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Controls"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -159.0
+offset_top = -133.5
+offset_right = 156.0
+offset_bottom = 140.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Controls/HBoxContainer"]
+layout_mode = 2
+
+[node name="Up" type="Label" parent="Controls/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("3_b5nwg")
+theme_override_font_sizes/font_size = 24
+text = "Haut"
+
+[node name="Down" type="Label" parent="Controls/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_y1n18")
+theme_override_font_sizes/font_size = 24
+text = "Bas"
+
+[node name="Gauche" type="Label" parent="Controls/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_y1n18")
+theme_override_font_sizes/font_size = 24
+text = "Gauche
+"
+
+[node name="Droite" type="Label" parent="Controls/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
+theme_override_fonts/font = ExtResource("1_y1n18")
+theme_override_font_sizes/font_size = 24
+text = "Droite"
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Controls/HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+
+[node name="Up" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
+layout_mode = 2
+
+[node name="Down" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
+layout_mode = 2
+action = "Down"
+
+[node name="Left" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
+layout_mode = 2
+action = "Left"
+
+[node name="Right" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
+layout_mode = 2
+action = "Right"
+
+[node name="Back" type="Button" parent="Controls"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -121.0
+offset_top = -60.0
+offset_right = -21.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("1_y1n18")
+theme_override_font_sizes/font_size = 24
+text = "Retour"
+
+[connection signal="toggled" from="Video/HBoxContainer/VBoxContainer2/Fullscreen" to="Video" method="_on_fullscreen_toggled"]
+[connection signal="toggled" from="Video/HBoxContainer/VBoxContainer2/Borderless" to="Video" method="_on_borderless_toggled"]
+[connection signal="pressed" from="Video/Back" to="." method="_on_back_pressed"]
+[connection signal="value_changed" from="Audio/HBoxContainer/VBoxContainer2/Master" to="Audio" method="_on_master_value_changed"]
+[connection signal="value_changed" from="Audio/HBoxContainer/VBoxContainer2/Music" to="Audio" method="_on_music_value_changed"]
+[connection signal="pressed" from="Audio/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Controls/Back" to="." method="_on_back_pressed"]
