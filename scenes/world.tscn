@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=8 format=3 uid="uid://ifwq3geifvtp"]
 
 [ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
 [ext_resource type="PackedScene" uid="uid://choyge02xkei7" path="res://scenes/player.tscn" id="2_vx5u1"]
 [ext_resource type="Script" path="res://script/camera_2d.gd" id="3_fm33l"]
+[ext_resource type="Script" path="res://scenes/weapon_stats.gd" id="4_1oicy"]
 
 [sub_resource type="GDScript" id="GDScript_vhok5"]
 script/source = "extends Node2D
@@ -55,3 +56,6 @@ position = Vector2(581, 330)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_fm33l")
+
+[node name="WeaponStats" type="Node2D" parent="."]
+script = ExtResource("4_1oicy")
