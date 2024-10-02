@@ -5,7 +5,7 @@ var attack_distance: float = 1.0
 var damage: float = 10.0  
 var movement_target_position: Vector2
 
-var life: float = 100.0
+var life: float = 10.0
 var current_life: float = life
 var xp_rate: float = 1 # Taux de chance de générer l'objet d'expérience
 var xp_value: float = 3 
