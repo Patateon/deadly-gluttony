@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+static var fire_projectile_since_start = 0
 var speed = 300.0
 var life = 100.0
 var damage = 1
@@ -32,14 +32,16 @@ func _ready():
 	
 func _process(delta: float) -> void:
 	set_health_bar()
+
 	for i in range(atk_speed_acc.size()):  
 		atk_speed_acc[i] += delta 
 	fire_projectile()
+
 	
 func _physics_process(delta: float) -> void:
 	if is_alive:  
-		var directionx := Input.get_axis("ui_left", "ui_right")
-		var directiony := Input.get_axis("ui_up", "ui_down")
+		var directionx := Input.get_axis("Left", "Right")
+		var directiony := Input.get_axis("Up", "Down")
 		if directionx:
 			velocity.x = directionx * speed * movespeed
 		else:
@@ -103,3 +105,5 @@ func gain_experience(amount):
 	experience += amount
 	print("Gained experience:", amount)
 	print("Total experience:", experience)
+	
+	

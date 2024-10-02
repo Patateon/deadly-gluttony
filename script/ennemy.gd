@@ -13,6 +13,7 @@ var xp_value: float = 3
 @onready var navigation_agent: NavigationAgent2D = $EnemyNav
 @onready var area2d: Area2D = $EnemyArea
 var player = null  
+signal enemy_died  
 
 func _ready():
 	navigation_agent.path_desired_distance = 100.0
@@ -86,6 +87,7 @@ func take_damage(amount: float):
 		die() 
 		
 func die():
+	emit_signal("enemy_died")
 	if randi() % 100 < int(xp_rate * 100):
 		call_deferred("spawn_experience_item")
 	queue_free()  
