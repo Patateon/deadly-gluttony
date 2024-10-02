@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=5 format=3 uid="uid://ifwq3geifvtp"]
 
 [ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
 [ext_resource type="PackedScene" uid="uid://choyge02xkei7" path="res://scenes/player.tscn" id="2_vx5u1"]
+[ext_resource type="PackedScene" uid="uid://cd4t4iidtkdlk" path="res://scenes/hud.tscn" id="3_j7a75"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
 vertices = PackedVector2Array(1137.06, 14.9609, 1140.93, 638.008, 11.0312, 639.977, 12.9609, 11.0312)
@@ -21,3 +22,8 @@ script = ExtResource("1_7djdm")
 
 [node name="Player" parent="." instance=ExtResource("2_vx5u1")]
 position = Vector2(832, 256)
+
+[node name="HUD" parent="." instance=ExtResource("3_j7a75")]
+
+[connection signal="level_gained" from="Player" to="HUD" method="_on_player_level_gained"]
+[connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]

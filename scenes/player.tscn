@@ -10,7 +10,7 @@ size = Vector2(120, 122)
 [sub_resource type="CircleShape2D" id="CircleShape2D_r8wsl"]
 radius = 152.003
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xc1no"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6ih3"]
 bg_color = Color(0.582927, 0.0155673, 0, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -33,15 +33,17 @@ shape = SubResource("RectangleShape2D_2wanr")
 [node name="AttractionCollider" type="CollisionShape2D" parent="AttractionArea"]
 shape = SubResource("CircleShape2D_r8wsl")
 
-[node name="HealthBar" type="ProgressBar" parent="."]
-offset_left = -60.0
-offset_top = -104.0
-offset_right = 60.0
-offset_bottom = -77.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_xc1no")
-step = 1.0
-show_percentage = false
-
 [node name="CameraPlayer" type="Camera2D" parent="."]
 scale = Vector2(3.98872, 4)
 script = ExtResource("3_e3kk8")
+
+[node name="PlayerHUD" type="CanvasLayer" parent="."]
+
+[node name="HealthBar" type="ProgressBar" parent="PlayerHUD"]
+offset_left = -15.0
+offset_top = -27.0
+offset_right = 15.0
+offset_bottom = -18.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_q6ih3")
+step = 1.0
+show_percentage = false
