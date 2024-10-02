@@ -6,9 +6,9 @@ var chunk_size = 8
 var tile_floor = 0 # ID de la tuile de sol
 var tile_decoration = 1 # ID de la tuile pour la surcouche (ex: herbe)
 var cell_size = Vector2(32,32)
-# Spécifie l'index de la couche (layer) pour chaque type de tuile
-var layer_floor = 0
-var layer_decoration = 1
+
+
+
 
 @onready var floor: TileMapLayer = $floor
 @onready var decoration: TileMapLayer = $decoration
@@ -37,12 +37,11 @@ func generate_around_player():
 func generate_chunk(chunk_position):
 	for x in range(chunk_size):
 		for y in range(chunk_size):
-			var tile_pos = Vector2(chunk_position.x * chunk_size + x, chunk_position.y * chunk_size + y)
-			
+			var tile_pos = Vector2i(chunk_position.x * chunk_size + x, chunk_position.y * chunk_size + y)
 			
 			# Générer la couche de sol (layer_floor)
-			floor.set_cell(tile_pos.x, tile_pos.y, layer_floor, tile_floor)
+			floor.set_cell(tile_pos, tile_floor, Vector2i(0, 0), 0)
 			
 			# Ajouter des décorations sur la couche supérieure de manière aléatoire (layer_decoration)
 			if randi() % 10 == 0:  # 10% de chance d'ajouter une décoration
-				decoration.set_cell(tile_pos.x, tile_pos.y, layer_decoration, tile_decoration)
+				decoration.set_cell(tile_pos, tile_decoration, Vector2i(0, 0), 0)
