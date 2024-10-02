@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=3 uid="uid://cgkkopjoljreq"]
 
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="1_y1n18"]
-[ext_resource type="Script" path="res://scripts/settings.gd" id="2_d850m"]
+[ext_resource type="Script" path="res://script/settings.gd" id="2_d850m"]
 [ext_resource type="FontFile" uid="uid://cwhlyffj1j3xm" path="res://assets/font/insaniburger/Insanibc.ttf" id="3_b5nwg"]
-[ext_resource type="Script" path="res://scripts/video.gd" id="3_kdm1b"]
+[ext_resource type="Script" path="res://script/video.gd" id="3_kdm1b"]
 [ext_resource type="PackedScene" uid="uid://bkllj8l6sywyw" path="res://scenes/action_button.tscn" id="4_4o4ae"]
-[ext_resource type="Script" path="res://scripts/audio.gd" id="5_i5vk1"]
+[ext_resource type="Script" path="res://script/audio.gd" id="5_i5vk1"]
 
 [node name="Settings" type="TabContainer"]
 anchors_preset = 15

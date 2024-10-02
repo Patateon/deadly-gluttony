@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://chdcdu3t18rbm"]
 
-[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_0vlti"]
+[ext_resource type="Script" path="res://script/main_menu.gd" id="1_0vlti"]
 [ext_resource type="Texture2D" uid="uid://bbyxnhta7a8or" path="res://assets/images/jeu1.png" id="2_k65r6"]
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="3_qjoa7"]
 [ext_resource type="PackedScene" uid="uid://cgkkopjoljreq" path="res://scenes/settings.tscn" id="4_y3vuu"]
