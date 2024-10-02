@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dkqg8hwvdfmwn"]
+
+[ext_resource type="Script" path="res://script/ennemy.gd" id="1_7gtbv"]
+[ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_43jif"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1n63e"]
+size = Vector2(128, 128)
+
+[node name="Enemy" type="CharacterBody2D" groups=["NPC"]]
+scale = Vector2(0.25, 0.25)
+collision_layer = 3
+collision_mask = 2
+script = ExtResource("1_7gtbv")
+
+[node name="EnemySprite" type="Sprite2D" parent="." groups=["NPC"]]
+texture = ExtResource("2_43jif")
+
+[node name="EnemyNav" type="NavigationAgent2D" parent="." groups=["NPC"]]
+target_desired_distance = 0.1
+path_max_distance = 500.0
+
+[node name="EnemyCollider" type="CollisionShape2D" parent="." groups=["NPC"]]
+shape = SubResource("RectangleShape2D_1n63e")
+
+[node name="EnemyArea" type="Area2D" parent="." groups=["NPC"]]
+
+[node name="EnemyAreaShape" type="CollisionShape2D" parent="EnemyArea" groups=["NPC"]]
+shape = SubResource("RectangleShape2D_1n63e")
