@@ -16,7 +16,7 @@ var is_alive: bool = true
 signal player_died  
 
 @onready var attraction_area: Area2D = $AttractionArea
-@onready var weapon_stats = get_node("/root/World/WeaponStats")
+@onready var weapon_stats = get_node("/root/World/WeaponStats")#stat armes a mettre a jour lors level up
 
 func _input(event):
 	if event.is_action_pressed("fire"):
@@ -73,15 +73,11 @@ func fire_projectile():
 	for projectile in weapons : 
 		if(atk_speed_acc[i]>atk_speed/weapon_stats.get_attack_speed(i)) :
 			atk_speed_acc[i] = 0
-			var projectile_instance = projectile.instantiate()
-			projectile_instance.set_damage(weapon_stats.get_damage(i))
-			projectile_instance.global_position = global_position
-			
-
-
 			var enemies = get_tree().get_nodes_in_group("NPC")
 			if !enemies.is_empty():
-				#projectile_instance.add_constant_central_force(Vector2(randi_range(-1, 1), randi_range(-1, 1)))
+				var projectile_instance = projectile.instantiate()
+				projectile_instance.set_damage(weapon_stats.get_damage(i))
+				projectile_instance.global_position = global_position
 				var enemy = enemies.back()
 				var traj = enemy.global_position - global_position
 				projectile_instance.add_constant_central_force(traj*weapon_stats.get_projectile_speed(i))
