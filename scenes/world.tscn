@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=8 format=3 uid="uid://ifwq3geifvtp"]
 
+[ext_resource type="PackedScene" uid="uid://c1nuygk5f3vma" path="res://scenes/tilemap_scene.tscn" id="1_5gsju"]
 [ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
 [ext_resource type="PackedScene" uid="uid://choyge02xkei7" path="res://scenes/player.tscn" id="2_vx5u1"]
 [ext_resource type="Script" path="res://script/camera_2d.gd" id="3_fm33l"]
@@ -29,6 +30,8 @@ size = Vector2(1121, 619)
 [node name="World" type="Node2D"]
 script = SubResource("GDScript_vhok5")
 
+[node name="TilemapScene" parent="." instance=ExtResource("1_5gsju")]
+
 [node name="Background" type="Node2D" parent="."]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="." groups=["NavZone"]]
@@ -50,4 +53,5 @@ script = ExtResource("1_7djdm")
 position = Vector2(581, 330)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 script = ExtResource("3_fm33l")
