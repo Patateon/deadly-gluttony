@@ -1,5 +1,5 @@
 extends CharacterBody2D
-
+static var fire_projectile_since_start = 0
 var speed = 300.0
 var life = 100.0
 var damage = 1
@@ -31,6 +31,8 @@ func _process(delta: float) -> void:
 	if (atk_speed_acc > atk_speed):
 		atk_speed_acc = 0
 		fire_projectile()
+		fire_projectile_since_start+=1
+		
 	
 func _physics_process(delta: float) -> void:
 	if is_alive:  
@@ -92,3 +94,5 @@ func gain_experience(amount):
 	experience += amount
 	print("Gained experience:", amount)
 	print("Total experience:", experience)
+	
+	
