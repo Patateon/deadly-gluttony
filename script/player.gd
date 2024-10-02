@@ -34,8 +34,8 @@ func _process(delta: float) -> void:
 	
 func _physics_process(delta: float) -> void:
 	if is_alive:  
-		var directionx := Input.get_axis("ui_left", "ui_right")
-		var directiony := Input.get_axis("ui_up", "ui_down")
+		var directionx := Input.get_axis("Left", "Right")
+		var directiony := Input.get_axis("Up", "Down")
 		if directionx:
 			velocity.x = directionx * speed * movespeed
 		else:
