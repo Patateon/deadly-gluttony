@@ -8,12 +8,16 @@ size = Vector2(128, 128)
 
 [node name="Enemy" type="CharacterBody2D" groups=["NPC"]]
 scale = Vector2(0.25, 0.25)
+collision_layer = 3
+collision_mask = 2
 script = ExtResource("1_7gtbv")
 
 [node name="EnemySprite" type="Sprite2D" parent="." groups=["NPC"]]
 texture = ExtResource("2_43jif")
 
 [node name="EnemyNav" type="NavigationAgent2D" parent="." groups=["NPC"]]
+target_desired_distance = 0.1
+path_max_distance = 500.0
 
 [node name="EnemyCollider" type="CollisionShape2D" parent="." groups=["NPC"]]
 shape = SubResource("RectangleShape2D_1n63e")
