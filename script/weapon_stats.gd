@@ -8,16 +8,6 @@ var  area: Array = [1.5, 1, 1]
 var projectile_speed: Array = [1.0, 1.0, 1.0]  
 
 
-func update_stats(index: int, new_damage: float, new_attack_speed: float, new_area: float, new_projectile_speed: float):
-	if index >= 0 and index < damage.size():
-		damage[index] = new_damage
-		attack_speed[index] = new_attack_speed
-		area[index] = new_area
-		projectile_speed[index] = new_projectile_speed
-	else:
-		print("Index out of bounds!")
-
-
 func get_damage(index: int) -> float:
 	if index >= 0 and index < damage.size():
 		return damage[index]
@@ -67,7 +57,7 @@ func set_projectile_speed(index: int, new_projectile_speed: float) -> void:
 	else:
 		print("Index out of bounds!")
 
-# Méthode pour imprimer les statistiques
+
 func print_stats():
 	for i in range(damage.size()):
 		print("Weapon ", i + 1, ": Damage: ", damage[i], ", Attack Speed: ", attack_speed[i], 
