@@ -56,6 +56,12 @@ func switch_scene(scene_name: StringName, cur_scene: Node):
 	var world_instance = world_scene.instantiate()
 	get_tree().root.add_child(world_instance)
 	cur_scene.queue_free()
+	
+func switch_scene_end(scene_name: StringName, cur_scene: Node):
+	var world_scene = preload("res://scenes/end.tscn")
+	var world_instance = world_scene.instantiate()
+	get_tree().root.add_child(world_instance)
+	cur_scene.queue_free()
 
 func hide_scene(scene):
 	scene.hide()

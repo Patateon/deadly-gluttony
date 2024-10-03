@@ -73,8 +73,6 @@ func _on_Area2D_area_entered(area: Area2D):
 		if player and player.has_method("take_damage"):
 			print("Player has take_damage method")
 			player.take_damage(damage)
-			if player.has_method("set_health_bar"):
-				player.set_health_bar()
 
 func _on_Player_died():
 	print("Player died")
