@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://cwhlyffj1j3xm"
-path="res://.godot/imported/Insanibc.ttf-850e0443d5acbb42568e390526800d82.fontdata"
+uid="uid://5yvfamyb0pdi"
+path="res://.godot/imported/Cormorant-Italic.ttf-7ef40f0bbfe6fe5c704ec1880665f7ec.fontdata"
 
 [deps]
 
-source_file="res://assets/font/insaniburger/Insanibc.ttf"
-dest_files=["res://.godot/imported/Insanibc.ttf-850e0443d5acbb42568e390526800d82.fontdata"]
+source_file="res://assets/fonts/cormorant/Cormorant-Italic.ttf"
+dest_files=["res://.godot/imported/Cormorant-Italic.ttf-7ef40f0bbfe6fe5c704ec1880665f7ec.fontdata"]
 
 [params]
 
