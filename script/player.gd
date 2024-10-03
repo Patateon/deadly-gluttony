@@ -25,7 +25,7 @@ func _input(event):
 
 func _ready():
 	attraction_area.body_entered.connect(_on_AttractionArea_body_entered)
-	$PlayerHUD/HealthBar.max_value = 100
+	$HealthBar.max_value = 100
 	set_health_bar()
 	
 func _process(delta: float) -> void:
@@ -61,11 +61,12 @@ func kill_all_enemies():
 func take_damage(amount: float):
 	current_life -= amount
 	print(current_life)
+	set_health_bar()
 	if current_life <= 0:
 		die()
 		
 func set_health_bar() -> void:
-	$PlayerHUD/HealthBar.value = current_life
+	$HealthBar.value = current_life
 
 func fire_projectile():
 	var projectile_scene = preload("res://scenes/projectile.tscn")
