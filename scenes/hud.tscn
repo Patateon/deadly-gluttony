@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=3 uid="uid://cd4t4iidtkdlk"]
+
+[ext_resource type="FontFile" uid="uid://bu0id2fah7xhw" path="res://assets/fonts/cormorant/Cormorant-Regular.ttf" id="1_fnw23"]
+[ext_resource type="Script" path="res://scenes/hud.gd" id="1_syndx"]
+[ext_resource type="FontFile" uid="uid://5yvfamyb0pdi" path="res://assets/fonts/cormorant/Cormorant-Italic.ttf" id="2_py0ar"]
+[ext_resource type="FontFile" uid="uid://dlu3k3wlkolrl" path="res://assets/fonts/cormorant/Cormorant-BoldItalic.ttf" id="3_odj0k"]
+[ext_resource type="FontFile" uid="uid://b0mfaaxpyd2ls" path="res://assets/fonts/cormorant/Cormorant-Bold.ttf" id="4_0l25l"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_syndx")
+
+[node name="LevelTime" type="Timer" parent="."]
+
+[node name="TOP" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Level_Label" type="RichTextLabel" parent="TOP"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 9.0
+offset_right = 189.0
+offset_bottom = 48.0
+theme_override_fonts/normal_font = ExtResource("1_fnw23")
+theme_override_fonts/italics_font = ExtResource("2_py0ar")
+theme_override_fonts/bold_italics_font = ExtResource("3_odj0k")
+theme_override_fonts/bold_font = ExtResource("4_0l25l")
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "[b] LVL : [/b]"
+
+[node name="XP_BAR" type="ProgressBar" parent="TOP"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 8.0
+offset_right = 1272.0
+offset_bottom = 49.0
+show_percentage = false
+
+[node name="XP_Numbers" type="RichTextLabel" parent="TOP/XP_BAR"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/bold_font = ExtResource("4_0l25l")
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true

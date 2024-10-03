@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://choyge02xkei7"]
+[gd_scene load_steps=7 format=3 uid="uid://choyge02xkei7"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_vact7"]
 [ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_ywgmp"]
+[ext_resource type="Script" path="res://script/camera_2d.gd" id="3_e3kk8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wanr"]
 size = Vector2(120, 122)
@@ -9,7 +10,7 @@ size = Vector2(120, 122)
 [sub_resource type="CircleShape2D" id="CircleShape2D_r8wsl"]
 radius = 152.003
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xc1no"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6ih3"]
 bg_color = Color(0.582927, 0.0155673, 0, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -32,11 +33,15 @@ shape = SubResource("RectangleShape2D_2wanr")
 [node name="AttractionCollider" type="CollisionShape2D" parent="AttractionArea"]
 shape = SubResource("CircleShape2D_r8wsl")
 
+[node name="CameraPlayer" type="Camera2D" parent="."]
+scale = Vector2(3.98872, 4)
+script = ExtResource("3_e3kk8")
+
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -60.0
 offset_top = -104.0
 offset_right = 60.0
-offset_bottom = -77.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_xc1no")
+offset_bottom = -72.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_q6ih3")
 step = 1.0
 show_percentage = false
