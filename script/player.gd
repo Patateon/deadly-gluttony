@@ -60,6 +60,7 @@ func kill_all_enemies():
 	for enemy in enemies:
 		if enemy.has_method("die"):
 			enemy.die()
+	weapon_stats.set_attack_speed(0,3);
 			
 func take_damage(amount: float):
 	current_life -= amount
@@ -78,15 +79,12 @@ func fire_projectile():
 			var enemies = get_tree().get_nodes_in_group("NPC")
 			if !enemies.is_empty():
 				var projectile_instance = projectile.instantiate()
+				projectile_instance.set_index(i)
 				projectile_instance.set_damage(weapon_stats.get_damage(i))
 				projectile_instance.global_position = global_position
 				var enemy = enemies.back()
 				var traj = enemy.global_position - global_position
 				projectile_instance.add_constant_central_force(traj*weapon_stats.get_projectile_speed(i))
-				var projectile_area = weapon_stats.get_area(i)  
-				var initial_scale = projectile_instance.scale  
-				var scale_multiplier = projectile_area  
-				projectile_instance.scale = initial_scale * scale_multiplier  
 				get_parent().add_child(projectile_instance)
 		i=i+1
 
