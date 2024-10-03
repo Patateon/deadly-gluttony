@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://b0mfaaxpyd2ls"
-path="res://.godot/imported/Cormorant-Bold.ttf-6023ab127f79b3e9a6e8e0cd9c19efe9.fontdata"
+uid="uid://sgvfhvecop85"
+path="res://.godot/imported/Insanibu.ttf-ec540890be44d6fad35a29e124209ba4.fontdata"
 
 [deps]
 
-source_file="res://assets/fonts/cormorant/Cormorant-Bold.ttf"
-dest_files=["res://.godot/imported/Cormorant-Bold.ttf-6023ab127f79b3e9a6e8e0cd9c19efe9.fontdata"]
+source_file="res://assets/font/insaniburger/Insanibu.ttf"
+dest_files=["res://.godot/imported/Insanibu.ttf-ec540890be44d6fad35a29e124209ba4.fontdata"]
 
 [params]
 
