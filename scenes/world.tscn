@@ -1,3 +1,14 @@
+[gd_scene load_steps=5 format=3 uid="uid://ifwq3geifvtp"]
+
+[ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
+[ext_resource type="PackedScene" uid="uid://choyge02xkei7" path="res://scenes/player.tscn" id="2_vx5u1"]
+[ext_resource type="PackedScene" uid="uid://cd4t4iidtkdlk" path="res://scenes/hud.tscn" id="3_j7a75"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
+vertices = PackedVector2Array(1137.06, 14.9609, 1140.93, 638.008, 11.0312, 639.977, 12.9609, 11.0312)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(3, 1, 1147, 5, 1151, 648, 1, 650)])
+
 [gd_scene load_steps=8 format=3 uid="uid://ifwq3geifvtp"]
 
 [ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
@@ -31,8 +42,7 @@ outlines = Array[PackedVector2Array]([PackedVector2Array(3, 1, 1144, 7, 1151, 64
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_58m6i"]
 size = Vector2(1121, 619)
 
-[node name="World" type="Node2D"]
-script = SubResource("GDScript_vhok5")
+[node name="World" type="Node"]
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -52,6 +62,12 @@ position = Vector2(566, 322)
 script = ExtResource("1_7djdm")
 
 [node name="Player" parent="." instance=ExtResource("2_vx5u1")]
+position = Vector2(832, 256)
+
+[node name="HUD" parent="." instance=ExtResource("3_j7a75")]
+
+[connection signal="level_gained" from="Player" to="HUD" method="_on_player_level_gained"]
+[connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]
 position = Vector2(581, 330)
 
 [node name="Camera2D" type="Camera2D" parent="."]

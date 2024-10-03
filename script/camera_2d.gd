@@ -9,7 +9,8 @@ func _ready() -> void:
 	self.position = character.get_global_position()
 	
 func _process(_delta: float) -> void:
-	update_camera_position(_delta)
+	pass
+	#update_camera_position(_delta)
 	
 	
 func update_camera_position(delta: float):
