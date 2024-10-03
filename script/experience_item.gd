@@ -3,7 +3,6 @@ extends Node2D
 var xp_value = 0
 var target = null
 var attraction_speed = 100.0
-
 func set_xp_value(value):
 	xp_value = value
 
