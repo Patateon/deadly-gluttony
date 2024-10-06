@@ -1,29 +1,91 @@
-[gd_scene load_steps=5 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=9 format=3 uid="uid://ifwq3geifvtp"]
 
+
+[ext_resource type="PackedScene" uid="uid://c1nuygk5f3vma" path="res://scenes/tilemap_scene.tscn" id="1_5gsju"]
 [ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
+[ext_resource type="PackedScene" uid="uid://gmu2dupf71i8" path="res://scenes/pause_menu.tscn" id="1_uj5e5"]
 [ext_resource type="PackedScene" uid="uid://choyge02xkei7" path="res://scenes/player.tscn" id="2_vx5u1"]
-[ext_resource type="PackedScene" uid="uid://cd4t4iidtkdlk" path="res://scenes/hud.tscn" id="3_j7a75"]
 
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58m6i"]
+size = Vector2(1121, 619)
+[ext_resource type="PackedScene" uid="uid://cd4t4iidtkdlk" path="res://scenes/hud.tscn" id="3_j7a75"]
+[ext_resource type="Script" path="res://script/camera_2d.gd" id="3_fm33l"]
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
 vertices = PackedVector2Array(1137.06, 14.9609, 1140.93, 638.008, 11.0312, 639.977, 12.9609, 11.0312)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(3, 1, 1147, 5, 1151, 648, 1, 650)])
+[sub_resource type="GDScript" id="GDScript_vhok5"]
+script/source = "extends Node2D  
+var is_paused = false  # A flag to track the pause state
+
+func _ready():
+	pass
+
+func _process(delta):
+	if Input.is_action_just_pressed(\"Pause\"):  # \"ui_cancel\" is the Esc key by default
+		toggle_pause()
+
+# Function to toggle pause for all children
+func toggle_pause():
+	is_paused = !is_paused
+	if is_paused : 
+		$Camera2D/Pause_Menu.show()
+	else : 
+		$Camera2D/Pause_Menu.hide()
+	_set_children_process(is_paused)
+
+# Recursively set the process and physics_process for all children
+func _set_children_process(pause: bool):
+	for child in get_children():
+		if child is Node:
+			child.set_process(not pause)
+			child.set_physics_process(not pause)
+			# Recursively pause/resume children of children (grandchildren)
+			#if child.get_child_count() > 0:
+			#	child._set_children_process(pause)
+
 
 [node name="World" type="Node"]
 
-[node name="Background" type="Node2D" parent="."]
+[node name="TilemapScene" parent="." instance=ExtResource("1_5gsju")]
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_m0080")
+[node name="Background" type="Node2D" parent="."]
 
 [node name="EnemyGenerator" type="Node2D" parent="."]
 position = Vector2(566, 322)
 script = ExtResource("1_7djdm")
 
 [node name="Player" parent="." instance=ExtResource("2_vx5u1")]
+
 position = Vector2(832, 256)
 
 [node name="HUD" parent="." instance=ExtResource("3_j7a75")]
 
 [connection signal="level_gained" from="Player" to="HUD" method="_on_player_level_gained"]
 [connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]
+
+position = Vector2(581, 330)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Player" groups=["NavZone"]]
+position = Vector2(-1760.61, -1000)
+scale = Vector2(3.0303, 3.0303)
+navigation_polygon = SubResource("NavigationPolygon_m0080")
+
+[node name="Area2D" type="Area2D" parent="Player/NavigationRegion2D"]
+position = Vector2(-8, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/NavigationRegion2D/Area2D"]
+position = Vector2(580.5, 327.5)
+shape = SubResource("RectangleShape2D_58m6i")
+disabled = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_fm33l")
+
+[node name="Pause_Menu" parent="Camera2D" instance=ExtResource("1_uj5e5")]
+offset_left = 581.0
+offset_top = 330.0
+offset_right = 581.0
+offset_bottom = 330.0
+
