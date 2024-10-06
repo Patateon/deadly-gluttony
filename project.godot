@@ -15,18 +15,16 @@ run/main_scene="res://scenes/main_menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
-
-[display]
-
-window/size/viewport_width=1280
-window/size/viewport_height=720
-
 [autoload]
 
 AudioManager="*res://scenes/audio_manager.tscn"
 Utilities="*res://scenes/utilities.tscn"
 World="*res://scenes/world.tscn"
 
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [editor]
 
