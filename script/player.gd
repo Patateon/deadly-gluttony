@@ -6,13 +6,16 @@ var damage = 1
 var atk_speed = 1
 var atk_speed_acc = 0.0;
 var movespeed = 1
-var experience = 0
 var level = 1
+var current_xp = 0
+var max_xp = 100
 
 var current_life: float = life
 var is_alive: bool = true  
 
-signal player_died  
+signal player_died 
+signal xp_gained(current_xp, max_xp)
+signal level_gained(level)
 
 @onready var attraction_area: Area2D = $AttractionArea
 @onready var _animated_sprite = $AnimatedSprite2D
@@ -69,6 +72,7 @@ func kill_all_enemies():
 func take_damage(amount: float):
 	current_life -= amount
 	print(current_life)
+	set_health_bar()
 	if current_life <= 0:
 		die()
 		
@@ -88,9 +92,15 @@ func fire_projectile():
 		projectile_instance.add_constant_central_force(traj)
 	get_parent().add_child(projectile_instance)
 
+func level_up():
+	level_gained.emit(level)
+	level += 1
+	max_xp *= 1.25
+	
+
 func die():
 	is_alive = false 
-	emit_signal("player_died") 
+	emit_signal("player_died")
 	queue_free()  
 
 func _on_AttractionArea_body_entered(body):
@@ -100,6 +110,10 @@ func _on_AttractionArea_body_entered(body):
 		body.set_target(self)
 
 func gain_experience(amount):
-	experience += amount
-	print("Gained experience:", amount)
-	print("Total experience:", experience)
+	current_xp += amount
+	if (current_xp >= max_xp):
+		current_xp -= max_xp
+		level_up()
+	xp_gained.emit(current_xp, max_xp)
+	#print("Gained experience:", amount)
+	#print("Total experience:", current_xp)

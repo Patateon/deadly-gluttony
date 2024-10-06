@@ -23,8 +23,15 @@ func _process(delta: float) -> void:
 func createEnemy():
 	var enemy_scene = preload("res://scenes/enemy.tscn")
 	var enemy_instance = enemy_scene.instantiate()
+
+	var player = get_tree().get_nodes_in_group("Player")[0]
+	#enemy_instance.position = player + Vector2(rand)
+	enemy_instance.global_position = Vector2(global_position[0] + randi_range(0, 3),
+											 global_position[1] + randi_range(0, 3))
+	get_parent().add_child(enemy_instance)
+
 	var zone = get_tree().get_first_node_in_group("NavZone")
-	var player = get_tree().get_first_node_in_group("Player")
+	#var player = get_tree().get_first_node_in_group("Player")
 
 	if zone and player:
 		var collision_shape = zone.get_node("Area2D").get_node("CollisionShape2D")
