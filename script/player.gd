@@ -15,7 +15,7 @@ var is_alive: bool = true
 signal player_died  
 
 @onready var attraction_area: Area2D = $AttractionArea
-
+@onready var _animated_sprite = $AnimatedSprite2D
 func _input(event):
 	if event.is_action_pressed("fire"):
 		fire_projectile()
@@ -36,18 +36,29 @@ func _physics_process(delta: float) -> void:
 	if is_alive:  
 		var directionx := Input.get_axis("Left", "Right")
 		var directiony := Input.get_axis("Up", "Down")
+		# Horizontal movement
 		if directionx:
 			velocity.x = directionx * speed * movespeed
+			# Flip the sprite based on direction
+			if directionx > 0:
+				_animated_sprite.flip_h = true  # Facing right
+			elif directionx < 0:
+				_animated_sprite.flip_h = false   # Facing left
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed * movespeed)
+		
+		# Vertical movement
 		if directiony:
 			velocity.y = directiony * speed * movespeed
 		else:
 			velocity.y = move_toward(velocity.y, 0, speed * movespeed)
+		
 	
 		move_and_slide()
-		if Input.is_action_just_pressed("kill_enemies"):
-			kill_all_enemies()
+		if directionx != 0 or directiony != 0:
+			_animated_sprite.play("Run")
+		elif velocity.length() == 0.0:
+			_animated_sprite.play("Idle")
 
 func kill_all_enemies():
 	var enemies = get_tree().get_nodes_in_group("NPC")
