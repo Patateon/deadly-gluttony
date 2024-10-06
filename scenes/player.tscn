@@ -1,12 +1,9 @@
 [gd_scene load_steps=18 format=3 uid="uid://choyge02xkei7"]
 
-
 [ext_resource type="Script" path="res://script/player.gd" id="1_vact7"]
 [ext_resource type="Texture2D" uid="uid://3o10682n5bay" path="res://assets/charac/player/run-1.webp" id="2_kh084"]
 [ext_resource type="Texture2D" uid="uid://dr3yjlvd1ptlc" path="res://assets/charac/player/sanji.png" id="2_u4hua"]
 [ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_ywgmp"]
-
-[ext_resource type="Script" path="res://script/camera_2d.gd" id="3_e3kk8"]
 [ext_resource type="Texture2D" uid="uid://dxlq1ilrwwcf7" path="res://assets/charac/player/run-2.webp" id="3_ldo4j"]
 [ext_resource type="Texture2D" uid="uid://bjkw6b3oikkwr" path="res://assets/charac/player/run-3.webp" id="4_3g68d"]
 [ext_resource type="Texture2D" uid="uid://cw1njejgos4w8" path="res://assets/charac/player/run-4.webp" id="5_1cu16"]
@@ -72,14 +69,13 @@ animations = [{
 "speed": 5.0
 }]
 
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wanr"]
 size = Vector2(120, 122)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_r8wsl"]
 radius = 152.003
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q6ih3"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xc1no"]
 bg_color = Color(0.582927, 0.0155673, 0, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
@@ -107,15 +103,11 @@ shape = SubResource("RectangleShape2D_2wanr")
 [node name="AttractionCollider" type="CollisionShape2D" parent="AttractionArea"]
 shape = SubResource("CircleShape2D_r8wsl")
 
-[node name="CameraPlayer" type="Camera2D" parent="."]
-scale = Vector2(3.98872, 4)
-script = ExtResource("3_e3kk8")
-
 [node name="HealthBar" type="ProgressBar" parent="."]
 offset_left = -60.0
 offset_top = -104.0
 offset_right = 60.0
-offset_bottom = -72.0
-theme_override_styles/fill = SubResource("StyleBoxFlat_q6ih3")
+offset_bottom = -77.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_xc1no")
 step = 1.0
 show_percentage = false
