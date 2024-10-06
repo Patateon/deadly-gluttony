@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bkllj8l6sywyw"]
 
-[ext_resource type="Script" path="res://scripts/action_button.gd" id="1_kwngg"]
+[ext_resource type="Script" path="res://script/action_button.gd" id="1_kwngg"]
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="1_rj0f6"]
 
 [node name="ActionButton" type="Button"]

@@ -52,8 +52,9 @@ func load_video_settings():
 
 # Scene manager
 func switch_scene(scene_name: StringName, cur_scene: Node):
-	var scene = scenes[scene_map[scene_name]].instantiate()
-	get_tree().root.add_child(scene)
+	var world_scene = preload("res://scenes/world.tscn")
+	var world_instance = world_scene.instantiate()
+	get_tree().root.add_child(world_instance)
 	cur_scene.queue_free()
 
 func hide_scene(scene):

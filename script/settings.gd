@@ -1,7 +1,7 @@
 extends TabContainer
 
 @export var pre_scene: Node
-
+@onready var menuButton: VBoxContainer = $"../MainMenu/VBoxContainer"
 @onready var video: TabBar = $Video
 @onready var audio: TabBar = $Audio
 
@@ -23,5 +23,6 @@ func reload_settings():
 
 func _on_back_pressed():
 	hide()
+	menuButton.show()
 	pre_scene.reset_focus()
 	AudioManager.play_button_sound()
