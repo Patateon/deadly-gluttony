@@ -107,6 +107,7 @@ func die():
 	is_alive = false 
 	emit_signal("player_died") 
 	Utilities.switch_scene_end("end",self)
+	
 	queue_free()  
 	
 	
