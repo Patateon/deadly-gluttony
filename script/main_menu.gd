@@ -13,6 +13,7 @@ func _on_start_pressed():
 	AudioManager.play_music_sound()
 
 func _on_option_pressed():
+	$VBoxContainer.hide()
 	option_menu.show()
 	option_menu.reset_focus()
 	AudioManager.play_button_sound()
