@@ -16,7 +16,8 @@ var _animated_sprite_id: int
 
 @onready var navigation_agent: NavigationAgent2D = $EnemyNav
 @onready var area2d: Area2D = $EnemyArea
-var player = null  
+var player = null
+
 signal enemy_died  
 
 func _ready():
