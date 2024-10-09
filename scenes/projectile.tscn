@@ -1,0 +1,171 @@
+[gd_scene load_steps=28 format=3 uid="uid://b34q2707nahsg"]
+
+[ext_resource type="Script" path="res://script/projectile.gd" id="1_r267s"]
+[ext_resource type="Texture2D" uid="uid://bc88vl7rwh83y" path="res://assets/animated-sprites/weapon_anim/burger.png" id="2_jopts"]
+[ext_resource type="Texture2D" uid="uid://dxx3vclfsbnt6" path="res://assets/animated-sprites/weapon_anim/jelly.png" id="18_c6mh3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6phu"]
+atlas = ExtResource("2_jopts")
+region = Rect2(2, 3, 46, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm0ni"]
+atlas = ExtResource("2_jopts")
+region = Rect2(49, 2, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbxoy"]
+atlas = ExtResource("2_jopts")
+region = Rect2(92, 13, 65, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6jbt"]
+atlas = ExtResource("2_jopts")
+region = Rect2(158, 13, 73, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_855ao"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1e4hr"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bu52c"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_043p3"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dv5j5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gaqw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4a60y"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vd86q"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mwd7y"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_usg06"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dkyxb"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_465pe"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1ukj5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_es1ik"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xvdf5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32f7j"]
+atlas = ExtResource("18_c6mh3")
+region = Rect2(8, 0, 69, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcits"]
+atlas = ExtResource("18_c6mh3")
+region = Rect2(87, 0, 77, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dh3i"]
+atlas = ExtResource("18_c6mh3")
+region = Rect2(178, 0, 69, 61)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2bpxc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6phu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm0ni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbxoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6jbt")
+}],
+"loop": true,
+"name": &"burger",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_855ao")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_1e4hr")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_bu52c")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_043p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_dv5j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_2gaqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_4a60y")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_vd86q")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_mwd7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_usg06")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_dkyxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_465pe")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_1ukj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_es1ik")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_xvdf5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32f7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcits")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dh3i")
+}],
+"loop": true,
+"name": &"jelly",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udneo"]
+size = Vector2(56, 63)
+
+[node name="Projectile" type="RigidBody2D"]
+z_index = 2
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_r267s")
+
+[node name="ProjectileSprite" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2.86102e-06, 4.24683e-06)
+sprite_frames = SubResource("SpriteFrames_2bpxc")
+animation = &"burger"
+
+[node name="ProjectileCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_udneo")
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="ProjectileCollider2" type="CollisionShape2D" parent="HurtBox"]
+shape = SubResource("RectangleShape2D_udneo")

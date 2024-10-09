@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://chdcdu3t18rbm"]
+
+[ext_resource type="Script" path="res://script/main_menu.gd" id="1_0vlti"]
+[ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="3_qjoa7"]
+[ext_resource type="PackedScene" uid="uid://cgkkopjoljreq" path="res://scenes/settings.tscn" id="4_y3vuu"]
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MainMenu" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0vlti")
+
+[node name="ColorRect" type="ColorRect" parent="UI/MainMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.975655, 0.608659, 0.658878, 1)
+
+[node name="TextureRect" type="TextureRect" parent="UI/MainMenu"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -343.0
+offset_top = -135.0
+offset_right = 343.0
+offset_bottom = 135.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameTitle" type="Label" parent="UI/MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_qjoa7")
+theme_override_font_sizes/font_size = 50
+text = "Deadly Glutonny: Main Menu
+"
+
+[node name="Start" type="Button" parent="UI/MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start
+"
+
+[node name="Options" type="Button" parent="UI/MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Options
+"
+
+[node name="Quit" type="Button" parent="UI/MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Exit"
+
+[node name="Settings" parent="UI" node_paths=PackedStringArray("pre_scene") instance=ExtResource("4_y3vuu")]
+pre_scene = NodePath("../MainMenu")
+metadata/s = false
+metadata/ssss = false
+
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Start" to="UI/MainMenu" method="_on_start_pressed"]
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Options" to="UI/MainMenu" method="_on_option_pressed"]
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Quit" to="UI/MainMenu" method="_on_quit_pressed"]

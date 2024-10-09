@@ -5,16 +5,24 @@ var attack_distance: float = 1.0
 var damage: float = 10.0  
 var movement_target_position: Vector2
 
-var life: float = 100.0
+var life: float = 10.0
 var current_life: float = life
 var xp_rate: float = 1 # Taux de chance de générer l'objet d'expérience
 var xp_value: float = 3 
 
+@onready var _animated_sprite = $AnimatedSprite2D
+var _animation_to_play: String
+var _animated_sprite_id: int
+
 @onready var navigation_agent: NavigationAgent2D = $EnemyNav
 @onready var area2d: Area2D = $EnemyArea
-var player = null  
+var player = null
+
+signal enemy_died  
 
 func _ready():
+	_animated_sprite_id = randi()%2 + 1
+	_animation_to_play = "Run_" + str(_animated_sprite_id)
 	navigation_agent.path_desired_distance = 100.0
 	navigation_agent.target_desired_distance = 30.0
 	call_deferred("actor_setup")
@@ -22,7 +30,8 @@ func _ready():
 	area2d.monitoring = true
 	area2d.connect("area_entered", Callable(self, "_on_Area2D_area_entered"))
 
-	player = get_node("/root/World/Player")
+	#player = get_node("/root/World/Player")
+	player = get_tree().get_first_node_in_group("Player")
 	if player:
 		player.connect("player_died", Callable(self, "_on_Player_died"))
 
@@ -53,23 +62,28 @@ func _physics_process(delta: float) -> void:
 
 		var current_agent_position: Vector2 = global_position
 		var next_path_position: Vector2 = navigation_agent.get_next_path_position()
-
+		var animation_to_play
 		velocity = current_agent_position.direction_to(next_path_position) * movement_speed
+		if velocity.x >0.0 : 
+			_animated_sprite.flip_h = true
+		else : 
+			_animated_sprite.flip_h = false
+		_animated_sprite.play(_animation_to_play)
 		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
 
 func _on_Area2D_area_entered(area: Area2D):
-	print("Area entered:", area.name)
-	print("Groups of the entered area:")
+	#print("Area entered:", area.name)
+	#print("Groups of the entered area:")
 	for group in area.get_groups():
 		print(group)
 	if area.is_in_group("Player"):
-		print("player")
-		var player = area.get_parent()  
-		print("Player node:", player)
+		#print("player")
+		player = area.get_parent()  
+		#print("Player node:", player)
 		if player and player.has_method("take_damage"):
-			print("Player has take_damage method")
+			#print("Player has take_damage method")
 			player.take_damage(damage)
 
 func _on_Player_died():
@@ -83,8 +97,9 @@ func take_damage(amount: float):
 		die() 
 		
 func die():
+	emit_signal("enemy_died")
 	if randi() % 100 < int(xp_rate * 100):
-		spawn_experience_item()
+		call_deferred("spawn_experience_item")
 	queue_free()  
 
 func spawn_experience_item():

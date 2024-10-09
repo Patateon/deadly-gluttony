@@ -1,74 +1,130 @@
-[gd_scene load_steps=8 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=13 format=3 uid="uid://ifwq3geifvtp"]
 
-[ext_resource type="Script" path="res://script/player.gd" id="1_ih21q"]
-[ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_ffstj"]
-[ext_resource type="Script" path="res://script/ennemy.gd" id="3_m2jhw"]
+[ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
+[ext_resource type="PackedScene" uid="uid://c1nuygk5f3vma" path="res://scenes/tilemap_scene.tscn" id="1_grwk2"]
+[ext_resource type="PackedScene" uid="uid://choyge02xkei7" path="res://scenes/player.tscn" id="2_vx5u1"]
+[ext_resource type="Script" path="res://script/camera_2d.gd" id="3_fm33l"]
+[ext_resource type="Script" path="res://script/weapon_stats.gd" id="4_1oicy"]
+[ext_resource type="PackedScene" uid="uid://gmu2dupf71i8" path="res://scenes/pause_menu.tscn" id="5_ecj2u"]
+[ext_resource type="Script" path="res://script/stats.gd" id="5_qmb43"]
+[ext_resource type="PackedScene" uid="uid://cd4t4iidtkdlk" path="res://scenes/hud.tscn" id="8_tfaip"]
+[ext_resource type="Script" path="res://script/game_context.gd" id="9_qnmlx"]
+
+[sub_resource type="GDScript" id="GDScript_vhok5"]
+script/source = "extends Node2D  
+@onready var player = get_node(\"/root/World/Player\")
+@onready var enemy_generator = get_node(\"/root/World/EnemyGenerator\")
+@onready var stats = get_node(\"/root/World/Stats\")
+var is_paused = false  # A flag to track the pause state
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+func _process(delta):
+	#print(\"Projectile : \" ,stats.fire_projectile_since_start )
+	#print(\"Dead Enemy : \" ,enemy_generator.dead_enemy_since_start )
+	#print(\"Dolarz : \" ,stats.experience )
+	if Input.is_action_just_pressed(\"Pause\"):  # \"ui_cancel\" is the Esc key by default
+		toggle_pause()
+
+# Function to toggle pause for all children
+func toggle_pause():
+	is_paused = !is_paused
+	if is_paused : 
+		$Camera2D/Pause_Menu.show()
+	else : 
+		$Camera2D/Pause_Menu.hide()
+	_set_children_process(is_paused)
+
+# Recursively set the process and physics_process for all children
+func _set_children_process(pause: bool):
+	for child in get_children():
+		if child is Node:
+			child.set_process(not pause)
+			child.set_physics_process(not pause)
+			# Recursively pause/resume children of children (grandchildren)
+			#if child.get_child_count() > 0:
+			#	child._set_children_process(pause)
+
+func level_gain_pause():
+	#_set_children_process(true)
+	pass
+
+func _on_player_level_gained(level: Variant) -> void:
+	if (level > 1):
+		pass
+		#toggle_pause()
+
+
+func _on_world_timer_timeout() -> void:
+	toggle_pause() # Replace with function body.
+"
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
-vertices = PackedVector2Array(993.812, 454.852, 21.7578, 441.156, 99.4766, -26.0781, 985.172, -34.8984)
+vertices = PackedVector2Array(1317.96, -303.203, 1313.03, 923.031, -164.688, 928.953, -127.289, -332.789)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(91, -36, 995, -45, 1004, 465, 1004, 465, 10, 451)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-136.999, -343, 1328, -313, 1323, 933.001, -174.999, 939.001)])
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mfm6c"]
-size = Vector2(120, 122)
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_xvp1u"]
-radius = 130.0
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sw2v6"]
-size = Vector2(120, 122)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_58m6i"]
+size = Vector2(1121, 619)
 
 [node name="World" type="Node2D"]
+script = SubResource("GDScript_vhok5")
+
+[node name="TilemapScene" parent="." instance=ExtResource("1_grwk2")]
 
 [node name="Background" type="Node2D" parent="."]
-position = Vector2(-2, -9)
-
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-position = Vector2(-530, -157)
-navigation_polygon = SubResource("NavigationPolygon_m0080")
 
 [node name="EnemyGenerator" type="Node2D" parent="."]
+position = Vector2(566, 322)
+script = ExtResource("1_7djdm")
 
-[node name="Player" type="CharacterBody2D" parent="." groups=["Player"]]
-position = Vector2(294, 0)
-rotation = 6.28318
-script = ExtResource("1_ih21q")
+[node name="Player" parent="." instance=ExtResource("2_vx5u1")]
+position = Vector2(581, 330)
 
-[node name="PlayerSprite" type="Sprite2D" parent="Player" groups=["Player"]]
-position = Vector2(2, 1)
-texture = ExtResource("2_ffstj")
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="Player" groups=["NavZone"]]
+position = Vector2(-1760.61, -1000)
+scale = Vector2(3.0303, 3.0303)
+navigation_polygon = SubResource("NavigationPolygon_m0080")
 
-[node name="PlayerCollider" type="CollisionShape2D" parent="Player" groups=["Player"]]
-position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_mfm6c")
+[node name="Area2D" type="Area2D" parent="Player/NavigationRegion2D"]
+position = Vector2(-8, 0)
 
-[node name="PlayerArea" type="Area2D" parent="Player" groups=["Player"]]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/NavigationRegion2D/Area2D"]
+position = Vector2(580.5, 327.5)
+shape = SubResource("RectangleShape2D_58m6i")
+disabled = true
 
-[node name="PlayerAreaShape" type="CollisionShape2D" parent="Player/PlayerArea" groups=["Player"]]
-position = Vector2(-1, 1)
-shape = SubResource("RectangleShape2D_mfm6c")
+[node name="Camera2D" type="Camera2D" parent="."]
+script = ExtResource("3_fm33l")
 
-[node name="AttractionArea" type="Area2D" parent="Player" groups=["Player"]]
+[node name="Pause_Menu" parent="Camera2D" instance=ExtResource("5_ecj2u")]
+visible = false
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
-[node name="AttractionCollider" type="CollisionShape2D" parent="Player/AttractionArea" groups=["Player"]]
-shape = SubResource("CircleShape2D_xvp1u")
+[node name="WeaponStats" type="Node2D" parent="."]
+script = ExtResource("4_1oicy")
 
-[node name="Enemy" type="CharacterBody2D" parent="." groups=["NPC"]]
-rotation = -0.00114975
-script = ExtResource("3_m2jhw")
+[node name="Stats" type="Node2D" parent="."]
+script = ExtResource("5_qmb43")
 
-[node name="EnemySprite" type="Sprite2D" parent="Enemy" groups=["NPC"]]
-position = Vector2(7, -5)
-texture = ExtResource("2_ffstj")
+[node name="HUD" parent="." instance=ExtResource("8_tfaip")]
 
-[node name="EnemyNav" type="NavigationAgent2D" parent="Enemy" groups=["NPC"]]
+[node name="GameContext" type="Node" parent="."]
+script = ExtResource("9_qnmlx")
 
-[node name="EnemyCollider" type="CollisionShape2D" parent="Enemy" groups=["NPC"]]
-position = Vector2(4, -5)
-shape = SubResource("RectangleShape2D_sw2v6")
+[node name="WorldTimer" type="Timer" parent="GameContext"]
+wait_time = 30.0
 
-[node name="EnemyArea" type="Area2D" parent="Enemy" groups=["NPC"]]
-
-[node name="EnemyAreaShape" type="CollisionShape2D" parent="Enemy/EnemyArea" groups=["NPC"]]
-position = Vector2(4, -5)
-shape = SubResource("RectangleShape2D_sw2v6")
+[connection signal="enemy_died" from="EnemyGenerator" to="HUD" method="_on_enemy_generator_enemy_died"]
+[connection signal="dollar_gained" from="Player" to="HUD" method="_on_player_dollar_gained"]
+[connection signal="level_gained" from="Player" to="." method="_on_player_level_gained"]
+[connection signal="level_gained" from="Player" to="HUD" method="_on_player_level_gained"]
+[connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]
+[connection signal="current_time" from="GameContext" to="HUD" method="_on_game_context_current_time"]
+[connection signal="timeout" from="GameContext/WorldTimer" to="." method="_on_world_timer_timeout"]
