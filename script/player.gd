@@ -39,7 +39,10 @@ func _ready():
 	attraction_area.body_entered.connect(_on_AttractionArea_body_entered)
 	$HealthBar.max_value = 100
 	var projectile_scene = preload("res://scenes/projectile.tscn") # arme initial proj burger
+	var projectile_scene2 = preload("res://scenes/projectile2.tscn") 
 	weapons.append(projectile_scene)
+	weapons.append(projectile_scene2)
+	atk_speed_acc.append(0.0)
 	atk_speed_acc.append(0.0)
 	set_health_bar()
 	level_gained.emit(level)
@@ -107,21 +110,44 @@ func set_health_bar() -> void:
 
 func fire_projectile():
 	var i = 0
-	for projectile in weapons: 
-		if atk_speed_acc[i] > atk_speed / weapon_stats.get_attack_speed(i):
+	for projectile in weapons: #tableau armes
+		if atk_speed_acc[i] > atk_speed / weapon_stats.get_attack_speed(i):#coompteur temps pour vitesse d'attaque
 			atk_speed_acc[i] = 0
 			var enemies = get_tree().get_nodes_in_group("NPC")
 			if !enemies.is_empty():
-				var projectile_instance = projectile.instantiate()
+				var projectile_instance = projectile.instantiate()#première instance
 				var index = projectile_instance.get_index2()
 				projectile_instance.set_damage(weapon_stats.get_damage(index))
 				projectile_instance.global_position = global_position
 				var enemy = enemies.back()
-				var  traj = Vector2.ZERO
-				#calcul trajectoire
-				if(index==0) :
-					traj = enemy.global_position - global_position
-					if traj.x > 0 : projectile_instance.get_node("ProjectileSprite").flip_h = true
+				var traj = enemy.global_position - global_position
+				if traj.length() != 0:
+					traj = traj.normalized()
+				if traj.x > 0 :
+					projectile_instance.get_node("ProjectileSprite").flip_h = true
+				projectile_instance.add_constant_central_force(traj * projectile_speed * weapon_stats.get_projectile_speed(index))
+				get_parent().add_child(projectile_instance)
+				if index == 0:
+					for n in range(weapon_stats.get_nproj(index)-1):#Si plusieurs projectiles on refait le tout avec une attente
+						if n < weapon_stats.get_nproj(index) - 1:
+							await get_tree().create_timer(0.1).timeout
+						enemies = get_tree().get_nodes_in_group("NPC")#On doit revoir la liste d'ennemis car avec le délai il peut ne plus y avoir d'ennemy ou celui selectionné au départ peut juste etre mort
+						enemy = enemies.back()
+						if(enemy==null) :
+							traj = Vector2(1,1)
+						else : 
+							traj = enemy.global_position - global_position
+						if traj.length() != 0:
+							traj = traj.normalized()
+						if traj.x > 0 :
+							projectile_instance.get_node("ProjectileSprite").flip_h = true
+						projectile_instance = projectile.instantiate()
+						projectile_instance.set_damage(weapon_stats.get_damage(index))
+						projectile_instance.global_position = global_position
+						projectile_instance.add_constant_central_force(traj * projectile_speed * weapon_stats.get_projectile_speed(index))
+						get_parent().add_child(projectile_instance)
+
+						
 				if(index == 1) :
 					if (right==1) :
 						traj.x=1
@@ -135,11 +161,12 @@ func fire_projectile():
 						traj.y =-1
 					else :
 						traj.y=0
+					if traj.length() != 0:
+							traj = traj.normalized()
+					print("Normalized Trajectory:", traj)
+					projectile_instance.add_constant_central_force(traj *projectile_speed* weapon_stats.get_projectile_speed(index))
 					
-				if traj.length() != 0:
-						traj = traj.normalized()
-				print("Normalized Trajectory:", traj)
-				projectile_instance.add_constant_central_force(traj *projectile_speed* weapon_stats.get_projectile_speed(index))
+				
 				get_parent().add_child(projectile_instance)
 		i += 1
 
@@ -170,4 +197,3 @@ func gain_experience(amount):
 	xp_gained.emit(current_xp, max_xp)
 	print("Gained experience:", amount)
 	print("Total experience:", experience)
-

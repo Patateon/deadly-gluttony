@@ -21,49 +21,34 @@ atlas = ExtResource("2_jopts")
 region = Rect2(158, 13, 73, 32)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_855ao"]
-load_path = "res://.godot/imported/frame_007_delay-0.07s.png-730e4c506e93a98b2c89d194099f4273.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1e4hr"]
-load_path = "res://.godot/imported/frame_016_delay-0.03s.png-437dd176030d583ad4017da95951a050.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bu52c"]
-load_path = "res://.godot/imported/frame_025_delay-0.07s.png-a05cf7a5f5a3a7de08703405d5b64749.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_043p3"]
-load_path = "res://.godot/imported/frame_034_delay-0.03s.png-1f2194e0fccb026635d30a48eae0e987.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dv5j5"]
-load_path = "res://.godot/imported/frame_043_delay-0.07s.png-5acf6bcb5aef704cffbd82791f28fef8.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gaqw"]
-load_path = "res://.godot/imported/frame_052_delay-0.03s.png-17795f7dd5ee1642fa2393f918310272.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4a60y"]
-load_path = "res://.godot/imported/frame_061_delay-0.07s.png-b4449bd531377ae2860d3bafa69e7ba3.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vd86q"]
-load_path = "res://.godot/imported/frame_070_delay-0.03s.png-631fbb1cdedd267eb84f15fef8c993a4.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mwd7y"]
-load_path = "res://.godot/imported/frame_079_delay-0.07s.png-dd0f84527c7032cdf8b6fc7a9a343af3.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_usg06"]
-load_path = "res://.godot/imported/frame_088_delay-0.03s.png-6a9b7f6b5683075cd8a8a6bb5cd00f2f.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dkyxb"]
-load_path = "res://.godot/imported/frame_097_delay-0.07s.png-1258261fa98bdea396cf929480a5d4ca.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_465pe"]
-load_path = "res://.godot/imported/frame_106_delay-0.03s.png-3f9def4c6413902f91198b789b7c22d2.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1ukj5"]
-load_path = "res://.godot/imported/frame_115_delay-0.07s.png-302095d405dd2b757851814313614602.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_es1ik"]
-load_path = "res://.godot/imported/frame_124_delay-0.03s.png-bd07a1958cd523324777ff4e384c77fa.ctex"
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xvdf5"]
-load_path = "res://.godot/imported/frame_133_delay-0.07s.png-06fe04b9e8249dfa40a8e34a26bb7205.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32f7j"]
 atlas = ExtResource("18_c6mh3")
