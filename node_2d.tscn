@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=4 uid="uid://bknpgbsullq43"]
 
-[ext_resource type="Script" path="res://camera_2d.gd" id="1_ko3vs"]
+[ext_resource type="Script" path="res://script/camera_2d.gd" id="1_ko3vs"]
 [ext_resource type="Texture2D" uid="uid://b72rahcc3g676" path="res://Textures/Grass.png" id="2_1xqjk"]
-[ext_resource type="Script" path="res://character_body_2d.gd" id="2_dq0s6"]
+[ext_resource type="Script" path="res://script/character_body_2d.gd" id="2_dq0s6"]
 [ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="3_2a1v8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i8mwy"]
