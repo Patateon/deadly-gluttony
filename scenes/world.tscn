@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=12 format=3 uid="uid://ifwq3geifvtp"]
 
 [ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
 [ext_resource type="PackedScene" uid="uid://c1nuygk5f3vma" path="res://scenes/tilemap_scene.tscn" id="1_grwk2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://script/weapon_stats.gd" id="4_1oicy"]
 [ext_resource type="PackedScene" uid="uid://gmu2dupf71i8" path="res://scenes/pause_menu.tscn" id="5_ecj2u"]
 [ext_resource type="Script" path="res://script/stats.gd" id="5_qmb43"]
+[ext_resource type="PackedScene" uid="uid://cd4t4iidtkdlk" path="res://scenes/hud.tscn" id="8_tfaip"]
 
 [sub_resource type="GDScript" id="GDScript_vhok5"]
 script/source = "extends Node2D  
@@ -97,3 +98,8 @@ script = ExtResource("4_1oicy")
 
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("5_qmb43")
+
+[node name="HUD" parent="." instance=ExtResource("8_tfaip")]
+
+[connection signal="level_gained" from="Player" to="HUD" method="_on_player_level_gained"]
+[connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]

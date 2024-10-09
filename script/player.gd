@@ -8,13 +8,20 @@ var experience = 0
 var level = 1
 var weapons = []
 var atk_speed_acc=[]
+
 var projectile_speed=10
 var up 
 var right 
+
+
+var current_xp = 0
+var max_xp = 100
 var current_life: float = life
 var is_alive: bool = true  
 
-signal player_died  
+signal player_died
+signal xp_gained(current_xp, max_xp)
+signal level_gained(level)
 
 @onready var attraction_area: Area2D = $AttractionArea
 
@@ -35,6 +42,9 @@ func _ready():
 	weapons.append(projectile_scene)
 	atk_speed_acc.append(0.0)
 	set_health_bar()
+	level_gained.emit(level)
+	xp_gained.emit(current_xp, max_xp)
+	
 	
 func _process(delta: float) -> void:
 	set_health_bar()
@@ -133,11 +143,15 @@ func fire_projectile():
 				get_parent().add_child(projectile_instance)
 		i += 1
 
+func level_up():
+	level += 1
+	max_xp *= 1.25
+	level_gained.emit(level)
+
 func die():
 	is_alive = false 
 	emit_signal("player_died") 
 	Utilities.switch_scene_end("end",self)
-	
 	queue_free()  
 	
 	
@@ -148,6 +162,12 @@ func _on_AttractionArea_body_entered(body):
 		body.set_target(self)
 
 func gain_experience(amount):
-	experience += amount
-	#print("Gained experience:", amount)
-	#print("Total experience:", experience)
+
+	current_xp += amount
+	if (current_xp >= max_xp):
+		current_xp -= max_xp
+		level_up()
+	xp_gained.emit(current_xp, max_xp)
+	print("Gained experience:", amount)
+	print("Total experience:", experience)
+
