@@ -5,7 +5,7 @@ var attack_distance: float = 1.0
 var damage: float = 10.0  
 var movement_target_position: Vector2
 
-var life: float = 100.0
+var life: float = 10.0
 var current_life: float = life
 var xp_rate: float = 1 # Taux de chance de générer l'objet d'expérience
 var xp_value: float = 3 
@@ -17,6 +17,7 @@ var _animated_sprite_id: int
 @onready var navigation_agent: NavigationAgent2D = $EnemyNav
 @onready var area2d: Area2D = $EnemyArea
 var player = null  
+signal enemy_died  
 
 func _ready():
 	_animated_sprite_id = randi()%2 + 1
@@ -83,8 +84,6 @@ func _on_Area2D_area_entered(area: Area2D):
 		if player and player.has_method("take_damage"):
 			print("Player has take_damage method")
 			player.take_damage(damage)
-			if player.has_method("set_health_bar"):
-				player.set_health_bar()
 
 func _on_Player_died():
 	print("Player died")
@@ -97,6 +96,7 @@ func take_damage(amount: float):
 		die() 
 		
 func die():
+	emit_signal("enemy_died")
 	if randi() % 100 < int(xp_rate * 100):
 		call_deferred("spawn_experience_item")
 	queue_free()  

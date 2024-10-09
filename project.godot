@@ -21,11 +21,6 @@ AudioManager="*res://scenes/audio_manager.tscn"
 Utilities="*res://scenes/utilities.tscn"
 World="*res://scenes/world.tscn"
 
-[display]
-
-window/size/viewport_width=1280
-window/size/viewport_height=720
-
 [editor]
 
 version_control/plugin_name="GitPlugin"
