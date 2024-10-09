@@ -21,9 +21,9 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _process(delta):
-	print(\"Projectile : \" ,stats.fire_projectile_since_start )
-	print(\"Dead Enemy : \" ,enemy_generator.dead_enemy_since_start )
-	print(\"Dolarz : \" ,stats.experience )
+	#print(\"Projectile : \" ,stats.fire_projectile_since_start )
+	#print(\"Dead Enemy : \" ,enemy_generator.dead_enemy_since_start )
+	#print(\"Dolarz : \" ,stats.experience )
 	if Input.is_action_just_pressed(\"Pause\"):  # \"ui_cancel\" is the Esc key by default
 		toggle_pause()
 
@@ -48,9 +48,9 @@ func _set_children_process(pause: bool):
 "
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
-vertices = PackedVector2Array(1134.1, 16.9375, 1140.88, 638.008, 11.0312, 639.977, 12.9609, 11.0469)
+vertices = PackedVector2Array(1317.96, -303.203, 1313.03, 923.031, -164.688, 928.953, -127.289, -332.789)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(3, 1, 1144, 7, 1151, 648, 1, 650)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-136.999, -343, 1328, -313, 1323, 933.001, -174.999, 939.001)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_58m6i"]
 size = Vector2(1121, 619)

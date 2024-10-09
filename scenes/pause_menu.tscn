@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="1_tgr4r"]
 
 [node name="Pause_Menu" type="Control"]
+z_index = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

@@ -3,7 +3,7 @@ static var dead_enemy_since_start = 0;
 var enemySpawnCooldown = 1;
 var enemyAcc = 0.0;
 var limitNPC = 200;
-var minDistanceFromPlayer = 400
+var minDistanceFromPlayer = 250
 
 func _ready() -> void:
 	

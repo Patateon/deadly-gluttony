@@ -9,9 +9,13 @@ var level = 1
 var weapons = []
 var atk_speed_acc=[]
 
+var projectile_speed=10
+var up 
+var right 
+
+
 var current_xp = 0
 var max_xp = 100
-
 var current_life: float = life
 var is_alive: bool = true  
 
@@ -59,17 +63,24 @@ func _physics_process(delta: float) -> void:
 			velocity.x = directionx * speed * movespeed
 			# Flip the sprite based on direction
 			if directionx > 0:
+				right=1
 				_animated_sprite.flip_h = true  # Facing right
 			elif directionx < 0:
+				right=-1
 				_animated_sprite.flip_h = false   # Facing left
+			else : 
+				right=0
 		else:
 			velocity.x = move_toward(velocity.x, 0, speed * movespeed)
 		
 		# Vertical movement
-		if directiony:
-			velocity.y = directiony * speed * movespeed
+		velocity.y = directiony * speed * movespeed
+		if directiony > 0:
+			up = 1
+		elif directiony < 0:
+			up = -1
 		else:
-			velocity.y = move_toward(velocity.y, 0, speed * movespeed)
+			up = 0
 		
 	
 		move_and_slide()
@@ -102,13 +113,33 @@ func fire_projectile():
 			var enemies = get_tree().get_nodes_in_group("NPC")
 			if !enemies.is_empty():
 				var projectile_instance = projectile.instantiate()
-				projectile_instance.set_index(i)
-				projectile_instance.set_damage(weapon_stats.get_damage(i))
+				var index = projectile_instance.get_index2()
+				projectile_instance.set_damage(weapon_stats.get_damage(index))
 				projectile_instance.global_position = global_position
 				var enemy = enemies.back()
-				var traj = enemy.global_position - global_position
-				if traj.x > 0 : projectile_instance.get_node("ProjectileSprite").flip_h = true
-				projectile_instance.add_constant_central_force(traj * weapon_stats.get_projectile_speed(i))
+				var  traj = Vector2.ZERO
+				#calcul trajectoire
+				if(index==0) :
+					traj = enemy.global_position - global_position
+					if traj.x > 0 : projectile_instance.get_node("ProjectileSprite").flip_h = true
+				if(index == 1) :
+					if (right==1) :
+						traj.x=1
+					elif(right==-1) : 
+						traj.x=-1
+					else :
+						traj.x=0
+					if(up==1) :
+						traj.y=1
+					elif(up==-1) : 
+						traj.y =-1
+					else :
+						traj.y=0
+					
+				if traj.length() != 0:
+						traj = traj.normalized()
+				print("Normalized Trajectory:", traj)
+				projectile_instance.add_constant_central_force(traj *projectile_speed* weapon_stats.get_projectile_speed(index))
 				get_parent().add_child(projectile_instance)
 		i += 1
 
@@ -125,12 +156,13 @@ func die():
 	
 	
 func _on_AttractionArea_body_entered(body):
-	print("Detect body entered:", body.name)  
+	#print("Detect body entered:", body.name)  
 	if body.is_in_group("Item"):
 		print("DetectG")
 		body.set_target(self)
 
 func gain_experience(amount):
+
 	current_xp += amount
 	if (current_xp >= max_xp):
 		current_xp -= max_xp
@@ -138,3 +170,4 @@ func gain_experience(amount):
 	xp_gained.emit(current_xp, max_xp)
 	print("Gained experience:", amount)
 	print("Total experience:", experience)
+

@@ -74,16 +74,16 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 
 func _on_Area2D_area_entered(area: Area2D):
-	print("Area entered:", area.name)
-	print("Groups of the entered area:")
+	#print("Area entered:", area.name)
+	#print("Groups of the entered area:")
 	for group in area.get_groups():
 		print(group)
 	if area.is_in_group("Player"):
-		print("player")
+		#print("player")
 		player = area.get_parent()  
-		print("Player node:", player)
+		#print("Player node:", player)
 		if player and player.has_method("take_damage"):
-			print("Player has take_damage method")
+			#print("Player has take_damage method")
 			player.take_damage(damage)
 
 func _on_Player_died():
