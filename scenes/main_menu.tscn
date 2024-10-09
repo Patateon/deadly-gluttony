@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://chdcdu3t18rbm"]
+[gd_scene load_steps=4 format=3 uid="uid://chdcdu3t18rbm"]
 
 [ext_resource type="Script" path="res://script/main_menu.gd" id="1_0vlti"]
-[ext_resource type="Texture2D" uid="uid://bbyxnhta7a8or" path="res://assets/images/jeu1.png" id="2_k65r6"]
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="3_qjoa7"]
 [ext_resource type="PackedScene" uid="uid://cgkkopjoljreq" path="res://scenes/settings.tscn" id="4_y3vuu"]
 
@@ -35,7 +34,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_k65r6")
 expand_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/MainMenu"]
@@ -68,12 +66,12 @@ size_flags_vertical = 4
 text = "Start
 "
 
-[node name="Option" type="Button" parent="UI/MainMenu/VBoxContainer"]
+[node name="Options" type="Button" parent="UI/MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(100, 32)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-text = "Option
+text = "Options
 "
 
 [node name="Quit" type="Button" parent="UI/MainMenu/VBoxContainer"]
@@ -89,5 +87,5 @@ metadata/s = false
 metadata/ssss = false
 
 [connection signal="pressed" from="UI/MainMenu/VBoxContainer/Start" to="UI/MainMenu" method="_on_start_pressed"]
-[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Option" to="UI/MainMenu" method="_on_option_pressed"]
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Options" to="UI/MainMenu" method="_on_option_pressed"]
 [connection signal="pressed" from="UI/MainMenu/VBoxContainer/Quit" to="UI/MainMenu" method="_on_quit_pressed"]
