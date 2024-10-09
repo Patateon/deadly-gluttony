@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=13 format=3 uid="uid://ifwq3geifvtp"]
 
 [ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
 [ext_resource type="PackedScene" uid="uid://c1nuygk5f3vma" path="res://scenes/tilemap_scene.tscn" id="1_grwk2"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://gmu2dupf71i8" path="res://scenes/pause_menu.tscn" id="5_ecj2u"]
 [ext_resource type="Script" path="res://script/stats.gd" id="5_qmb43"]
 [ext_resource type="PackedScene" uid="uid://cd4t4iidtkdlk" path="res://scenes/hud.tscn" id="8_tfaip"]
+[ext_resource type="Script" path="res://script/game_context.gd" id="9_qnmlx"]
 
 [sub_resource type="GDScript" id="GDScript_vhok5"]
 script/source = "extends Node2D  
@@ -45,6 +46,14 @@ func _set_children_process(pause: bool):
 			# Recursively pause/resume children of children (grandchildren)
 			#if child.get_child_count() > 0:
 			#	child._set_children_process(pause)
+
+func level_gain_pause():
+	#_set_children_process(true)
+	pass
+
+func _on_player_level_gained(level: Variant) -> void:
+	if (level > 1):
+		toggle_pause()
 "
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
@@ -101,5 +110,14 @@ script = ExtResource("5_qmb43")
 
 [node name="HUD" parent="." instance=ExtResource("8_tfaip")]
 
+[node name="GameContext" type="Node" parent="."]
+script = ExtResource("9_qnmlx")
+
+[node name="WorldTimer" type="Timer" parent="GameContext"]
+wait_time = 30.0
+
+[connection signal="enemy_died" from="EnemyGenerator" to="HUD" method="_on_enemy_generator_enemy_died"]
+[connection signal="level_gained" from="Player" to="." method="_on_player_level_gained"]
 [connection signal="level_gained" from="Player" to="HUD" method="_on_player_level_gained"]
 [connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]
+[connection signal="current_time" from="GameContext" to="HUD" method="_on_game_context_current_time"]

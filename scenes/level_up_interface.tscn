@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://bv778lh3d7ppd"]
+
+[node name="LevelUpInterface" type="Control"]
+layout_mode = 3
+anchors_preset = 0

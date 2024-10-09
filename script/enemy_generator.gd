@@ -5,6 +5,8 @@ var enemyAcc = 0.0;
 var limitNPC = 200;
 var minDistanceFromPlayer = 250
 
+signal enemy_died(numbers)
+
 func _ready() -> void:
 	
 	pass 
@@ -55,4 +57,6 @@ func createEnemy():
 		
 func _on_Enemy_died():
 	dead_enemy_since_start+=1
+	enemy_died.emit(dead_enemy_since_start)
+	
 	
