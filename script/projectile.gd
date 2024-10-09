@@ -6,7 +6,7 @@ extends RigidBody2D
 @onready var stats = get_node("/root/World/Stats")
 var damage 
 var player
-var index
+var index = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,8 +31,8 @@ func _on_area_entered(body):
 func set_damage(new_damage):
 	damage = new_damage
 	
-func set_index(new_index):
-	index = new_index
+func get_index2() -> int:
+	return index
 
 func _on_player_died():
 	player = null

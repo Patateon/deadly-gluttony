@@ -1,23 +1,8 @@
 [gd_scene load_steps=28 format=3 uid="uid://b34q2707nahsg"]
 
-[ext_resource type="Texture2D" uid="uid://f35w7tgw4i6y" path="res://assets/animated-sprites/frame_007_delay-0.07s.png" id="1_g2ojp"]
 [ext_resource type="Script" path="res://script/projectile.gd" id="1_r267s"]
-[ext_resource type="Texture2D" uid="uid://bc88vl7rwh83y" path="res://assets/sprites/weapon_anim/burger.png" id="2_jopts"]
-[ext_resource type="Texture2D" uid="uid://c2m6guue48u2g" path="res://assets/animated-sprites/frame_016_delay-0.03s.png" id="2_udyia"]
-[ext_resource type="Texture2D" uid="uid://de2tag2v7masc" path="res://assets/animated-sprites/frame_025_delay-0.07s.png" id="3_oj5kk"]
-[ext_resource type="Texture2D" uid="uid://xl7rpm2fc1qj" path="res://assets/animated-sprites/frame_034_delay-0.03s.png" id="4_ueyli"]
-[ext_resource type="Texture2D" uid="uid://bqlgbtlpx5g2x" path="res://assets/animated-sprites/frame_043_delay-0.07s.png" id="5_wc3dw"]
-[ext_resource type="Texture2D" uid="uid://4bc70rq4s1tw" path="res://assets/animated-sprites/frame_052_delay-0.03s.png" id="6_qblwm"]
-[ext_resource type="Texture2D" uid="uid://bd32cjt1x1jwd" path="res://assets/animated-sprites/frame_061_delay-0.07s.png" id="7_eh0dl"]
-[ext_resource type="Texture2D" uid="uid://toobej4btvjv" path="res://assets/animated-sprites/frame_070_delay-0.03s.png" id="8_0ehyk"]
-[ext_resource type="Texture2D" uid="uid://xbci8ho07gyw" path="res://assets/animated-sprites/frame_079_delay-0.07s.png" id="9_kppwo"]
-[ext_resource type="Texture2D" uid="uid://cw810jtqxji1t" path="res://assets/animated-sprites/frame_088_delay-0.03s.png" id="10_7cj3a"]
-[ext_resource type="Texture2D" uid="uid://ghy01hwwndor" path="res://assets/animated-sprites/frame_097_delay-0.07s.png" id="11_sw31o"]
-[ext_resource type="Texture2D" uid="uid://b1uf8sv114wgs" path="res://assets/animated-sprites/frame_106_delay-0.03s.png" id="12_muktv"]
-[ext_resource type="Texture2D" uid="uid://ce210cmxjo4vf" path="res://assets/animated-sprites/frame_115_delay-0.07s.png" id="13_y36fg"]
-[ext_resource type="Texture2D" uid="uid://c1t2t2p5xairp" path="res://assets/animated-sprites/frame_124_delay-0.03s.png" id="14_lobsp"]
-[ext_resource type="Texture2D" uid="uid://1f4hf708d7qx" path="res://assets/animated-sprites/frame_133_delay-0.07s.png" id="15_vgom4"]
-[ext_resource type="Texture2D" uid="uid://dxx3vclfsbnt6" path="res://assets/sprites/weapon_anim/jelly.png" id="18_c6mh3"]
+[ext_resource type="Texture2D" uid="uid://bc88vl7rwh83y" path="res://assets/animated-sprites/weapon_anim/burger.png" id="2_jopts"]
+[ext_resource type="Texture2D" uid="uid://dxx3vclfsbnt6" path="res://assets/animated-sprites/weapon_anim/jelly.png" id="18_c6mh3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6phu"]
 atlas = ExtResource("2_jopts")
@@ -34,6 +19,51 @@ region = Rect2(92, 13, 65, 25)
 [sub_resource type="AtlasTexture" id="AtlasTexture_p6jbt"]
 atlas = ExtResource("2_jopts")
 region = Rect2(158, 13, 73, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_855ao"]
+load_path = "res://.godot/imported/frame_007_delay-0.07s.png-730e4c506e93a98b2c89d194099f4273.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1e4hr"]
+load_path = "res://.godot/imported/frame_016_delay-0.03s.png-437dd176030d583ad4017da95951a050.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bu52c"]
+load_path = "res://.godot/imported/frame_025_delay-0.07s.png-a05cf7a5f5a3a7de08703405d5b64749.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_043p3"]
+load_path = "res://.godot/imported/frame_034_delay-0.03s.png-1f2194e0fccb026635d30a48eae0e987.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dv5j5"]
+load_path = "res://.godot/imported/frame_043_delay-0.07s.png-5acf6bcb5aef704cffbd82791f28fef8.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gaqw"]
+load_path = "res://.godot/imported/frame_052_delay-0.03s.png-17795f7dd5ee1642fa2393f918310272.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4a60y"]
+load_path = "res://.godot/imported/frame_061_delay-0.07s.png-b4449bd531377ae2860d3bafa69e7ba3.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vd86q"]
+load_path = "res://.godot/imported/frame_070_delay-0.03s.png-631fbb1cdedd267eb84f15fef8c993a4.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mwd7y"]
+load_path = "res://.godot/imported/frame_079_delay-0.07s.png-dd0f84527c7032cdf8b6fc7a9a343af3.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_usg06"]
+load_path = "res://.godot/imported/frame_088_delay-0.03s.png-6a9b7f6b5683075cd8a8a6bb5cd00f2f.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dkyxb"]
+load_path = "res://.godot/imported/frame_097_delay-0.07s.png-1258261fa98bdea396cf929480a5d4ca.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_465pe"]
+load_path = "res://.godot/imported/frame_106_delay-0.03s.png-3f9def4c6413902f91198b789b7c22d2.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1ukj5"]
+load_path = "res://.godot/imported/frame_115_delay-0.07s.png-302095d405dd2b757851814313614602.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_es1ik"]
+load_path = "res://.godot/imported/frame_124_delay-0.03s.png-bd07a1958cd523324777ff4e384c77fa.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xvdf5"]
+load_path = "res://.godot/imported/frame_133_delay-0.07s.png-06fe04b9e8249dfa40a8e34a26bb7205.ctex"
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32f7j"]
 atlas = ExtResource("18_c6mh3")
@@ -68,49 +98,49 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_g2ojp")
+"texture": SubResource("CompressedTexture2D_855ao")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_udyia")
+"texture": SubResource("CompressedTexture2D_1e4hr")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_oj5kk")
+"texture": SubResource("CompressedTexture2D_bu52c")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_ueyli")
+"texture": SubResource("CompressedTexture2D_043p3")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_wc3dw")
+"texture": SubResource("CompressedTexture2D_dv5j5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_qblwm")
+"texture": SubResource("CompressedTexture2D_2gaqw")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_eh0dl")
+"texture": SubResource("CompressedTexture2D_4a60y")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_0ehyk")
+"texture": SubResource("CompressedTexture2D_vd86q")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_kppwo")
+"texture": SubResource("CompressedTexture2D_mwd7y")
 }, {
 "duration": 1.0,
-"texture": ExtResource("10_7cj3a")
+"texture": SubResource("CompressedTexture2D_usg06")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_sw31o")
+"texture": SubResource("CompressedTexture2D_dkyxb")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_muktv")
+"texture": SubResource("CompressedTexture2D_465pe")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_y36fg")
+"texture": SubResource("CompressedTexture2D_1ukj5")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_lobsp")
+"texture": SubResource("CompressedTexture2D_es1ik")
 }, {
 "duration": 1.0,
-"texture": ExtResource("15_vgom4")
+"texture": SubResource("CompressedTexture2D_xvdf5")
 }],
 "loop": true,
 "name": &"default",
@@ -132,9 +162,10 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_udneo"]
-size = Vector2(80, 78)
+size = Vector2(56, 63)
 
 [node name="Projectile" type="RigidBody2D"]
+z_index = 2
 scale = Vector2(0.5, 0.5)
 collision_layer = 4
 collision_mask = 0

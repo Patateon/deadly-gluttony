@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://script/ennemy.gd" id="1_7gtbv"]
 [ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_43jif"]
-[ext_resource type="Texture2D" uid="uid://c6ibehhqksq82" path="res://assets/charac/enemy/jimbe.png" id="2_c1m1b"]
-[ext_resource type="Texture2D" uid="uid://d1olr14qrnqao" path="res://assets/charac/enemy/gild.png" id="3_y6r0k"]
+[ext_resource type="Texture2D" uid="uid://c6ibehhqksq82" path="res://assets/animated-sprites/charac/enemy/jimbe.png" id="2_c1m1b"]
+[ext_resource type="Texture2D" uid="uid://d1olr14qrnqao" path="res://assets/animated-sprites/charac/enemy/gild.png" id="3_y6r0k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vk7g6"]
 atlas = ExtResource("2_c1m1b")
@@ -106,6 +106,7 @@ animations = [{
 size = Vector2(128, 128)
 
 [node name="Enemy" type="CharacterBody2D" groups=["NPC"]]
+z_index = 1
 scale = Vector2(0.33, 0.33)
 collision_layer = 3
 collision_mask = 2
