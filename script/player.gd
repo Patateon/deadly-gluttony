@@ -21,7 +21,6 @@ signal player_died
 @onready var weapon_stats = get_node("/root/World/WeaponStats") # stat armes a mettre a jour lors level up
 @onready var stats = get_node("/root/World/Stats")
 
-
 func _input(event):
 	if event.is_action_pressed("fire"):
 		fire_projectile()
