@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b5vgc2le068hm"]
+[gd_scene load_steps=5 format=3 uid="uid://b5vgc2le068hm"]
 
 [ext_resource type="Script" path="res://scenes/end.gd" id="1_g23vf"]
+[ext_resource type="Texture2D" uid="uid://b6kamreis14j5" path="res://assets/business.webp" id="2_5l027"]
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="2_q5gna"]
+[ext_resource type="Texture2D" uid="uid://brn6hab56t7wo" path="res://assets/ronald.webp" id="3_uy76n"]
 
 [node name="End" type="Control"]
 layout_mode = 3
@@ -11,6 +13,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g23vf")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 7.0
+offset_top = -117.0
+offset_right = 457.0
+offset_bottom = 643.0
+texture = ExtResource("2_5l027")
+expand_mode = 1
+
+[node name="TextureRect2" type="TextureRect" parent="TextureRect2"]
+offset_left = 449.0
+offset_top = -100.0
+offset_right = 1313.0
+offset_bottom = 764.0
+texture = ExtResource("3_uy76n")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
