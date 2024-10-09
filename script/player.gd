@@ -113,9 +113,9 @@ func fire_projectile():
 		i += 1
 
 func level_up():
-	level_gained.emit(level)
 	level += 1
 	max_xp *= 1.25
+	level_gained.emit(level)
 
 func die():
 	is_alive = false 
