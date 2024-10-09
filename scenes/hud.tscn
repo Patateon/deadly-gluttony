@@ -1,0 +1,46 @@
+[gd_scene load_steps=3 format=3 uid="uid://cd4t4iidtkdlk"]
+
+[ext_resource type="Script" path="res://script/hud.gd" id="1_0cow5"]
+[ext_resource type="FontFile" uid="uid://o2ddtj8ytn4r" path="res://fonts/cormorant/Cormorant-Bold.ttf" id="1_c04g8"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_0cow5")
+
+[node name="LevelTime" type="Timer" parent="."]
+
+[node name="TOP" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Level_Label" type="RichTextLabel" parent="TOP"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 9.0
+offset_right = 189.0
+offset_bottom = 48.0
+theme_override_fonts/bold_font = ExtResource("1_c04g8")
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
+text = "[b] LVL : [/b]"
+
+[node name="XP_BAR" type="ProgressBar" parent="TOP"]
+layout_mode = 0
+offset_left = 149.0
+offset_top = 8.0
+offset_right = 1272.0
+offset_bottom = 49.0
+show_percentage = false
+
+[node name="XP_Numbers" type="RichTextLabel" parent="TOP/XP_BAR"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/bold_font = ExtResource("1_c04g8")
+theme_override_font_sizes/bold_font_size = 30
+bbcode_enabled = true
