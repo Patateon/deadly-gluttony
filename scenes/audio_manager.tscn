@@ -1,10 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtyy8kttah7ge"]
+[gd_scene load_steps=9 format=3 uid="uid://dtyy8kttah7ge"]
 
 [ext_resource type="Script" path="res://script/audio_manager.gd" id="1_2mekg"]
+[ext_resource type="AudioStream" uid="uid://bamkw4opggdni" path="res://assets/sounds/music1.mp3" id="2_q1yps"]
+[ext_resource type="AudioStream" uid="uid://dslxjssuuoxuc" path="res://assets/sounds/music2.mp3" id="3_gx2pe"]
+[ext_resource type="AudioStream" uid="uid://2uuhc0o8pqtl" path="res://assets/sounds/mob_death1.mp3" id="4_k1oi0"]
+[ext_resource type="AudioStream" uid="uid://divetqjmn5sm4" path="res://assets/sounds/player_hit.mp3" id="5_00n87"]
+[ext_resource type="AudioStream" uid="uid://0pyyaolo66g1" path="res://assets/sounds/mob_death2.mp3" id="5_277m6"]
+[ext_resource type="AudioStream" uid="uid://crva6y7apc7bg" path="res://assets/sounds/mob_death3.mp3" id="6_kffej"]
+[ext_resource type="AudioStream" uid="uid://ndkbbmbb1fs1" path="res://assets/sounds/player_death.mp3" id="8_mkqgw"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_2mekg")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_q1yps")
+volume_db = -15.051
+mix_target = 2
+parameters/looping = true
 
-[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_gx2pe")
+volume_db = -16.814
+mix_target = 2
+
+[node name="Enemy_death1" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_k1oi0")
+volume_db = 0.785
+
+[node name="player_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_00n87")
+volume_db = 7.286
+
+[node name="Enemy_death2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_277m6")
+volume_db = 2.785
+
+[node name="Enemy_death3" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_kffej")
+volume_db = 10.214
+
+[node name="Player_death" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_mkqgw")
+
+[node name="xp_pick" type="AudioStreamPlayer2D" parent="."]

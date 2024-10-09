@@ -78,6 +78,7 @@ func kill_all_enemies():
 	weapon_stats.set_attack_speed(0, 3)
 			
 func take_damage(amount: float):
+	AudioManager.play_player_hit()
 	current_life -= amount
 	print(current_life)
 	if current_life <= 0:
@@ -104,10 +105,11 @@ func fire_projectile():
 		i += 1
 
 func die():
+	AudioManager.stop_music()
+	AudioManager.play_player_death()
 	is_alive = false 
 	emit_signal("player_died") 
 	Utilities.switch_scene_end("end",self)
-	
 	queue_free()  
 	
 	

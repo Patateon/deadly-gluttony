@@ -97,6 +97,7 @@ func take_damage(amount: float):
 		
 func die():
 	emit_signal("enemy_died")
+	AudioManager.play_enemy_death()
 	if randi() % 100 < int(xp_rate * 100):
 		call_deferred("spawn_experience_item")
 	queue_free()  
