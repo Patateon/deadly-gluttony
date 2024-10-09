@@ -16,7 +16,7 @@ func _process(delta: float) -> void:
 		print(limitNPC)
 		print(get_tree().get_nodes_in_group("NPC").size())
 		if (get_tree().get_nodes_in_group("NPC").size() < limitNPC):
-			for i in range(randi_range(3, 5)):
+			for i in range(randi_range(1, 2)):
 				print("Creating enemy")
 				createEnemy()
 			
