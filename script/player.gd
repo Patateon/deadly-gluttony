@@ -1,6 +1,6 @@
 extends CharacterBody2D
 var speed = 300.0
-var life = 100.0
+var life = 1.0
 var damage = 1
 var atk_speed = 1
 var movespeed = 1
@@ -107,9 +107,11 @@ func fire_projectile():
 func die():
 	is_alive = false 
 	emit_signal("player_died") 
-	Utilities.switch_scene_end("end",self)
-	
-	queue_free()  
+	var UI = get_parent().get_node("UI")
+	UI.get_node("Pause_Menu").hide()
+	var GameOver= preload("res://scenes/end.tscn").instantiate()
+	UI.add_child(GameOver)
+	#queue_free()  
 	
 	
 func _on_AttractionArea_body_entered(body):
