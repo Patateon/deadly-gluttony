@@ -99,6 +99,7 @@ func fire_projectile():
 				projectile_instance.global_position = global_position
 				var enemy = enemies.back()
 				var traj = enemy.global_position - global_position
+				if traj.x > 0 : projectile_instance.get_node("ProjectileSprite").flip_h = true
 				projectile_instance.add_constant_central_force(traj * weapon_stats.get_projectile_speed(i))
 				get_parent().add_child(projectile_instance)
 		i += 1

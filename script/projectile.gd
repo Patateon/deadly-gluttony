@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 @onready var _hurt_box = $HurtBox
-@onready var _animated_sprite = $AnimatedSprite2D
+@onready var _animated_sprite = $ProjectileSprite
 @onready var weapon_stats = get_node("/root/World/WeaponStats")
 @onready var stats = get_node("/root/World/Stats")
 var damage 
