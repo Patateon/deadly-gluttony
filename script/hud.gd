@@ -1,5 +1,6 @@
 extends CanvasLayer
 
+var current_dollars = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -30,3 +31,8 @@ func _on_game_context_current_time(time_minute: Variant, time_seconde: Variant) 
 
 func _on_enemy_generator_enemy_died(numbers: Variant) -> void:
 	$TOP/MainHud/Stats/Kills/Kills_Label.text = " : " + str(numbers)
+
+
+func _on_player_dollar_gained(dollars: Variant) -> void:
+	current_dollars += dollars
+	$TOP/MainHud/Stats/Money/Money_Label.text = " : " + str(current_dollars)

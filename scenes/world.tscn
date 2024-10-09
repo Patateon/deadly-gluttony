@@ -7,10 +7,8 @@
 [ext_resource type="Script" path="res://script/weapon_stats.gd" id="4_1oicy"]
 [ext_resource type="PackedScene" uid="uid://gmu2dupf71i8" path="res://scenes/pause_menu.tscn" id="5_ecj2u"]
 [ext_resource type="Script" path="res://script/stats.gd" id="5_qmb43"]
-
 [ext_resource type="PackedScene" uid="uid://cd4t4iidtkdlk" path="res://scenes/hud.tscn" id="8_tfaip"]
 [ext_resource type="Script" path="res://script/game_context.gd" id="9_qnmlx"]
-
 
 [sub_resource type="GDScript" id="GDScript_vhok5"]
 script/source = "extends Node2D  
@@ -55,7 +53,12 @@ func level_gain_pause():
 
 func _on_player_level_gained(level: Variant) -> void:
 	if (level > 1):
-		toggle_pause()
+		pass
+		#toggle_pause()
+
+
+func _on_world_timer_timeout() -> void:
+	toggle_pause() # Replace with function body.
 "
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
@@ -119,7 +122,9 @@ script = ExtResource("9_qnmlx")
 wait_time = 30.0
 
 [connection signal="enemy_died" from="EnemyGenerator" to="HUD" method="_on_enemy_generator_enemy_died"]
+[connection signal="dollar_gained" from="Player" to="HUD" method="_on_player_dollar_gained"]
 [connection signal="level_gained" from="Player" to="." method="_on_player_level_gained"]
 [connection signal="level_gained" from="Player" to="HUD" method="_on_player_level_gained"]
 [connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]
 [connection signal="current_time" from="GameContext" to="HUD" method="_on_game_context_current_time"]
+[connection signal="timeout" from="GameContext/WorldTimer" to="." method="_on_world_timer_timeout"]
