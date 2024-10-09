@@ -6,6 +6,7 @@ var limitNPC = 200;
 var minDistanceFromPlayer = 400
 
 func _ready() -> void:
+	
 	pass 
 
 func _process(delta: float) -> void:
@@ -27,7 +28,7 @@ func createEnemy():
 	var player = get_tree().get_first_node_in_group("Player")
 
 	enemy_instance.connect("enemy_died", Callable(self, "_on_Enemy_died"))
-  
+	
 	if zone and player:
 		var collision_shape = zone.get_node("Area2D").get_node("CollisionShape2D")
 		if collision_shape.shape is RectangleShape2D:
@@ -54,3 +55,4 @@ func createEnemy():
 		
 func _on_Enemy_died():
 	dead_enemy_since_start+=1
+	

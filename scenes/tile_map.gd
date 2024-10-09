@@ -39,7 +39,8 @@ func generate_around_player():
 			if chunk not in loaded_chunks:
 				generate_chunk(chunk)
 				loaded_chunks.append(chunk)
-        
+
+
 func generate_chunk(chunk_position):
 	for x in range(chunk_size):
 		for y in range(chunk_size):
@@ -66,4 +67,4 @@ func generate_chunk(chunk_position):
 
 func _on_Player_died():
 	print("Player died.")
-	player = null 
+	player = null  
