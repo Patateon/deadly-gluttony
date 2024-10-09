@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=13 format=3 uid="uid://ifwq3geifvtp"]
 
 [ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
 [ext_resource type="PackedScene" uid="uid://c1nuygk5f3vma" path="res://scenes/tilemap_scene.tscn" id="1_grwk2"]
