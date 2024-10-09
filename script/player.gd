@@ -22,6 +22,7 @@ var is_alive: bool = true
 signal player_died
 signal xp_gained(current_xp, max_xp)
 signal level_gained(level)
+signal dollar_gained(dollars)
 
 @onready var attraction_area: Area2D = $AttractionArea
 
@@ -195,5 +196,6 @@ func gain_experience(amount):
 		current_xp -= max_xp
 		level_up()
 	xp_gained.emit(current_xp, max_xp)
+	dollar_gained.emit(amount)
 	print("Gained experience:", amount)
 	print("Total experience:", experience)

@@ -1,12 +1,26 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd4t4iidtkdlk"]
+[gd_scene load_steps=11 format=3 uid="uid://cd4t4iidtkdlk"]
 
 [ext_resource type="Script" path="res://script/hud.gd" id="1_0cow5"]
 [ext_resource type="FontFile" uid="uid://o2ddtj8ytn4r" path="res://fonts/cormorant/Cormorant-Bold.ttf" id="1_c04g8"]
 [ext_resource type="Texture2D" uid="uid://b3ghrj3c4raev" path="res://assets/sprites/skull.png" id="3_8xfc3"]
 [ext_resource type="FontFile" uid="uid://bhxhnidr4wmtg" path="res://fonts/cormorant/Cormorant-Regular.ttf" id="3_uj8cu"]
+[ext_resource type="Texture2D" uid="uid://da0gwx0kfbupt" path="res://assets/animated-sprites/billet/billet1.png" id="5_tgu7s"]
+[ext_resource type="Texture2D" uid="uid://0ob0jsev0vkd" path="res://assets/animated-sprites/billet/billet2.png" id="6_5d4q7"]
+[ext_resource type="Texture2D" uid="uid://d2hwql212tyih" path="res://assets/animated-sprites/billet/billet3.png" id="7_xogjx"]
+[ext_resource type="Texture2D" uid="uid://cg45js4rll6nr" path="res://assets/animated-sprites/billet/billet4.png" id="8_cex74"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wda6y"]
 bg_color = Color(0.215686, 0.435294, 0.784314, 1)
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_fvy6i"]
+frames = 4
+frame_0/texture = ExtResource("5_tgu7s")
+frame_1/texture = ExtResource("6_5d4q7")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("7_xogjx")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("8_cex74")
+frame_3/duration = 1.0
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1_0cow5")
@@ -124,7 +138,7 @@ size_flags_horizontal = 8
 clip_contents = true
 custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
-texture = ExtResource("3_8xfc3")
+texture = SubResource("AnimatedTexture_fvy6i")
 expand_mode = 2
 stretch_mode = 5
 
