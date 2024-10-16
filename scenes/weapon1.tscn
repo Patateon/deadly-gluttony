@@ -1,23 +1,23 @@
 [gd_scene load_steps=28 format=3 uid="uid://b34q2707nahsg"]
 
-[ext_resource type="Script" path="res://script/projectile.gd" id="1_r267s"]
-[ext_resource type="Texture2D" uid="uid://bc88vl7rwh83y" path="res://assets/animated-sprites/weapon_anim/burger.png" id="2_jopts"]
-[ext_resource type="Texture2D" uid="uid://dxx3vclfsbnt6" path="res://assets/animated-sprites/weapon_anim/jelly.png" id="18_c6mh3"]
+[ext_resource type="Script" path="res://script/weapon1.gd" id="1_yorow"]
+[ext_resource type="Texture2D" uid="uid://bc88vl7rwh83y" path="res://assets/animated-sprites/weapon_anim/burger.png" id="2_f887i"]
+[ext_resource type="Texture2D" uid="uid://dxx3vclfsbnt6" path="res://assets/animated-sprites/weapon_anim/jelly.png" id="3_bqgjf"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j6phu"]
-atlas = ExtResource("2_jopts")
+atlas = ExtResource("2_f887i")
 region = Rect2(2, 3, 46, 47)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nm0ni"]
-atlas = ExtResource("2_jopts")
+atlas = ExtResource("2_f887i")
 region = Rect2(49, 2, 42, 49)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tbxoy"]
-atlas = ExtResource("2_jopts")
+atlas = ExtResource("2_f887i")
 region = Rect2(92, 13, 65, 25)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p6jbt"]
-atlas = ExtResource("2_jopts")
+atlas = ExtResource("2_f887i")
 region = Rect2(158, 13, 73, 32)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_855ao"]
@@ -51,15 +51,15 @@ region = Rect2(158, 13, 73, 32)
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xvdf5"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32f7j"]
-atlas = ExtResource("18_c6mh3")
+atlas = ExtResource("3_bqgjf")
 region = Rect2(8, 0, 69, 61)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bcits"]
-atlas = ExtResource("18_c6mh3")
+atlas = ExtResource("3_bqgjf")
 region = Rect2(87, 0, 77, 61)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7dh3i"]
-atlas = ExtResource("18_c6mh3")
+atlas = ExtResource("3_bqgjf")
 region = Rect2(178, 0, 69, 61)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2bpxc"]
@@ -155,12 +155,12 @@ scale = Vector2(0.5, 0.5)
 collision_layer = 4
 collision_mask = 0
 gravity_scale = 0.0
-script = ExtResource("1_r267s")
+script = ExtResource("1_yorow")
 
 [node name="ProjectileSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2.86102e-06, 4.24683e-06)
 sprite_frames = SubResource("SpriteFrames_2bpxc")
-animation = &"jelly"
+animation = &"burger"
 
 [node name="ProjectileCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_udneo")

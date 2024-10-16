@@ -6,7 +6,7 @@ var damage: Array = [5.0, 15.0, 1.0]
 var attack_speed: Array = [1.0, 2.0, 1.0]       
 var  area: Array = [0.7, 0.2, 1]                
 var projectile_speed: Array = [100.0, 300.0, 1.0]  
-var number_proj : Array = [3,1,1]
+var number_proj : Array = [3,3,1]
 func get_nproj(index: int) -> int:
 	if index >= 0 and index < damage.size():
 		return number_proj[index]

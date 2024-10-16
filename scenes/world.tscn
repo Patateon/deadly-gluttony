@@ -113,7 +113,6 @@ script = ExtResource("4_1oicy")
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("5_qmb43")
 
-
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Pause_Menu" parent="UI" instance=ExtResource("5_ecj2u")]
@@ -125,6 +124,7 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+
 [node name="HUD" parent="." instance=ExtResource("8_tfaip")]
 
 [node name="GameContext" type="Node" parent="."]
@@ -140,4 +140,3 @@ wait_time = 30.0
 [connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]
 [connection signal="current_time" from="GameContext" to="HUD" method="_on_game_context_current_time"]
 [connection signal="timeout" from="GameContext/WorldTimer" to="." method="_on_world_timer_timeout"]
-
