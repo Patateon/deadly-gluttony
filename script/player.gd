@@ -128,8 +128,6 @@ func fire_projectile():
 				var traj = enemy.global_position - global_position
 				if traj.length() != 0:
 					traj = traj.normalized()
-				if traj.x > 0 :
-					projectile_instance.get_node("ProjectileSprite").flip_h = true
 				if index == 0:
 					for n in range(weapon_stats.get_nproj(index)):#Si plusieurs projectiles on refait le tout avec une attente
 						if n < weapon_stats.get_nproj(index) :
@@ -142,9 +140,10 @@ func fire_projectile():
 							traj = enemy.global_position - global_position
 						if traj.length() != 0:
 							traj = traj.normalized()
+						
+						projectile_instance = projectile.instantiate()
 						if traj.x > 0 :
 							projectile_instance.get_node("ProjectileSprite").flip_h = true
-						projectile_instance = projectile.instantiate()
 						projectile_instance.set_damage(weapon_stats.get_damage(index))
 						projectile_instance.global_position = global_position
 						projectile_instance.add_constant_central_force(traj * projectile_speed * weapon_stats.get_projectile_speed(index))
