@@ -67,6 +67,18 @@ func _on_player_level_gained(level: Variant) -> void:
 
 func _on_world_timer_timeout() -> void:
 	toggle_pause() # Replace with function body.
+
+
+func _on_player_player_died() -> void:
+	var UI = get_node(\"UI\")
+	UI.get_node(\"Pause_Menu\").hide()
+	get_node(\"HUD\").hide()
+	var GameOver= preload(\"res://scenes/end.tscn\").instantiate()
+	UI.add_child(GameOver)
+
+
+func _on_pause_menu_return_game() -> void:
+	toggle_pause()
 "
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
@@ -105,6 +117,7 @@ shape = SubResource("RectangleShape2D_58m6i")
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+scale = Vector2(1, 1)
 script = ExtResource("3_fm33l")
 
 [node name="WeaponStats" type="Node2D" parent="."]
@@ -137,6 +150,8 @@ wait_time = 30.0
 [connection signal="dollar_gained" from="Player" to="HUD" method="_on_player_dollar_gained"]
 [connection signal="level_gained" from="Player" to="." method="_on_player_level_gained"]
 [connection signal="level_gained" from="Player" to="HUD" method="_on_player_level_gained"]
+[connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]
+[connection signal="return_game" from="UI/Pause_Menu" to="." method="_on_pause_menu_return_game"]
 [connection signal="current_time" from="GameContext" to="HUD" method="_on_game_context_current_time"]
 [connection signal="timeout" from="GameContext/WorldTimer" to="." method="_on_world_timer_timeout"]

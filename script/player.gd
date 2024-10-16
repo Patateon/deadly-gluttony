@@ -214,11 +214,7 @@ func die():
 	AudioManager.play_player_death()
 	is_alive = false 
 	emit_signal("player_died") 
-	var UI = get_parent().get_node("UI")
-	UI.get_node("Pause_Menu").hide()
-	var GameOver= preload("res://scenes/end.tscn").instantiate()
-	UI.add_child(GameOver)
-	#queue_free()  
+	queue_free()  
 
 	
 	

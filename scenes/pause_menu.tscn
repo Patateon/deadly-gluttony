@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://gmu2dupf71i8"]
+[gd_scene load_steps=3 format=3 uid="uid://gmu2dupf71i8"]
 
+[ext_resource type="Script" path="res://script/pause_menu.gd" id="1_itpw3"]
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="1_tgr4r"]
 
 [node name="Pause_Menu" type="Control"]
@@ -8,6 +9,16 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+script = ExtResource("1_itpw3")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.262745)
 
 [node name="Back" type="Button" parent="."]
 custom_minimum_size = Vector2(100, 0)
@@ -26,3 +37,5 @@ grow_vertical = 0
 theme_override_fonts/font = ExtResource("1_tgr4r")
 theme_override_font_sizes/font_size = 24
 text = "Retour"
+
+[connection signal="pressed" from="Back" to="." method="_on_back_pressed"]
