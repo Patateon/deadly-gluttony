@@ -1,10 +1,10 @@
 extends CharacterBody2D
 var speed = 300.0
-var life = 1.0
+var life = 100
 var damage = 1
 var atk_speed = 1
 var movespeed = 1
-var experience = 0
+var experience = 96
 var level = 1
 var weapons = []
 var atk_speed_acc=[]
@@ -40,11 +40,11 @@ func _ready():
 	attraction_area.body_entered.connect(_on_AttractionArea_body_entered)
 	$HealthBar.max_value = 100
 	var projectile_scene = preload("res://scenes/weapon1.tscn") # arme initial proj burger
-	var projectile_scene2 = preload("res://scenes/weapon2.tscn") 
+	#var projectile_scene2 = preload("res://scenes/weapon2.tscn") 
 	weapons.append(projectile_scene)
-	weapons.append(projectile_scene2)
+	#weapons.append(projectile_scene2)
 	atk_speed_acc.append(0.0)
-	atk_speed_acc.append(0.0)
+	#atk_speed_acc.append(0.0)
 	set_health_bar()
 	level_gained.emit(level)
 	xp_gained.emit(current_xp, max_xp)
@@ -205,6 +205,7 @@ func fire_projectile():
 		i += 1
 
 func level_up():
+	AudioManager.play_player_lvl()
 	level += 1
 	max_xp *= 1.25
 	level_gained.emit(level)
