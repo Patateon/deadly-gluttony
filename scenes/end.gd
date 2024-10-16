@@ -5,7 +5,7 @@ extends Control
 func _ready() -> void:
 	$VBoxContainer/Projejectile/Projectil_value.text=str(stats.get_fire_projectile_since_start())
 	$VBoxContainer/Money/Money_value.text=str(stats.get_experience())
-
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:

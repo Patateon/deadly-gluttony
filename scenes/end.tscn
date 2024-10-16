@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://brn6hab56t7wo" path="res://assets/ronald.webp" id="3_uy76n"]
 
 [node name="End" type="Control"]
+clip_contents = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,29 +15,35 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_g23vf")
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 7.0
-offset_top = -117.0
-offset_right = 457.0
-offset_bottom = 643.0
-texture = ExtResource("2_5l027")
-expand_mode = 1
+[node name="background" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
 
-[node name="TextureRect2" type="TextureRect" parent="TextureRect2"]
-offset_left = 449.0
-offset_top = -100.0
-offset_right = 1313.0
-offset_bottom = 764.0
+[node name="TextureRect2" type="TextureRect" parent="background"]
+layout_mode = 1
+offset_left = -76.0
+offset_top = -172.0
+offset_right = 517.0
+offset_bottom = 852.0
+texture = ExtResource("2_5l027")
+
+[node name="TextureRect3" type="TextureRect" parent="background"]
+layout_mode = 1
+offset_left = 461.0
+offset_top = -67.0
+offset_right = 1325.0
+offset_bottom = 797.0
 texture = ExtResource("3_uy76n")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+expand_mode = 2
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -58,7 +65,7 @@ offset_right = 20.0
 offset_bottom = 98.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
 theme_override_font_sizes/font_size = 50
@@ -80,6 +87,8 @@ grow_vertical = 2
 
 [node name="Stats" type="Label" parent="VBoxContainer"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
 text = "Stats"
 horizontal_alignment = 1
@@ -92,6 +101,8 @@ layout_mode = 2
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
 text = "Burger vendu: "
 
@@ -100,6 +111,8 @@ clip_contents = true
 layout_direction = 3
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
 text = "0"
 horizontal_alignment = 1
@@ -111,6 +124,8 @@ layout_mode = 2
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
 text = "Gain engendré : "
 
@@ -118,6 +133,8 @@ text = "Gain engendré : "
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
 text = "0"
 horizontal_alignment = 1
@@ -135,6 +152,8 @@ offset_right = -34.0
 offset_bottom = -25.0
 grow_horizontal = 0
 grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
 text = "Retour Menu"
 
