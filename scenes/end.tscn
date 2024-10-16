@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5vgc2le068hm"]
 
-[ext_resource type="Script" path="res://scenes/end.gd" id="1_g23vf"]
+[ext_resource type="Script" path="res://script/end.gd" id="1_g23vf"]
 [ext_resource type="Texture2D" uid="uid://i0xuqlbj5cy5" path="res://assets/tiles/game_over_background.jpg" id="2_6xvhc"]
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="2_q5gna"]
 
