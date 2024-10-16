@@ -1,6 +1,6 @@
 extends CharacterBody2D
 var speed = 300.0
-var life = 100.0
+var life = 1.0
 var damage = 1
 var atk_speed = 1
 var movespeed = 1
@@ -22,6 +22,7 @@ var is_alive: bool = true
 signal player_died
 signal xp_gained(current_xp, max_xp)
 signal level_gained(level)
+signal dollar_gained(dollars)
 
 @onready var attraction_area: Area2D = $AttractionArea
 
@@ -211,8 +212,12 @@ func level_up():
 func die():
 	is_alive = false 
 	emit_signal("player_died") 
-	Utilities.switch_scene_end("end",self)
-	queue_free()  
+	var UI = get_parent().get_node("UI")
+	UI.get_node("Pause_Menu").hide()
+	var GameOver= preload("res://scenes/end.tscn").instantiate()
+	UI.add_child(GameOver)
+	#queue_free()  
+
 	
 	
 func _on_AttractionArea_body_entered(body):
@@ -228,5 +233,6 @@ func gain_experience(amount):
 		current_xp -= max_xp
 		level_up()
 	xp_gained.emit(current_xp, max_xp)
+	dollar_gained.emit(amount)
 	#print("Gained experience:", amount)
 	#print("Total experience:", experience)

@@ -1,6 +1,6 @@
 extends Node
 
-var time = 30 # en minutes
+var time = 1 # en minutes
 var number_of_kills = 0
 
 @onready var world_timer = $WorldTimer

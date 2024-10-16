@@ -26,23 +26,31 @@ func _process(delta):
 	#print(\"Dead Enemy : \" ,enemy_generator.dead_enemy_since_start )
 	#print(\"Dolarz : \" ,stats.experience )
 	if Input.is_action_just_pressed(\"Pause\"):  # \"ui_cancel\" is the Esc key by default
+		
 		toggle_pause()
 
-# Function to toggle pause for all children
+# Function to toggle pause for all children and their descendants
 func toggle_pause():
 	is_paused = !is_paused
-	if is_paused : 
-		$Camera2D/Pause_Menu.show()
-	else : 
-		$Camera2D/Pause_Menu.hide()
-	_set_children_process(is_paused)
+	if is_paused:
+		$UI/Pause_Menu.show()
+	else:
+		$UI/Pause_Menu.hide()
+	_set_children_process(self, is_paused)
 
-# Recursively set the process and physics_process for all children
-func _set_children_process(pause: bool):
-	for child in get_children():
-		if child is Node:
+# Recursively set process, physics_process, and animation playback for all children and grandchildren
+func _set_children_process(node: Node, pause: bool):
+	for child in node.get_children():
+		if child is Node2D or child is Area2D:  # Adjust depending on what nodes you need to pause
 			child.set_process(not pause)
 			child.set_physics_process(not pause)
+		if child is AnimatedSprite2D:
+			child.speed_scale = 0 if pause else 1  # Pause or resume animations
+		if child is RigidBody2D:
+			child.set_sleeping( pause)
+		# Recursively pause/resume all children
+		if child.get_child_count() > 0:
+			_set_children_process(child, pause)
 			# Recursively pause/resume children of children (grandchildren)
 			#if child.get_child_count() > 0:
 			#	child._set_children_process(pause)
@@ -53,7 +61,12 @@ func level_gain_pause():
 
 func _on_player_level_gained(level: Variant) -> void:
 	if (level > 1):
-		toggle_pause()
+		pass
+		#toggle_pause()
+
+
+func _on_world_timer_timeout() -> void:
+	toggle_pause() # Replace with function body.
 "
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
@@ -94,20 +107,24 @@ disabled = true
 [node name="Camera2D" type="Camera2D" parent="."]
 script = ExtResource("3_fm33l")
 
-[node name="Pause_Menu" parent="Camera2D" instance=ExtResource("5_ecj2u")]
-visible = false
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-grow_horizontal = 1
-grow_vertical = 1
-
 [node name="WeaponStats" type="Node2D" parent="."]
 script = ExtResource("4_1oicy")
 
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("5_qmb43")
 
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Pause_Menu" parent="UI" instance=ExtResource("5_ecj2u")]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 [node name="HUD" parent="." instance=ExtResource("8_tfaip")]
 
 [node name="GameContext" type="Node" parent="."]
@@ -117,7 +134,10 @@ script = ExtResource("9_qnmlx")
 wait_time = 30.0
 
 [connection signal="enemy_died" from="EnemyGenerator" to="HUD" method="_on_enemy_generator_enemy_died"]
+[connection signal="dollar_gained" from="Player" to="HUD" method="_on_player_dollar_gained"]
 [connection signal="level_gained" from="Player" to="." method="_on_player_level_gained"]
 [connection signal="level_gained" from="Player" to="HUD" method="_on_player_level_gained"]
 [connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]
 [connection signal="current_time" from="GameContext" to="HUD" method="_on_game_context_current_time"]
+[connection signal="timeout" from="GameContext/WorldTimer" to="." method="_on_world_timer_timeout"]
+
