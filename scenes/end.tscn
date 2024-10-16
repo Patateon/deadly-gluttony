@@ -64,7 +64,7 @@ offset_top = 50.0
 offset_right = 20.0
 offset_bottom = 98.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.88715, 0.222193, 0.292043, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
@@ -138,6 +138,29 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
 text = "0"
 horizontal_alignment = 1
+
+[node name="Lecon1" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.886275, 0.223529, 0.290196, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_font_sizes/font_size = 22
+text = "
+
+Perdu, mais tu peux encore gagner."
+horizontal_alignment = 1
+
+[node name="Lecon" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "
+Chaque jour, des choix alimentaires sains peuvent te sauver de maladies évitables comme le diabète.
+Fais les bons choix, car dans la vraie vie, il est encore temps."
+horizontal_alignment = 1
+autowrap_mode = 2
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 1
