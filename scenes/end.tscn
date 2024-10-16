@@ -1,10 +1,183 @@
-[gd_scene format=3 uid="uid://b5vgc2le068hm"]
+[gd_scene load_steps=5 format=3 uid="uid://b5vgc2le068hm"]
 
-[node name="End" type="Node2D"]
+[ext_resource type="Script" path="res://scenes/end.gd" id="1_g23vf"]
+[ext_resource type="Texture2D" uid="uid://b6kamreis14j5" path="res://assets/business.webp" id="2_5l027"]
+[ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="2_q5gna"]
+[ext_resource type="Texture2D" uid="uid://brn6hab56t7wo" path="res://assets/ronald.webp" id="3_uy76n"]
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
-offset_left = 434.0
-offset_top = 216.0
-offset_right = 628.0
-offset_bottom = 373.0
-text = "GAME OVER"
+[node name="End" type="Control"]
+clip_contents = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_g23vf")
+
+[node name="background" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 0
+
+[node name="TextureRect2" type="TextureRect" parent="background"]
+layout_mode = 1
+offset_left = -76.0
+offset_top = -172.0
+offset_right = 517.0
+offset_bottom = 852.0
+texture = ExtResource("2_5l027")
+
+[node name="TextureRect3" type="TextureRect" parent="background"]
+layout_mode = 1
+offset_left = 461.0
+offset_top = -67.0
+offset_right = 1325.0
+offset_bottom = 797.0
+texture = ExtResource("3_uy76n")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(1, 1, 1, 0.137255)
+
+[node name="GamerOver" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 50.0
+offset_right = 20.0
+offset_bottom = 98.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.88715, 0.222193, 0.292043, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_font_sizes/font_size = 50
+text = "Game Over (looser)"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -214.0
+offset_top = -150.0
+offset_right = 213.0
+offset_bottom = 152.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Stats" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Projejectile" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Projectile" type="Label" parent="VBoxContainer/Projejectile"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "Burger vendu: "
+
+[node name="Projectil_value" type="Label" parent="VBoxContainer/Projejectile"]
+clip_contents = true
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Money" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Money" type="Label" parent="VBoxContainer/Money"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "Gain engendré : "
+
+[node name="Money_value" type="Label" parent="VBoxContainer/Money"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Lecon1" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.886275, 0.223529, 0.290196, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_font_sizes/font_size = 22
+text = "
+
+Perdu, mais tu peux encore gagner."
+horizontal_alignment = 1
+
+[node name="Lecon" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "
+Chaque jour, des choix alimentaires sains peuvent te sauver de maladies évitables comme le diabète.
+Fais les bons choix, car dans la vraie vie, il est encore temps."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -144.0
+offset_top = -56.0
+offset_right = -34.0
+offset_bottom = -25.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "Retour Menu"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
