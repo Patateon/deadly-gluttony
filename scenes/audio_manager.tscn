@@ -1,10 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://dtyy8kttah7ge"]
+[gd_scene load_steps=10 format=3 uid="uid://dtyy8kttah7ge"]
 
-[ext_resource type="Script" path="res://script/audio_manager.gd" id="1_2mekg"]
+[ext_resource type="Script" path="res://script/audio_manager.gd" id="1_vtb7f"]
+[ext_resource type="AudioStream" uid="uid://bamkw4opggdni" path="res://assets/sounds/music1.mp3" id="2_ywb7u"]
+[ext_resource type="AudioStream" uid="uid://dslxjssuuoxuc" path="res://assets/sounds/music2.mp3" id="3_6oj4t"]
+[ext_resource type="AudioStream" uid="uid://2uuhc0o8pqtl" path="res://assets/sounds/mob_death1.mp3" id="4_j0p0u"]
+[ext_resource type="AudioStream" uid="uid://divetqjmn5sm4" path="res://assets/sounds/player_hit.mp3" id="5_v3epr"]
+[ext_resource type="AudioStream" uid="uid://0pyyaolo66g1" path="res://assets/sounds/mob_death2.mp3" id="6_snhjo"]
+[ext_resource type="AudioStream" uid="uid://crva6y7apc7bg" path="res://assets/sounds/mob_death3.mp3" id="7_qyi3d"]
+[ext_resource type="AudioStream" uid="uid://ndkbbmbb1fs1" path="res://player_death.mp3" id="8_4w7hn"]
+[ext_resource type="AudioStream" uid="uid://wis1a717bo7a" path="res://assets/sounds/Level Up Sound Effect.mp3" id="9_ed0jh"]
 
 [node name="AudioManager" type="Node"]
-script = ExtResource("1_2mekg")
+script = ExtResource("1_vtb7f")
 
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ywb7u")
+mix_target = 2
+parameters/looping = true
 
-[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+[node name="Music2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_6oj4t")
+volume_db = -16.814
+mix_target = 2
+
+[node name="Enemy_death1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_j0p0u")
+volume_db = 0.149
+max_polyphony = 3
+
+[node name="player_hit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_v3epr")
+volume_db = 12.542
+
+[node name="Enemy_death2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_snhjo")
+volume_db = -0.015
+max_polyphony = 3
+
+[node name="Enemy_death3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_qyi3d")
+volume_db = 8.619
+max_polyphony = 3
+
+[node name="Player_death" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_4w7hn")
+
+[node name="lvlup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_ed0jh")
+volume_db = 15.38
+mix_target = 2
+max_polyphony = 10

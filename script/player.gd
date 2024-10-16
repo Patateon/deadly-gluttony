@@ -1,10 +1,10 @@
 extends CharacterBody2D
 var speed = 300.0
-var life = 1.0
+var life = 100
 var damage = 1
 var atk_speed = 1
 var movespeed = 1
-var experience = 0
+var experience = 96
 var level = 1
 var weapons = []
 var atk_speed_acc=[]
@@ -101,6 +101,7 @@ func kill_all_enemies():
 	weapon_stats.set_attack_speed(0, 3)
 			
 func take_damage(amount: float):
+	AudioManager.play_player_hit()
 	current_life -= amount
 	print(current_life)
 	if current_life <= 0:
@@ -204,18 +205,17 @@ func fire_projectile():
 		i += 1
 
 func level_up():
+	AudioManager.play_player_lvl()
 	level += 1
 	max_xp *= 1.25
 	level_gained.emit(level)
 
 func die():
+	AudioManager.stop_music()
+	AudioManager.play_player_death()
 	is_alive = false 
 	emit_signal("player_died") 
-	var UI = get_parent().get_node("UI")
-	UI.get_node("Pause_Menu").hide()
-	var GameOver= preload("res://scenes/end.tscn").instantiate()
-	UI.add_child(GameOver)
-	#queue_free()  
+	queue_free()  
 
 	
 	

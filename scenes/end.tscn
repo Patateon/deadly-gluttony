@@ -1,9 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5vgc2le068hm"]
+[gd_scene load_steps=4 format=3 uid="uid://b5vgc2le068hm"]
 
 [ext_resource type="Script" path="res://scenes/end.gd" id="1_g23vf"]
-[ext_resource type="Texture2D" uid="uid://b6kamreis14j5" path="res://assets/business.webp" id="2_5l027"]
+[ext_resource type="Texture2D" uid="uid://i0xuqlbj5cy5" path="res://assets/tiles/game_over_background.jpg" id="2_6xvhc"]
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="2_q5gna"]
-[ext_resource type="Texture2D" uid="uid://brn6hab56t7wo" path="res://assets/ronald.webp" id="3_uy76n"]
 
 [node name="End" type="Control"]
 clip_contents = true
@@ -19,31 +18,19 @@ script = ExtResource("1_g23vf")
 layout_mode = 1
 anchors_preset = 0
 
-[node name="TextureRect2" type="TextureRect" parent="background"]
-layout_mode = 1
-offset_left = -76.0
-offset_top = -172.0
-offset_right = 517.0
-offset_bottom = 852.0
-texture = ExtResource("2_5l027")
-
-[node name="TextureRect3" type="TextureRect" parent="background"]
-layout_mode = 1
-offset_left = 461.0
-offset_top = -67.0
-offset_right = 1325.0
-offset_bottom = 797.0
-texture = ExtResource("3_uy76n")
-
 [node name="TextureRect" type="TextureRect" parent="."]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 162.0
+offset_top = -236.0
+offset_right = -117.0
+offset_bottom = 207.0
 grow_horizontal = 2
 grow_vertical = 2
-expand_mode = 2
+texture = ExtResource("2_6xvhc")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -90,6 +77,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_font_sizes/font_size = 25
 text = "Stats"
 horizontal_alignment = 1
 vertical_alignment = 1
