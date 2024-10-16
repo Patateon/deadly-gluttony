@@ -75,6 +75,10 @@ func _on_player_player_died() -> void:
 	get_node(\"HUD\").hide()
 	var GameOver= preload(\"res://scenes/end.tscn\").instantiate()
 	UI.add_child(GameOver)
+
+
+func _on_pause_menu_return_game() -> void:
+	toggle_pause()
 "
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
@@ -148,5 +152,6 @@ wait_time = 30.0
 [connection signal="level_gained" from="Player" to="HUD" method="_on_player_level_gained"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]
+[connection signal="return_game" from="UI/Pause_Menu" to="." method="_on_pause_menu_return_game"]
 [connection signal="current_time" from="GameContext" to="HUD" method="_on_game_context_current_time"]
 [connection signal="timeout" from="GameContext/WorldTimer" to="." method="_on_world_timer_timeout"]
