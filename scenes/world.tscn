@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=13 format=3 uid="uid://ifwq3geifvtp"]
 
 [ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
 [ext_resource type="PackedScene" uid="uid://c1nuygk5f3vma" path="res://scenes/tilemap_scene.tscn" id="1_grwk2"]
@@ -7,6 +7,8 @@
 [ext_resource type="Script" path="res://script/weapon_stats.gd" id="4_1oicy"]
 [ext_resource type="PackedScene" uid="uid://gmu2dupf71i8" path="res://scenes/pause_menu.tscn" id="5_ecj2u"]
 [ext_resource type="Script" path="res://script/stats.gd" id="5_qmb43"]
+[ext_resource type="PackedScene" uid="uid://cd4t4iidtkdlk" path="res://scenes/hud.tscn" id="8_tfaip"]
+[ext_resource type="Script" path="res://script/game_context.gd" id="9_qnmlx"]
 
 [sub_resource type="GDScript" id="GDScript_vhok5"]
 script/source = "extends Node2D  
@@ -20,9 +22,9 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 func _process(delta):
-	print(\"Projectile : \" ,stats.fire_projectile_since_start )
-	print(\"Dead Enemy : \" ,enemy_generator.dead_enemy_since_start )
-	print(\"Dolarz : \" ,stats.experience )
+	#print(\"Projectile : \" ,stats.fire_projectile_since_start )
+	#print(\"Dead Enemy : \" ,enemy_generator.dead_enemy_since_start )
+	#print(\"Dolarz : \" ,stats.experience )
 	if Input.is_action_just_pressed(\"Pause\"):  # \"ui_cancel\" is the Esc key by default
 		
 		toggle_pause()
@@ -49,12 +51,28 @@ func _set_children_process(node: Node, pause: bool):
 		# Recursively pause/resume all children
 		if child.get_child_count() > 0:
 			_set_children_process(child, pause)
+			# Recursively pause/resume children of children (grandchildren)
+			#if child.get_child_count() > 0:
+			#	child._set_children_process(pause)
+
+func level_gain_pause():
+	#_set_children_process(true)
+	pass
+
+func _on_player_level_gained(level: Variant) -> void:
+	if (level > 1):
+		pass
+		#toggle_pause()
+
+
+func _on_world_timer_timeout() -> void:
+	toggle_pause() # Replace with function body.
 "
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
-vertices = PackedVector2Array(1134.1, 16.9375, 1140.88, 638.008, 11.0312, 639.977, 12.9609, 11.0469)
+vertices = PackedVector2Array(1317.96, -303.203, 1313.03, 923.031, -164.688, 928.953, -127.289, -332.789)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(3, 1, 1144, 7, 1151, 648, 1, 650)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-136.999, -343, 1328, -313, 1323, 933.001, -174.999, 939.001)])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_58m6i"]
 size = Vector2(1121, 619)
@@ -95,6 +113,7 @@ script = ExtResource("4_1oicy")
 [node name="Stats" type="Node2D" parent="."]
 script = ExtResource("5_qmb43")
 
+
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="Pause_Menu" parent="UI" instance=ExtResource("5_ecj2u")]
@@ -106,3 +125,19 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
+[node name="HUD" parent="." instance=ExtResource("8_tfaip")]
+
+[node name="GameContext" type="Node" parent="."]
+script = ExtResource("9_qnmlx")
+
+[node name="WorldTimer" type="Timer" parent="GameContext"]
+wait_time = 30.0
+
+[connection signal="enemy_died" from="EnemyGenerator" to="HUD" method="_on_enemy_generator_enemy_died"]
+[connection signal="dollar_gained" from="Player" to="HUD" method="_on_player_dollar_gained"]
+[connection signal="level_gained" from="Player" to="." method="_on_player_level_gained"]
+[connection signal="level_gained" from="Player" to="HUD" method="_on_player_level_gained"]
+[connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]
+[connection signal="current_time" from="GameContext" to="HUD" method="_on_game_context_current_time"]
+[connection signal="timeout" from="GameContext/WorldTimer" to="." method="_on_world_timer_timeout"]
+

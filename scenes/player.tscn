@@ -1,14 +1,14 @@
 [gd_scene load_steps=18 format=3 uid="uid://choyge02xkei7"]
 
 [ext_resource type="Script" path="res://script/player.gd" id="1_vact7"]
-[ext_resource type="Texture2D" uid="uid://3o10682n5bay" path="res://assets/charac/player/run-1.webp" id="2_kh084"]
-[ext_resource type="Texture2D" uid="uid://dr3yjlvd1ptlc" path="res://assets/charac/player/sanji.png" id="2_u4hua"]
+[ext_resource type="Texture2D" uid="uid://3o10682n5bay" path="res://assets/animated-sprites/charac/player/run-1.webp" id="2_kh084"]
+[ext_resource type="Texture2D" uid="uid://dr3yjlvd1ptlc" path="res://assets/animated-sprites/charac/player/sanji.png" id="2_u4hua"]
 [ext_resource type="Texture2D" uid="uid://bhofa7oavh8rx" path="res://icon.svg" id="2_ywgmp"]
-[ext_resource type="Texture2D" uid="uid://dxlq1ilrwwcf7" path="res://assets/charac/player/run-2.webp" id="3_ldo4j"]
-[ext_resource type="Texture2D" uid="uid://bjkw6b3oikkwr" path="res://assets/charac/player/run-3.webp" id="4_3g68d"]
-[ext_resource type="Texture2D" uid="uid://cw1njejgos4w8" path="res://assets/charac/player/run-4.webp" id="5_1cu16"]
-[ext_resource type="Texture2D" uid="uid://c53gt8nql1fri" path="res://assets/charac/player/run-5.webp" id="6_ypi4n"]
-[ext_resource type="Texture2D" uid="uid://cla3776asmina" path="res://assets/charac/player/run-6.webp" id="7_h8cna"]
+[ext_resource type="Texture2D" uid="uid://dxlq1ilrwwcf7" path="res://assets/animated-sprites/charac/player/run-2.webp" id="3_ldo4j"]
+[ext_resource type="Texture2D" uid="uid://bjkw6b3oikkwr" path="res://assets/animated-sprites/charac/player/run-3.webp" id="4_3g68d"]
+[ext_resource type="Texture2D" uid="uid://cw1njejgos4w8" path="res://assets/animated-sprites/charac/player/run-4.webp" id="5_1cu16"]
+[ext_resource type="Texture2D" uid="uid://c53gt8nql1fri" path="res://assets/animated-sprites/charac/player/run-5.webp" id="6_ypi4n"]
+[ext_resource type="Texture2D" uid="uid://cla3776asmina" path="res://assets/animated-sprites/charac/player/run-6.webp" id="7_h8cna"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dockd"]
 atlas = ExtResource("2_u4hua")
@@ -79,6 +79,7 @@ radius = 152.003
 bg_color = Color(0.582927, 0.0155673, 0, 1)
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
+z_index = 1
 scale = Vector2(0.33, 0.33)
 script = ExtResource("1_vact7")
 
@@ -104,6 +105,7 @@ shape = SubResource("RectangleShape2D_2wanr")
 shape = SubResource("CircleShape2D_r8wsl")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
+z_index = 2
 offset_left = -60.0
 offset_top = -104.0
 offset_right = 60.0
