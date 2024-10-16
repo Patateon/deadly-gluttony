@@ -5,6 +5,8 @@ var pause_position = 0.0  # Pour stocker la position actuelle du son
 @onready var musicplayer: AudioStreamPlayer = $Music1
 var sound_player_e
 var sound_player_p
+var sound_player_l
+
 var music = 0
 var nbrenemysounds = 2
  
@@ -55,8 +57,9 @@ func play_enemy_death():
 		sound_player_e = $Enemy_death3
 		sound_player_e.play()
 		
-func play_exp_pickup():
-	pass
+func play_player_lvl():
+	sound_player_l = $lvlup
+	sound_player_l.play()
 func play_player_death():
 	sound_player_p = $Player_death
 	sound_player_p.play()

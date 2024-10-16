@@ -1,10 +1,10 @@
 extends CharacterBody2D
 var speed = 300.0
-var life = 1.0
+var life = 100
 var damage = 1
 var atk_speed = 1
 var movespeed = 1
-var experience = 0
+var experience = 96
 var level = 1
 var weapons = []
 var atk_speed_acc=[]
@@ -205,6 +205,7 @@ func fire_projectile():
 		i += 1
 
 func level_up():
+	AudioManager.play_player_lvl()
 	level += 1
 	max_xp *= 1.25
 	level_gained.emit(level)
