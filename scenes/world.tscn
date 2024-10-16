@@ -117,7 +117,6 @@ shape = SubResource("RectangleShape2D_58m6i")
 disabled = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(1, 1)
 script = ExtResource("3_fm33l")
 
 [node name="WeaponStats" type="Node2D" parent="."]
