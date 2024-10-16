@@ -2,7 +2,7 @@ extends Camera2D
 
 var distdeadzone = 50.0
 var lerp_speed: float = 1.5
-@onready var character = get_node("/root/World/Player")
+@onready var character = get_parent().get_node("Player")
 
 func _ready() -> void:
 	make_current()
