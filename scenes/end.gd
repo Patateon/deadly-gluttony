@@ -14,5 +14,5 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	var current_scene = get_tree().current_scene  # Get the current scene
+	get_parent().get_parent().queue_free()
 	get_tree().reload_current_scene()  # Reload it from scratch
-	queue_free()
