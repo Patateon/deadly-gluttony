@@ -12,3 +12,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func get_fire_projectile_since_start():
+	return fire_projectile_since_start
+
+
+func get_experience():
+	return experience

@@ -160,7 +160,7 @@ script = ExtResource("1_r267s")
 [node name="ProjectileSprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(-2.86102e-06, 4.24683e-06)
 sprite_frames = SubResource("SpriteFrames_2bpxc")
-animation = &"burger"
+animation = &"jelly"
 
 [node name="ProjectileCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_udneo")
