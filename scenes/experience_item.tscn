@@ -1,6 +1,9 @@
 [gd_scene load_steps=9 format=3 uid="uid://caoalyi2pn4mw"]
 
 [ext_resource type="Script" path="res://script/experience_item.gd" id="1_pgt8v"]
+
+[ext_resource type="Texture2D" uid="uid://74vh6p030e5a" path="res://assets/sounds/sprites/Gems 1.png" id="2_l0oi4"]
+
 [ext_resource type="Texture2D" uid="uid://dfpksgatbk0tn" path="res://assets/animated-sprites/xp_Item/PC Computer - MapleStory - Meso.png" id="2_0npxy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6mvvq"]
@@ -38,6 +41,7 @@ animations = [{
 "name": &"dollar",
 "speed": 5.0
 }]
+
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5686"]
 radius = 16.0
