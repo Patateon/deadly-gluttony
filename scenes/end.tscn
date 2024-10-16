@@ -46,10 +46,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -20.0
+offset_left = -176.0
 offset_top = 50.0
-offset_right = 20.0
-offset_bottom = 98.0
+offset_right = 294.0
+offset_bottom = 107.0
 grow_horizontal = 2
 theme_override_colors/font_color = Color(0.88715, 0.222193, 0.292043, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -65,9 +65,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -214.0
+offset_left = -176.0
 offset_top = -150.0
-offset_right = 213.0
+offset_right = 251.0
 offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -92,7 +92,7 @@ size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
-text = "Burger vendu: "
+text = "Burgers vendus: "
 
 [node name="Projectil_value" type="Label" parent="VBoxContainer/Projejectile"]
 clip_contents = true
@@ -115,10 +115,31 @@ size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
-text = "Gain engendré : "
+text = "Diabètes provoqués  : "
 
 [node name="Money_value" type="Label" parent="VBoxContainer/Money"]
 clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Dead" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Dead" type="Label" parent="VBoxContainer/Dead"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "Populace sustentée : "
+
+[node name="Dead_value" type="Label" parent="VBoxContainer/Dead"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -136,7 +157,7 @@ theme_override_fonts/font = ExtResource("2_q5gna")
 theme_override_font_sizes/font_size = 22
 text = "
 
-Perdu, mais tu peux encore gagner."
+Perdu, mais tu peux encore gagner"
 horizontal_alignment = 1
 
 [node name="Lecon" type="Label" parent="VBoxContainer"]
