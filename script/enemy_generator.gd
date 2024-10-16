@@ -3,7 +3,9 @@ static var dead_enemy_since_start = 0;
 var enemySpawnCooldown = 1;
 var enemyAcc = 0.0;
 var limitNPC = 200;
-var minDistanceFromPlayer = 400
+var minDistanceFromPlayer = 250
+
+signal enemy_died(numbers)
 
 func _ready() -> void:
 	
@@ -16,7 +18,7 @@ func _process(delta: float) -> void:
 		print(limitNPC)
 		print(get_tree().get_nodes_in_group("NPC").size())
 		if (get_tree().get_nodes_in_group("NPC").size() < limitNPC):
-			for i in range(randi_range(3, 5)):
+			for i in range(randi_range(1, 2)):
 				print("Creating enemy")
 				createEnemy()
 			
@@ -55,4 +57,6 @@ func createEnemy():
 		
 func _on_Enemy_died():
 	dead_enemy_since_start+=1
+	enemy_died.emit(dead_enemy_since_start)
+	
 	

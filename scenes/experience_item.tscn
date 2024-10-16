@@ -1,22 +1,66 @@
-[gd_scene load_steps=4 format=3 uid="uid://caoalyi2pn4mw"]
+[gd_scene load_steps=9 format=3 uid="uid://caoalyi2pn4mw"]
 
 [ext_resource type="Script" path="res://script/experience_item.gd" id="1_pgt8v"]
+
 [ext_resource type="Texture2D" uid="uid://74vh6p030e5a" path="res://assets/sounds/sprites/Gems 1.png" id="2_l0oi4"]
+
+[ext_resource type="Texture2D" uid="uid://dfpksgatbk0tn" path="res://assets/animated-sprites/xp_Item/PC Computer - MapleStory - Meso.png" id="2_0npxy"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6mvvq"]
+atlas = ExtResource("2_0npxy")
+region = Rect2(1, 53, 34, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ppnye"]
+atlas = ExtResource("2_0npxy")
+region = Rect2(35, 53, 34, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0g7g"]
+atlas = ExtResource("2_0npxy")
+region = Rect2(69, 53, 34, 33)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xb35d"]
+atlas = ExtResource("2_0npxy")
+region = Rect2(103, 53, 34, 33)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1en0y"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6mvvq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ppnye")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0g7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xb35d")
+}],
+"loop": true,
+"name": &"dollar",
+"speed": 5.0
+}]
+
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5686"]
 radius = 16.0
 height = 52.0
 
 [node name="XP_Object" type="RigidBody2D" groups=["Item"]]
-scale = Vector2(0.25, 0.25)
+scale = Vector2(0.5, 0.5)
 collision_layer = 9
 collision_mask = 0
 gravity_scale = 0.0
 script = ExtResource("1_pgt8v")
 
-[node name="XpSprite" type="Sprite2D" parent="." groups=["Item"]]
-scale = Vector2(0.213, 0.2)
-texture = ExtResource("2_l0oi4")
+[node name="XpSprite" type="AnimatedSprite2D" parent="." groups=["Item"]]
+light_mask = 9
+visibility_layer = 8
+scale = Vector2(0.5, 0.469)
+sprite_frames = SubResource("SpriteFrames_1en0y")
+animation = &"dollar"
+frame_progress = 0.156986
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["Item"]]
 position = Vector2(-1.585, -5.29)
