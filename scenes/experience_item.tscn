@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://caoalyi2pn4mw"]
 
 [ext_resource type="Script" path="res://script/experience_item.gd" id="1_pgt8v"]
-[ext_resource type="Texture2D" uid="uid://74vh6p030e5a" path="res://assets/sprites/Gems 1.png" id="2_l0oi4"]
+[ext_resource type="Texture2D" uid="uid://74vh6p030e5a" path="res://assets/sounds/sprites/Gems 1.png" id="2_l0oi4"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_t5686"]
 radius = 16.0
