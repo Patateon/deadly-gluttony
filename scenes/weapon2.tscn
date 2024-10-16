@@ -1,26 +1,26 @@
 [gd_scene load_steps=11 format=3 uid="uid://dxj0oj4m0p03"]
 
-[ext_resource type="Script" path="res://script/projectile2.gd" id="1_j2enm"]
-[ext_resource type="Texture2D" uid="uid://dchqncqvarv4c" path="res://assets/animated-sprites/weapon_anim/200329.png" id="1_q42xp"]
+[ext_resource type="Script" path="res://script/weapon2.gd" id="1_05h8p"]
+[ext_resource type="Texture2D" uid="uid://dchqncqvarv4c" path="res://assets/animated-sprites/weapon_anim/200329.png" id="2_5g033"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1l20l"]
-atlas = ExtResource("1_q42xp")
+atlas = ExtResource("2_5g033")
 region = Rect2(50, 0, 250, 400)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_af3sg"]
-atlas = ExtResource("1_q42xp")
+atlas = ExtResource("2_5g033")
 region = Rect2(375, 0, 250, 400)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2gm7"]
-atlas = ExtResource("1_q42xp")
+atlas = ExtResource("2_5g033")
 region = Rect2(700, 0, 250, 400)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pan01"]
-atlas = ExtResource("1_q42xp")
+atlas = ExtResource("2_5g033")
 region = Rect2(1025, 0, 250, 400)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gimej"]
-atlas = ExtResource("1_q42xp")
+atlas = ExtResource("2_5g033")
 region = Rect2(1350, 0, 250, 400)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qqnh3"]
@@ -59,7 +59,7 @@ scale = Vector2(0.1, 0.1)
 collision_layer = 4
 collision_mask = 0
 gravity_scale = 0.0
-script = ExtResource("1_j2enm")
+script = ExtResource("1_05h8p")
 
 [node name="ProjectileSprite" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_qqnh3")

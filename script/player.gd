@@ -38,8 +38,8 @@ func _input(event):
 func _ready():
 	attraction_area.body_entered.connect(_on_AttractionArea_body_entered)
 	$HealthBar.max_value = 100
-	var projectile_scene = preload("res://scenes/projectile.tscn") # arme initial proj burger
-	var projectile_scene2 = preload("res://scenes/projectile2.tscn") 
+	var projectile_scene = preload("res://scenes/weapon1.tscn") # arme initial proj burger
+	var projectile_scene2 = preload("res://scenes/weapon2.tscn") 
 	weapons.append(projectile_scene)
 	weapons.append(projectile_scene2)
 	atk_speed_acc.append(0.0)
@@ -108,6 +108,10 @@ func take_damage(amount: float):
 func set_health_bar() -> void:
 	$HealthBar.value = current_life
 
+
+func deg2rad(degrees):
+	return degrees * PI / 180.0
+
 func fire_projectile():
 	var i = 0
 	for projectile in weapons: #tableau armes
@@ -125,11 +129,9 @@ func fire_projectile():
 					traj = traj.normalized()
 				if traj.x > 0 :
 					projectile_instance.get_node("ProjectileSprite").flip_h = true
-				projectile_instance.add_constant_central_force(traj * projectile_speed * weapon_stats.get_projectile_speed(index))
-				get_parent().add_child(projectile_instance)
 				if index == 0:
-					for n in range(weapon_stats.get_nproj(index)-1):#Si plusieurs projectiles on refait le tout avec une attente
-						if n < weapon_stats.get_nproj(index) - 1:
+					for n in range(weapon_stats.get_nproj(index)):#Si plusieurs projectiles on refait le tout avec une attente
+						if n < weapon_stats.get_nproj(index) :
 							await get_tree().create_timer(0.1).timeout
 						enemies = get_tree().get_nodes_in_group("NPC")#On doit revoir la liste d'ennemis car avec le délai il peut ne plus y avoir d'ennemy ou celui selectionné au départ peut juste etre mort
 						enemy = enemies.back()
@@ -149,6 +151,8 @@ func fire_projectile():
 
 						
 				if(index == 1) :
+					var nproj = weapon_stats.get_nproj(index)
+					#selon nb proj faire angle de trajectoire  
 					if (right==1) :
 						traj.x=1
 					elif(right==-1) : 
@@ -162,12 +166,41 @@ func fire_projectile():
 					else :
 						traj.y=0
 					if traj.length() != 0:
-							traj = traj.normalized()
-					print("Normalized Trajectory:", traj)
-					projectile_instance.add_constant_central_force(traj *projectile_speed* weapon_stats.get_projectile_speed(index))
-					
-				
-				get_parent().add_child(projectile_instance)
+						traj = traj.normalized()
+					if nproj == 1 :
+					# Pour un seul projectile, on utilise la trajectoire de base
+						projectile_instance = projectile.instantiate()
+						projectile_instance.set_damage(weapon_stats.get_damage(index))
+						projectile_instance.global_position = global_position
+						projectile_instance.add_constant_central_force(traj * projectile_speed * weapon_stats.get_projectile_speed(index))
+						get_parent().add_child(projectile_instance)
+					else:
+						var angle_step = 45.0 / nproj 
+						if(nproj%2==1) : 
+							projectile_instance = projectile.instantiate()
+							projectile_instance.set_damage(weapon_stats.get_damage(index))
+							projectile_instance.global_position = global_position
+							projectile_instance.add_constant_central_force(traj * projectile_speed * weapon_stats.get_projectile_speed(index))
+							get_parent().add_child(projectile_instance)
+						for n in range(nproj/2):
+							var angle = (n+1) * angle_step
+							var rad = deg2rad(angle)
+							var traj_x1 = traj.x * cos(rad) - traj.y * sin(rad)
+							var traj_y1 = traj.x * sin(rad) + traj.y * cos(rad)
+							var traj_x2 = traj.x * cos(-rad) - traj.y * sin(-rad)
+							var traj_y2 = traj.x * sin(-rad) + traj.y * cos(-rad)
+							var new_traj1 = Vector2(traj_x1, traj_y1).normalized()
+							var new_traj2 = Vector2(traj_x2, traj_y2).normalized()
+							projectile_instance = projectile.instantiate()
+							projectile_instance.set_damage(weapon_stats.get_damage(index))
+							projectile_instance.global_position = global_position
+							projectile_instance.add_constant_central_force(new_traj1 * projectile_speed * weapon_stats.get_projectile_speed(index))
+							get_parent().add_child(projectile_instance)
+							projectile_instance = projectile.instantiate()
+							projectile_instance.set_damage(weapon_stats.get_damage(index))
+							projectile_instance.global_position = global_position
+							projectile_instance.add_constant_central_force(new_traj2 * projectile_speed * weapon_stats.get_projectile_speed(index))
+							get_parent().add_child(projectile_instance)					
 		i += 1
 
 func level_up():
@@ -185,7 +218,7 @@ func die():
 func _on_AttractionArea_body_entered(body):
 	#print("Detect body entered:", body.name)  
 	if body.is_in_group("Item"):
-		print("DetectG")
+		#print("DetectG")
 		body.set_target(self)
 
 func gain_experience(amount):
@@ -195,5 +228,5 @@ func gain_experience(amount):
 		current_xp -= max_xp
 		level_up()
 	xp_gained.emit(current_xp, max_xp)
-	print("Gained experience:", amount)
-	print("Total experience:", experience)
+	#print("Gained experience:", amount)
+	#print("Total experience:", experience)
