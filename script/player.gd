@@ -41,8 +41,8 @@ func _ready():
 	attraction_area.body_entered.connect(_on_AttractionArea_body_entered)
 	$HealthBar.max_value = 100
 	#preload toutes les scenes d'armes et les append a weapons quand il l'obtient, penser compteur attack speed
-	var projectile_scene = preload("res://scenes/projectile.tscn") # arme initial proj burger , indice 0
-	var projectile_scene2 = preload("res://scenes/projectile2.tscn") # indice 1 , etc
+	var projectile_scene = preload("res://scenes/weapon1.tscn") # arme initial proj burger , indice 0
+	var projectile_scene2 = preload("res://scenes/weapon2.tscn") # indice 1 , etc
 	weapon_indices[projectile_scene] = 0
 	weapon_indices[projectile_scene2] = 1
 	weapons.append(projectile_scene)#ajout de l'arme initiale

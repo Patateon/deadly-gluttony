@@ -38,3 +38,4 @@ func get_index2() -> int :
 
 func _on_player_died():
 	player = null
+	
