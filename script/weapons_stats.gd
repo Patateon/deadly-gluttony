@@ -1,4 +1,5 @@
 extends  Resource
+class_name WeaponStats
 
 @export var damage = [[]]
 
@@ -9,3 +10,5 @@ extends  Resource
 @export var projectile_speed = [[]]
 
 @export var number_proj = [[]]
+
+@export var weapon_level = []
