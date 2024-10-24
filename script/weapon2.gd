@@ -17,8 +17,8 @@ func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")
 	if player:
 		player.player_died.connect(_on_player_died)
-	_animated_sprite.scale = _animated_sprite.scale * weapon_stats.area[index][weapon_stats.weapon_level[index]]
-	_hurt_box.scale = _hurt_box.scale * weapon_stats.area[index][weapon_stats.weapon_level[index]]
+	_animated_sprite.scale = player.area*_animated_sprite.scale * weapon_stats.area[index][weapon_stats.weapon_level[index]]
+	_hurt_box.scale = player.area*_hurt_box.scale * weapon_stats.area[index][weapon_stats.weapon_level[index]]
 	stats.fire_projectile_since_start += 1
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.

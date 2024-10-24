@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PlayerStats" load_steps=2 format=3 uid="uid://c33ynw6vrv5mn"]
+
+[ext_resource type="Script" path="res://script/player_stats.gd" id="1_v4qmg"]
+
+[resource]
+script = ExtResource("1_v4qmg")
+damage = [1.0, 1.1, 1.2, 1.3, 1.5]
+damage_level = 0
+attack_speed = [1.5, 1.3, 1.1, 0.9, 0.7]
+attack_speed_level = 0
+area = [1.0, 1.1, 1.2, 1.3, 1.4]
+area_level = 0
+projectile_speed = [1.0, 1.1, 1.2, 1.3, 1.5]
+projectile_speed_level = 0
+life = [100.0, 120.0, 140.0, 160.0, 200.0]
+life_level = 0
+movespeed = [1.0, 1.1, 1.2, 1.3, 1.4]
+movespeed_level = 0
