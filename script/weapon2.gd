@@ -2,21 +2,23 @@ extends RigidBody2D
 
 @onready var _hurt_box = $HurtBox
 @onready var _animated_sprite = $ProjectileSprite
-@onready var weapon_stats = get_node("/root/World/WeaponStats")
 @onready var stats = get_node("/root/World/Stats")
 var damage 
 var player
 var index = 1
+var level = 1
+var weapon_stats: WeaponStats
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	weapon_stats = load("res://ressources/weapons_stats.tres") as WeaponStats
 	_animated_sprite.play()
 	_hurt_box.body_entered.connect(_on_area_entered)
 	player = get_tree().get_first_node_in_group("Player")
 	if player:
 		player.player_died.connect(_on_player_died)
-	_animated_sprite.scale = _animated_sprite.scale * weapon_stats.get_area(index)
-	_hurt_box.scale = _hurt_box.scale * weapon_stats.get_area(index)
+	_animated_sprite.scale = _animated_sprite.scale * weapon_stats.area[index][weapon_stats.weapon_level[index]]
+	_hurt_box.scale = _hurt_box.scale * weapon_stats.area[index][weapon_stats.weapon_level[index]]
 	stats.fire_projectile_since_start += 1
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -36,3 +38,4 @@ func get_index2() -> int :
 
 func _on_player_died():
 	player = null
+	
