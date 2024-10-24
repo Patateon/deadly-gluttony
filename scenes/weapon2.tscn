@@ -74,4 +74,3 @@ shape = SubResource("CapsuleShape2D_52v77")
 [node name="ProjectileColliders" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(-20, 10)
 shape = SubResource("CapsuleShape2D_fbgjj")
-
