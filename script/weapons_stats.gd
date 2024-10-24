@@ -11,4 +11,6 @@ class_name WeaponStats
 
 @export var number_proj = [[]]
 
+@export var proj_pierce = [[]]
+
 @export var weapon_level = []
