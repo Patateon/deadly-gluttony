@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b5vgc2le068hm"]
 
 [ext_resource type="Script" path="res://script/end.gd" id="1_g23vf"]
-[ext_resource type="Texture2D" uid="uid://i0xuqlbj5cy5" path="res://assets/tiles/game_over_background.jpg" id="2_6xvhc"]
+[ext_resource type="Texture2D" uid="uid://b58ufgeu5faew" path="res://assets/defaite.webp" id="2_8qq13"]
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="2_q5gna"]
 
 [node name="End" type="Control"]
@@ -32,12 +32,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 307.0
-offset_right = -279.861
+offset_left = -23.0
+offset_top = -11.0
+offset_right = 5.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_6xvhc")
+texture = ExtResource("2_8qq13")
 expand_mode = 3
 
 [node name="GamerOver" type="Label" parent="."]

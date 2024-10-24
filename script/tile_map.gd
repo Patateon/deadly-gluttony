@@ -5,7 +5,7 @@ var loaded_chunks = []
 var chunk_size = 1
 var tile_floor = 0 
 var tile_decoration = 0 
-var cell_size = Vector2(32,32)
+var cell_size = Vector2i(32,32)
 var player = null  
 
 @onready var floor: TileMapLayer = $floor
@@ -39,31 +39,40 @@ func generate_around_player():
 			if chunk not in loaded_chunks:
 				generate_chunk(chunk)
 				loaded_chunks.append(chunk)
-
+				
+func create_texture_rect(position: Vector2i, texture_path: String, z_index: int, sens: int):
+	var texture_rect = TextureRect.new()
+	texture_rect.texture = load(texture_path)
+	texture_rect.position = position * cell_size   # Position en pixels sur la carte
+	texture_rect.z_index = z_index  # Affecte la profondeur d'affichage (plus grand = plus "devant")
+	if (sens):
+		texture_rect.flip_h=true
+	add_child(texture_rect)  # Ajouter le TextureRect à la scène
+	return texture_rect
 
 func generate_chunk(chunk_position):
 	for x in range(chunk_size):
 		for y in range(chunk_size):
 			var tile_pos = Vector2i(chunk_position.x * chunk_size + x, chunk_position.y * chunk_size + y)
 			floor.set_cell(tile_pos, tile_floor, Vector2i(6, 20), 0)
-			if randi() % 45 == 0 and decoration.get_cell_source_id(tile_pos) == -1 and decoration.get_cell_source_id(tile_pos+ Vector2i(1,1)) == -1 and decoration.get_cell_source_id(tile_pos + Vector2i(1,0)) == -1 and decoration.get_cell_source_id(tile_pos + Vector2i(0,1)) == -1:
+			# Créer des décorations avec des TextureRect
+			if randi() % 555 == 0:
 				var decoration_type = randi() % 5
+				var sens = randi() % 2
 				match decoration_type:
 					0:
-						decoration.set_cell(tile_pos, tile_decoration, Vector2i(0, 0), 0)
-						decoration.set_cell(tile_pos + Vector2i(1, 0), tile_decoration, Vector2i(1, 0), 0)
+						create_texture_rect(tile_pos, "res://assets/sprites/bilboardkfc.png",5,0) 
 					1:
-						decoration.set_cell(tile_pos, tile_decoration, Vector2i(6, 0), 0)
-						decoration.set_cell(tile_pos + Vector2i(1, 0), tile_decoration, Vector2i(7, 0), 0)
+						create_texture_rect(tile_pos, "res://assets/sprites/bilboardsub.png",5,0) 
 					2:
-						decoration.set_cell(tile_pos, tile_decoration, Vector2i(8, 0), 0)
+						create_texture_rect(tile_pos, "res://assets/sprites/bilboardmcdo.png",5,sens) 
 					3:
-						decoration.set_cell(tile_pos, tile_decoration, Vector2i(9, 0), 0)
+						create_texture_rect(tile_pos, "res://assets/sprites/bilboardtacos.png",5,sens) 
 					4:
-						decoration.set_cell(tile_pos, tile_decoration, Vector2i(2, 0), 0)
-						decoration.set_cell(tile_pos+ Vector2i(1, 0), tile_decoration, Vector2i(3, 0), 0)
-						decoration.set_cell(tile_pos+ Vector2i(0, 1), tile_decoration, Vector2i(2, 1), 0)
-						decoration.set_cell(tile_pos+ Vector2i(1, 1), tile_decoration, Vector2i(3, 1), 0)
+						create_texture_rect(tile_pos, "res://assets/sprites/bilboardburgouzz.png",5,0) 
+				#create_texture_rect(tile_pos, "res://assets/sprites/bilboard.png",5)
+
+
 
 func _on_Player_died():
 	print("Player died.")

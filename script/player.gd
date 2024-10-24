@@ -68,10 +68,10 @@ func _physics_process(delta: float) -> void:
 			# Flip the sprite based on direction
 			if directionx > 0:
 				right=1
-				_animated_sprite.flip_h = true  # Facing right
+				_animated_sprite.flip_h = false  # Facing right
 			elif directionx < 0:
 				right=-1
-				_animated_sprite.flip_h = false   # Facing left
+				_animated_sprite.flip_h = true   # Facing left
 			else : 
 				right=0
 		else:

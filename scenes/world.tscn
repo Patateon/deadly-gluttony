@@ -16,7 +16,7 @@ script/source = "extends Node2D
 @onready var enemy_generator = get_node(\"/root/World/EnemyGenerator\")
 @onready var stats = get_node(\"/root/World/Stats\")
 var is_paused = false  # A flag to track the pause state
-
+var notOver =true # A flag to track the game state
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -32,11 +32,12 @@ func _process(delta):
 # Function to toggle pause for all children and their descendants
 func toggle_pause():
 	is_paused = !is_paused
-	if is_paused:
+	if is_paused && notOver:
 		$UI/Pause_Menu.show()
 	else:
 		$UI/Pause_Menu.hide()
-	_set_children_process(self, is_paused)
+	if notOver:
+		_set_children_process(self, is_paused)
 
 # Recursively set process, physics_process, and animation playback for all children and grandchildren
 func _set_children_process(node: Node, pause: bool):
@@ -48,12 +49,15 @@ func _set_children_process(node: Node, pause: bool):
 			child.speed_scale = 0 if pause else 1  # Pause or resume animations
 		if child is RigidBody2D:
 			child.set_sleeping( pause)
+		if child is Timer:
+			child.set_paused( pause) 
 		# Recursively pause/resume all children
 		if child.get_child_count() > 0:
 			_set_children_process(child, pause)
 			# Recursively pause/resume children of children (grandchildren)
 			#if child.get_child_count() > 0:
 			#	child._set_children_process(pause)
+		
 
 func level_gain_pause():
 	#_set_children_process(true)
@@ -66,13 +70,21 @@ func _on_player_level_gained(level: Variant) -> void:
 
 
 func _on_world_timer_timeout() -> void:
-	toggle_pause() # Replace with function body.
+	var UI = get_node(\"UI\")
+	UI.get_node(\"Pause_Menu\").hide()
+	get_node(\"HUD\").hide()
+	_set_children_process(self,true)
+	notOver=false
+	var GameOver= preload(\"res://scenes/end_victory.tscn\").instantiate()
+	UI.add_child(GameOver)
 
 
 func _on_player_player_died() -> void:
 	var UI = get_node(\"UI\")
 	UI.get_node(\"Pause_Menu\").hide()
 	get_node(\"HUD\").hide()
+	_set_children_process(self,true)
+	notOver=false
 	var GameOver= preload(\"res://scenes/end.tscn\").instantiate()
 	UI.add_child(GameOver)
 

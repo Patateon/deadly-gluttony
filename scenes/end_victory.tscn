@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://8elwbdmldgdi"]
 
 [ext_resource type="Script" path="res://script/end.gd" id="1_wnnxw"]
-[ext_resource type="Texture2D" uid="uid://i0xuqlbj5cy5" path="res://assets/tiles/game_over_background.jpg" id="2_nocet"]
+[ext_resource type="Texture2D" uid="uid://bbpt30g72x1vn" path="res://assets/victory.webp" id="2_uql3q"]
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="3_k3vn6"]
 
 [node name="End" type="Control"]
@@ -32,12 +32,13 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 307.0
-offset_right = -279.861
-offset_bottom = -1.0
+offset_left = -49.0
+offset_top = -20.0
+offset_right = 88.0
+offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_nocet")
+texture = ExtResource("2_uql3q")
 expand_mode = 3
 
 [node name="Victory" type="Label" parent="."]
