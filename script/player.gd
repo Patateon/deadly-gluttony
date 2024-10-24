@@ -1,22 +1,28 @@
 extends CharacterBody2D
+
 var speed = 300.0
-var life = 100
-var damage = 1
-var atk_speed = 1
-var movespeed = 1
+var life 
+var damage 
+var atk_speed 
+var movespeed 
+var projectile_speed
+var area
 var experience = 96
+
 var level = 1
+var current_xp = 0
+var max_xp = 100
+
 var weapons = []
 var atk_speed_acc=[]
+var weapon_indices = {}#armes possibles pour le joueur
+var weapon_stats: WeaponStats
+var player_stats: PlayerStats
 
-var projectile_speed=10
 var up 
 var right 
 
-
-var current_xp = 0
-var max_xp = 100
-var current_life: float = life
+var current_life
 var is_alive: bool = true  
 
 signal player_died
@@ -25,29 +31,33 @@ signal level_gained(level)
 signal dollar_gained(dollars)
 
 @onready var attraction_area: Area2D = $AttractionArea
-
 @onready var _animated_sprite = $AnimatedSprite2D
-
-#@onready var weapon_stats = get_node("/root/World/WeaponStats") # stat armes a mettre a jour lors level up
 @onready var stats = get_node("/root/World/Stats")
-var weapon_indices = {}#armes possibles pour le joueur
-var weapon_stats: WeaponStats
+
+
 func _input(event):
 	if event.is_action_pressed("fire"):
 		fire_projectile()
 
 func _ready():
 	weapon_stats = load("res://ressources/weapons_stats.tres") as WeaponStats
+	player_stats = load("res://ressources/player_stats.tres") as PlayerStats
+	life = player_stats.life[player_stats.life_level]
+	current_life=life
+	damage = player_stats.damage[player_stats.damage_level]
+	atk_speed = player_stats.attack_speed[player_stats.attack_speed_level]
+	area = player_stats.area[player_stats.area_level]
+	projectile_speed =  player_stats.projectile_speed[player_stats.projectile_speed_level]
+	movespeed = player_stats.movespeed[player_stats.movespeed_level]
 	attraction_area.body_entered.connect(_on_AttractionArea_body_entered)
 	$HealthBar.max_value = 100
-	#preload toutes les scenes d'armes et les append a weapons quand il l'obtient, penser compteur attack speed
+	#preload toutes les scenes d'armes et les append a weapons quand il l'obtient, penser compteur attack speed en append un
 	var projectile_scene = preload("res://scenes/weapon1.tscn") # arme initial proj burger , indice 0
 	var projectile_scene2 = preload("res://scenes/weapon2.tscn") # indice 1 , etc
 	weapon_indices[projectile_scene] = 0
 	weapon_indices[projectile_scene2] = 1
 	weapons.append(projectile_scene)#ajout de l'arme initiale
-	weapons.append(projectile_scene2)#append pour rajouter l'arme au joueur
-	atk_speed_acc.append(0.0)
+	#weapons.append(projectile_scene2)#append pour rajouter l'arme au joueur
 	atk_speed_acc.append(0.0)
 	#atk_speed_acc.append(0.0)
 	set_health_bar()
@@ -175,7 +185,7 @@ func fire_projectile():
 					if nproj == 1 :
 					# Pour un seul projectile, on utilise la trajectoire de base
 						projectile_instance = projectile.instantiate()
-						projectile_instance.set_damage(weapon_stats.damage[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
+						projectile_instance.set_damage(damage*weapon_stats.damage[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
 						projectile_instance.global_position = global_position
 						projectile_instance.add_constant_central_force(traj * projectile_speed *  weapon_stats.projectile_speed[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
 						get_parent().add_child(projectile_instance)
@@ -183,7 +193,7 @@ func fire_projectile():
 						var angle_step = 45.0 / nproj 
 						if(nproj%2==1) : 
 							projectile_instance = projectile.instantiate()
-							projectile_instance.set_damage(weapon_stats.damage[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
+							projectile_instance.set_damage(damage*weapon_stats.damage[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
 							projectile_instance.global_position = global_position
 							projectile_instance.add_constant_central_force(traj * projectile_speed *  weapon_stats.projectile_speed[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
 							get_parent().add_child(projectile_instance)
@@ -197,12 +207,12 @@ func fire_projectile():
 							var new_traj1 = Vector2(traj_x1, traj_y1).normalized()
 							var new_traj2 = Vector2(traj_x2, traj_y2).normalized()
 							projectile_instance = projectile.instantiate()
-							projectile_instance.set_damage(weapon_stats.damage[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
+							projectile_instance.set_damage(damage*weapon_stats.damage[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
 							projectile_instance.global_position = global_position
 							projectile_instance.add_constant_central_force(new_traj1 * projectile_speed * weapon_stats.projectile_speed[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
 							get_parent().add_child(projectile_instance)
 							projectile_instance = projectile.instantiate()
-							projectile_instance.set_damage(weapon_stats.damage[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
+							projectile_instance.set_damage(damage*weapon_stats.damage[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
 							projectile_instance.global_position = global_position
 							projectile_instance.add_constant_central_force(new_traj2 * projectile_speed * weapon_stats.projectile_speed[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
 							get_parent().add_child(projectile_instance)
@@ -213,6 +223,15 @@ func level_up():
 	level += 1
 	max_xp *= 1.25
 	level_gained.emit(level)
+	
+func update_player_stat():
+	life = player_stats.life[player_stats.life_level]
+	damage = player_stats.damage[player_stats.damage_level]
+	atk_speed = player_stats.attack_speed[player_stats.attack_speed_level]
+	area = player_stats.area[player_stats.area_level]
+	projectile_speed =  player_stats.projectile_speed[player_stats.projectile_speed_level]
+	movespeed = player_stats.movespeed[player_stats.movespeed_level]
+	
 
 func die():
 	AudioManager.stop_music()
