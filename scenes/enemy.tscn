@@ -116,18 +116,18 @@ script = ExtResource("1_7gtbv")
 sprite_frames = SubResource("SpriteFrames_5m5m8")
 animation = &"Run_1"
 
-[node name="EnemySprite" type="Sprite2D" parent="." groups=["NPC"]]
+[node name="EnemySprite" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_43jif")
 
-[node name="EnemyNav" type="NavigationAgent2D" parent="." groups=["NPC"]]
+[node name="EnemyNav" type="NavigationAgent2D" parent="."]
 target_desired_distance = 0.1
 path_max_distance = 500.0
 
-[node name="EnemyCollider" type="CollisionShape2D" parent="." groups=["NPC"]]
+[node name="EnemyCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_1n63e")
 
-[node name="EnemyArea" type="Area2D" parent="." groups=["NPC"]]
+[node name="EnemyArea" type="Area2D" parent="."]
 
-[node name="EnemyAreaShape" type="CollisionShape2D" parent="EnemyArea" groups=["NPC"]]
+[node name="EnemyAreaShape" type="CollisionShape2D" parent="EnemyArea"]
 shape = SubResource("RectangleShape2D_1n63e")
