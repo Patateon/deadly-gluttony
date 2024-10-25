@@ -114,7 +114,7 @@ script = ExtResource("1_7gtbv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_5m5m8")
-animation = &"Run_1"
+animation = &"Run_2"
 
 [node name="EnemySprite" type="Sprite2D" parent="."]
 visible = false

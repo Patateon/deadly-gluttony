@@ -1,8 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b5vgc2le068hm"]
+[gd_scene load_steps=4 format=3 uid="uid://8elwbdmldgdi"]
 
-[ext_resource type="Script" path="res://script/end.gd" id="1_g23vf"]
-[ext_resource type="Texture2D" uid="uid://b58ufgeu5faew" path="res://assets/defaite.webp" id="2_8qq13"]
-[ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="2_q5gna"]
+[ext_resource type="Script" path="res://script/end.gd" id="1_wnnxw"]
+[ext_resource type="Texture2D" uid="uid://bbpt30g72x1vn" path="res://assets/victory.webp" id="2_uql3q"]
+[ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="3_k3vn6"]
 
 [node name="End" type="Control"]
 clip_contents = true
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_g23vf")
+script = ExtResource("1_wnnxw")
 
 [node name="background" type="Control" parent="."]
 layout_mode = 1
@@ -32,16 +32,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -23.0
-offset_top = -11.0
-offset_right = 5.0
-offset_bottom = -1.0
+offset_left = -49.0
+offset_top = -20.0
+offset_right = 88.0
+offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_8qq13")
+texture = ExtResource("2_uql3q")
 expand_mode = 3
 
-[node name="GamerOver" type="Label" parent="."]
+[node name="Victory" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -51,12 +51,13 @@ offset_top = 50.0
 offset_right = 294.0
 offset_bottom = 107.0
 grow_horizontal = 2
-theme_override_colors/font_color = Color(0.88715, 0.222193, 0.292043, 1)
+theme_override_colors/font_color = Color(0.403199, 0.575324, 0.184514, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_fonts/font = ExtResource("3_k3vn6")
 theme_override_font_sizes/font_size = 50
-text = "Game Over (looser)"
+text = "Victoire"
+horizontal_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -76,7 +77,7 @@ grow_vertical = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_fonts/font = ExtResource("3_k3vn6")
 theme_override_font_sizes/font_size = 25
 text = "Stats"
 horizontal_alignment = 1
@@ -91,7 +92,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_fonts/font = ExtResource("3_k3vn6")
 text = "Burgers vendus: "
 
 [node name="Projectil_value" type="Label" parent="VBoxContainer/Projejectile"]
@@ -101,7 +102,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_fonts/font = ExtResource("3_k3vn6")
 text = "0"
 horizontal_alignment = 1
 
@@ -114,7 +115,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_fonts/font = ExtResource("3_k3vn6")
 text = "Diabètes provoqués  : "
 
 [node name="Money_value" type="Label" parent="VBoxContainer/Money"]
@@ -123,7 +124,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_fonts/font = ExtResource("3_k3vn6")
 text = "0"
 horizontal_alignment = 1
 
@@ -136,7 +137,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_fonts/font = ExtResource("3_k3vn6")
 text = "Populace sustentée : "
 
 [node name="Dead_value" type="Label" parent="VBoxContainer/Dead"]
@@ -144,30 +145,30 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_fonts/font = ExtResource("3_k3vn6")
 text = "0"
 horizontal_alignment = 1
 
 [node name="Lecon1" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0.886275, 0.223529, 0.290196, 1)
+theme_override_colors/font_color = Color(0.403922, 0.576471, 0.184314, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_fonts/font = ExtResource("3_k3vn6")
 theme_override_font_sizes/font_size = 22
 text = "
 
-Perdu, mais tu peux encore gagner"
+Bravo, mais à quel prix ?
+"
 horizontal_alignment = 1
 
 [node name="Lecon" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_fonts/font = ExtResource("3_k3vn6")
 text = "
-Chaque jour, des choix alimentaires sains peuvent te sauver de maladies évitables comme le diabète.
-Fais les bons choix, car dans la vraie vie, il est encore temps."
+La malbouffe et la surconsommation entraînent chaque année des millions de cas de diabète et de maladies cardiovasculaires. Plus de 140 000 personnes meurent chaque année de crises cardiaques en France. Ton succès ici est peut-être un échec pour ta santé. Fais attention à ce que tu consommes !"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -186,7 +187,7 @@ grow_horizontal = 0
 grow_vertical = 0
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("2_q5gna")
+theme_override_fonts/font = ExtResource("3_k3vn6")
 text = "Retour Menu"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
