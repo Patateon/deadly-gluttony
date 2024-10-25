@@ -92,7 +92,7 @@ func _on_Player_died():
 
 func take_damage(amount: float):
 	current_life -= amount
-	print(current_life)
+	#print(current_life)
 	if current_life <= 0:
 		die() 
 		

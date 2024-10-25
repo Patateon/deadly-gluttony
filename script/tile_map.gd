@@ -23,7 +23,7 @@ var noise := FastNoiseLite.new()
 func _ready():
 	# Définir les paramètres du bruit
 	noise.seed = randi()  # Générer une graine aléatoire
-	noise.frequency = 0.1 # Réduire la fréquence pour des chemins plus lents et lissés
+	noise.frequency = 0.085 # Réduire la fréquence pour des chemins plus lents et lissés
 	noise.noise_type = FastNoiseLite.TYPE_PERLIN  # Utiliser le bruit de Perlin
 	noise.fractal_type = FastNoiseLite.FRACTAL_FBM  # Utiliser FBM pour des transitions plus douces
 	noise.fractal_octaves = 15 # Plus d'octaves pour ajouter des détails lissés
@@ -59,6 +59,7 @@ func generate_around_player():
 				
 func create_texture_rect(position: Vector2i, texture_path: String, z_index: int, sens: int):
 	var texture_rect = TextureRect.new()
+	texture_rect.scale = Vector2(0.65, 0.65)  # Réduit la taille à 50%
 	texture_rect.texture = load(texture_path)
 	texture_rect.position = position * cell_size   # Position en pixels sur la carte
 	texture_rect.z_index = z_index  # Affecte la profondeur d'affichage (plus grand = plus "devant")
@@ -96,9 +97,10 @@ func generate_chunk(chunk_position):
 			elif noise_value > 0.0: 
 				floor.set_cell(tile_pos, tile_floor, Vector2i(5,20), 0)  # Tile du chemin
 			elif noise_value > -0.10: 
-				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 19), 0)  # Tile du chemin
+				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 19), 0)  # entre herbe et chemin
+								
 			elif noise_value > -0.20: 
-				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 18), 0) 
+				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 18), 0) #limite herbe
 				var type_plant = randi() % 33
 				match type_plant:
 					0:
@@ -109,12 +111,22 @@ func generate_chunk(chunk_position):
 						plant.set_cell(tile_pos,tile_decoration,Vector2i(0,2),0)
 					3:
 						plant.set_cell(tile_pos,tile_decoration,Vector2i(1,2),0)
+				#var type_bench = randi() % 770
+				#match type_bench:
+					#0:
+						#decoration.set_cell(tile_pos * cell_size * 4 + Vector2i(2,2),tile_decoration,Vector2i(0,0),0)
+					#1:
+						#decoration.set_cell(tile_pos * cell_size * 4 + Vector2i(2,2),tile_decoration,Vector2i(1,0),0)
+					#2:
+						#decoration.set_cell(tile_pos * cell_size * 4 + Vector2i(2,2),tile_decoration,Vector2i(2,0),0)
+					#3:
+						#decoration.set_cell(tile_pos * cell_size * 4 + Vector2i(2,2),tile_decoration,Vector2i(3,0),0)
 			elif noise_value > -0.30: 
 				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 16), 0) 
 				place_grass_tiles(tile_pos)
 				
 			else:
-				floor.set_cell(tile_pos, tile_floor, Vector2i(1, 19), 0)  # Tile du reste
+				floor.set_cell(tile_pos, tile_floor, Vector2i(1, 19), 0)  #herbe foncé
 				if(noise_value > -0.99):
 					var type_tree = randi() % 45
 					match type_tree:
@@ -132,9 +144,10 @@ func generate_chunk(chunk_position):
 							#tree.set_cell(tile_pos,tile_decoration,Vector2i(0,0),0)
 			
 			# Créer des décorations avec des TextureRect
-			if noise_value > 0.4 and randi() % 112 == 0:
+			if noise_value > 0.3 and randi() % 112 == 0:
 				var decoration_type = randi() % 5
 				var sens = randi() % 2
+				
 				match decoration_type:
 					0:
 						create_texture_rect(tile_pos, "res://assets/sprites/bilboardkfc.png",5,0) 
@@ -146,7 +159,7 @@ func generate_chunk(chunk_position):
 						create_texture_rect(tile_pos, "res://assets/sprites/bilboardtacos.png",5,sens) 
 					4:
 						create_texture_rect(tile_pos, "res://assets/sprites/bilboardburgouzz.png",5,0) 
-				#create_texture_rect(tile_pos, "res://assets/sprites/bilboard.png",5)
+				#create_texture_rect(tile_pos, "res://assets/sprites/bilboardsub.png",5,0)
 
 func place_grass_tiles(position: Vector2i):
 	var cell_center = position * cell_size
