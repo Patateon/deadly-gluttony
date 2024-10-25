@@ -96,9 +96,10 @@ func generate_chunk(chunk_position):
 			elif noise_value > 0.0: 
 				floor.set_cell(tile_pos, tile_floor, Vector2i(5,20), 0)  # Tile du chemin
 			elif noise_value > -0.10: 
-				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 19), 0)  # Tile du chemin
+				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 19), 0)  # entre herbe et chemin
+								
 			elif noise_value > -0.20: 
-				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 18), 0) 
+				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 18), 0) #limite herbe
 				var type_plant = randi() % 33
 				match type_plant:
 					0:
@@ -109,12 +110,22 @@ func generate_chunk(chunk_position):
 						plant.set_cell(tile_pos,tile_decoration,Vector2i(0,2),0)
 					3:
 						plant.set_cell(tile_pos,tile_decoration,Vector2i(1,2),0)
+				#var type_bench = randi() % 770
+				#match type_bench:
+					#0:
+						#decoration.set_cell(tile_pos * cell_size * 4 + Vector2i(2,2),tile_decoration,Vector2i(0,0),0)
+					#1:
+						#decoration.set_cell(tile_pos * cell_size * 4 + Vector2i(2,2),tile_decoration,Vector2i(1,0),0)
+					#2:
+						#decoration.set_cell(tile_pos * cell_size * 4 + Vector2i(2,2),tile_decoration,Vector2i(2,0),0)
+					#3:
+						#decoration.set_cell(tile_pos * cell_size * 4 + Vector2i(2,2),tile_decoration,Vector2i(3,0),0)
 			elif noise_value > -0.30: 
 				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 16), 0) 
 				place_grass_tiles(tile_pos)
 				
 			else:
-				floor.set_cell(tile_pos, tile_floor, Vector2i(1, 19), 0)  # Tile du reste
+				floor.set_cell(tile_pos, tile_floor, Vector2i(1, 19), 0)  #herbe foncé
 				if(noise_value > -0.99):
 					var type_tree = randi() % 45
 					match type_tree:
@@ -132,7 +143,7 @@ func generate_chunk(chunk_position):
 							#tree.set_cell(tile_pos,tile_decoration,Vector2i(0,0),0)
 			
 			# Créer des décorations avec des TextureRect
-			if noise_value > 0.4 and randi() % 112 == 0:
+			if noise_value > 0.4 and randi() % 45 == 0:
 				var decoration_type = randi() % 5
 				var sens = randi() % 2
 				match decoration_type:
