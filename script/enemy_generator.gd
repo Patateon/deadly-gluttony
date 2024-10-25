@@ -32,11 +32,11 @@ func _process(delta: float) -> void:
 	
 	if (enemyAcc > enemySpawnCooldown):
 		enemyAcc = 0
-		print(limitNPC)
-		print(get_tree().get_nodes_in_group("NPC").size())
+		#print(limitNPC)
+		#print(get_tree().get_nodes_in_group("NPC").size())
 		if (get_tree().get_nodes_in_group("NPC").size() < limitNPC):
 			for i in range(randi_range(1*numberMinTimeCoef, 2*numberMaxTimeCoef)):
-				print("Creating enemy")
+				#print("Creating enemy")
 				createEnemy()
 			
 			
@@ -70,10 +70,10 @@ func createEnemy():
 
 			enemy_instance.global_position = random_position
 			get_parent().add_child(enemy_instance)
-		else:
-			print("CollisionShape2D is not a RectangleShape2D")
-	else:
-		print("NavZone or Player not found")
+		#else:
+			#print("CollisionShape2D is not a RectangleShape2D")
+	#else:
+		#print("NavZone or Player not found")
 		
 func _on_Enemy_died():
 	dead_enemy_since_start+=1

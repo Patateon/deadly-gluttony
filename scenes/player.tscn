@@ -69,7 +69,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Idle",
-"speed": 5.0
+"speed": 9.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -92,7 +92,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"Run",
-"speed": 8.0
+"speed": 10.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2wanr"]
@@ -112,8 +112,8 @@ script = ExtResource("1_vact7")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(2.9, 2.9)
 sprite_frames = SubResource("SpriteFrames_3e4an")
-animation = &"Run"
-frame_progress = 0.333408
+animation = &"Idle"
+frame_progress = 0.648261
 
 [node name="PlayerSprite" type="Sprite2D" parent="." groups=["Player"]]
 visible = false

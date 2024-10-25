@@ -261,7 +261,7 @@ func die():
 func _on_AttractionArea_body_entered(body):
 	#print("Detect body entered:", body.name)  
 	if body.is_in_group("Item"):
-		print("DetectG")
+		#print("DetectG")
 		body.set_target(self)
 
 func gain_experience(amount):
@@ -272,5 +272,5 @@ func gain_experience(amount):
 		level_up()
 	xp_gained.emit(current_xp, max_xp)
 	dollar_gained.emit(amount)
-	print("Gained experience:", amount)
-	print("Total experience:", experience)
+	#print("Gained experience:", amount)
+	#print("Total experience:", experience)
