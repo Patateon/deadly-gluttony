@@ -127,6 +127,20 @@ func set_health_bar() -> void:
 
 func deg2rad(degrees):
 	return degrees * PI / 180.0
+func centroide_of_all_enemies(enemies):
+	var point_enemy
+	
+	var Lx = []
+	var Ly = []
+	for enemy in enemies:
+		Lx.append(enemy.get_parent().global_position.x)
+		Ly.append(enemy.get_parent().global_position.y)
+	Lx.sort()
+	Ly.sort()
+	var medx = Lx[Lx.size() / 2 ]
+	var medy = Ly[Ly.size() / 2 ]
+	point_enemy = Vector2(medx , medy)
+	return point_enemy
 	
 func fire_projectile():
 	var i = 0
@@ -139,7 +153,7 @@ func fire_projectile():
 				projectile_instance.set_damage(weapon_stats.damage[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
 				projectile_instance.global_position = global_position
 				var enemy = enemies.back()
-				var traj = enemy.global_position - global_position
+				var traj = centroide_of_all_enemies(enemies) - global_position
 				if traj.length() != 0:
 					traj = traj.normalized()
 				
@@ -149,10 +163,12 @@ func fire_projectile():
 							await get_tree().create_timer(0.1).timeout
 						enemies = get_tree().get_nodes_in_group("NPC") # On doit revoir la liste d'ennemis car avec le délai il peut ne plus y avoir d'ennemy ou celui selectionné au départ peut juste etre mort
 						enemy = enemies.back()
+						
+						
 						if enemy == null:
 							traj = Vector2(1, 1)
 						else:
-							traj = enemy.global_position - global_position
+							traj = centroide_of_all_enemies(enemies) - global_position
 						if traj.length() != 0:
 							traj = traj.normalized()
 						projectile_instance = projectile.instantiate()
