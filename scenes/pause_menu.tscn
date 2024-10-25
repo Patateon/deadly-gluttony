@@ -21,7 +21,6 @@ grow_vertical = 2
 color = Color(0, 0, 0, 0.262745)
 
 [node name="Back" type="Button" parent="."]
-visible = false
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 3
