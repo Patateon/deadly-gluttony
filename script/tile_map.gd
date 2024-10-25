@@ -5,13 +5,22 @@ var loaded_chunks = []
 var chunk_size = 1
 var tile_floor = 0 
 var tile_decoration = 0 
-var cell_size = Vector2(32,32)
+var cell_size = Vector2i(32,32)
 var player = null  
+var noise := FastNoiseLite.new()
 
 @onready var floor: TileMapLayer = $floor
 @onready var decoration: TileMapLayer = $decoration
 
 func _ready():
+	# Définir les paramètres du bruit
+	noise.seed = randi()  # Générer une graine aléatoire
+	noise.frequency = 0.1 # Réduire la fréquence pour des chemins plus lents et lissés
+	noise.noise_type = FastNoiseLite.TYPE_PERLIN  # Utiliser le bruit de Perlin
+	noise.fractal_type = FastNoiseLite.FRACTAL_FBM  # Utiliser FBM pour des transitions plus douces
+	noise.fractal_octaves = 15 # Plus d'octaves pour ajouter des détails lissés
+	noise.fractal_gain = 0.45  # Contrôle le lissage des octaves
+	noise.fractal_lacunarity = 0.33 # Plus bas pour des détails plus cohérents entre les octaves
 	
 	var screen_size = get_viewport_rect().size
 	var cells_in_viewport_x = ceil(screen_size.x / cell_size.x)
@@ -39,31 +48,71 @@ func generate_around_player():
 			if chunk not in loaded_chunks:
 				generate_chunk(chunk)
 				loaded_chunks.append(chunk)
-
+				
+func create_texture_rect(position: Vector2i, texture_path: String, z_index: int, sens: int):
+	var texture_rect = TextureRect.new()
+	texture_rect.texture = load(texture_path)
+	texture_rect.position = position * cell_size   # Position en pixels sur la carte
+	texture_rect.z_index = z_index  # Affecte la profondeur d'affichage (plus grand = plus "devant")
+	if (sens):
+		texture_rect.flip_h=true
+	add_child(texture_rect)  # Ajouter le TextureRect à la scène
+	return texture_rect
 
 func generate_chunk(chunk_position):
 	for x in range(chunk_size):
 		for y in range(chunk_size):
 			var tile_pos = Vector2i(chunk_position.x * chunk_size + x, chunk_position.y * chunk_size + y)
-			floor.set_cell(tile_pos, tile_floor, Vector2i(6, 20), 0)
-			if randi() % 45 == 0 and decoration.get_cell_source_id(tile_pos) == -1 and decoration.get_cell_source_id(tile_pos+ Vector2i(1,1)) == -1 and decoration.get_cell_source_id(tile_pos + Vector2i(1,0)) == -1 and decoration.get_cell_source_id(tile_pos + Vector2i(0,1)) == -1:
+			# Calculer la valeur de bruit pour ce point (x, y)
+			var noise_value = noise.get_noise_2d(tile_pos.x, tile_pos.y)
+			# Si la valeur du bruit est inférieure à un certain seuil, on place un chemin
+			if noise_value > 0.2: 
+				var type_cell = randi() % 2
+				match type_cell:
+					0:
+						floor.set_cell(tile_pos, tile_floor, Vector2i(5, 20), 0)  # Tile du chemin
+					1:
+						floor.set_cell(tile_pos, tile_floor, Vector2i(6, 20), 0)  # Tile du chemin
+			#elif noise_value > 0.2: 
+				#var type_cell = randi() % 15
+				#if( type_cell == 0):
+					#floor.set_cell(tile_pos, tile_floor, Vector2i(6, 20), 0)  # Tile du chemin
+				#else:
+					#floor.set_cell(tile_pos, tile_floor, Vector2i(5, 20), 0)  # Tile du chemin
+			#elif noise_value > 0.10: 
+				#var type_cell = randi() % 19
+				#if( type_cell == 0):
+					#floor.set_cell(tile_pos, tile_floor, Vector2i(6, 20), 0)  # Tile du chemin
+				#else:
+					#floor.set_cell(tile_pos, tile_floor, Vector2i(5, 20), 0)  # Tile du chemin
+			elif noise_value > 0.0: 
+				floor.set_cell(tile_pos, tile_floor, Vector2i(5,20), 0)  # Tile du chemin
+			elif noise_value > -0.10: 
+				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 19), 0)  # Tile du chemin
+			elif noise_value > -0.20: 
+				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 18), 0)  # Tile du chemin
+			elif noise_value > -0.30: 
+				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 16), 0)  # Tile du chemin
+			else:
+				floor.set_cell(tile_pos, tile_floor, Vector2i(1, 19), 0)  # Tile du reste
+			
+			# Créer des décorations avec des TextureRect
+			if noise_value > 0.4 and randi() % 215 == 0:
 				var decoration_type = randi() % 5
+				var sens = randi() % 2
 				match decoration_type:
 					0:
-						decoration.set_cell(tile_pos, tile_decoration, Vector2i(0, 0), 0)
-						decoration.set_cell(tile_pos + Vector2i(1, 0), tile_decoration, Vector2i(1, 0), 0)
+						create_texture_rect(tile_pos, "res://assets/sprites/bilboardkfc.png",5,0) 
 					1:
-						decoration.set_cell(tile_pos, tile_decoration, Vector2i(6, 0), 0)
-						decoration.set_cell(tile_pos + Vector2i(1, 0), tile_decoration, Vector2i(7, 0), 0)
+						create_texture_rect(tile_pos, "res://assets/sprites/bilboardsub.png",5,0) 
 					2:
-						decoration.set_cell(tile_pos, tile_decoration, Vector2i(8, 0), 0)
+						create_texture_rect(tile_pos, "res://assets/sprites/bilboardmcdo.png",5,sens) 
 					3:
-						decoration.set_cell(tile_pos, tile_decoration, Vector2i(9, 0), 0)
+						create_texture_rect(tile_pos, "res://assets/sprites/bilboardtacos.png",5,sens) 
 					4:
-						decoration.set_cell(tile_pos, tile_decoration, Vector2i(2, 0), 0)
-						decoration.set_cell(tile_pos+ Vector2i(1, 0), tile_decoration, Vector2i(3, 0), 0)
-						decoration.set_cell(tile_pos+ Vector2i(0, 1), tile_decoration, Vector2i(2, 1), 0)
-						decoration.set_cell(tile_pos+ Vector2i(1, 1), tile_decoration, Vector2i(3, 1), 0)
+						create_texture_rect(tile_pos, "res://assets/sprites/bilboardburgouzz.png",5,0) 
+				#create_texture_rect(tile_pos, "res://assets/sprites/bilboard.png",5)
+
 
 func _on_Player_died():
 	print("Player died.")

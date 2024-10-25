@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://i0xuqlbj5cy5"
-path="res://.godot/imported/game_over_background.jpg-f521a1c3c669a621780452462c7514a8.ctex"
+uid="uid://c5x6yk05wcc7m"
+path="res://.godot/imported/bilboardburgouzz.png-88c8e7dcb27419a4270e8da6893aa6ca.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/tiles/game_over_background.jpg"
-dest_files=["res://.godot/imported/game_over_background.jpg-f521a1c3c669a621780452462c7514a8.ctex"]
+source_file="res://assets/sprites/bilboardburgouzz.png"
+dest_files=["res://.godot/imported/bilboardburgouzz.png-88c8e7dcb27419a4270e8da6893aa6ca.ctex"]
 
 [params]
 
