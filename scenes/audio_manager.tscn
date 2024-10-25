@@ -1,14 +1,14 @@
 [gd_scene load_steps=10 format=3 uid="uid://dtyy8kttah7ge"]
 
 [ext_resource type="Script" path="res://script/audio_manager.gd" id="1_vtb7f"]
-[ext_resource type="AudioStream" uid="uid://bamkw4opggdni" path="res://assets/sounds/music1.mp3" id="2_ywb7u"]
-[ext_resource type="AudioStream" uid="uid://dslxjssuuoxuc" path="res://assets/sounds/music2.mp3" id="3_6oj4t"]
-[ext_resource type="AudioStream" uid="uid://2uuhc0o8pqtl" path="res://assets/sounds/mob_death1.mp3" id="4_j0p0u"]
-[ext_resource type="AudioStream" uid="uid://divetqjmn5sm4" path="res://assets/sounds/player_hit.mp3" id="5_v3epr"]
-[ext_resource type="AudioStream" uid="uid://0pyyaolo66g1" path="res://assets/sounds/mob_death2.mp3" id="6_snhjo"]
-[ext_resource type="AudioStream" uid="uid://crva6y7apc7bg" path="res://assets/sounds/mob_death3.mp3" id="7_qyi3d"]
+[ext_resource type="AudioStream" uid="uid://dr18ub86a8n3u" path="res://assets/sounds/music1.mp3" id="2_ywb7u"]
+[ext_resource type="AudioStream" uid="uid://bba5ymrw7aw1b" path="res://assets/sounds/music2.mp3" id="3_6oj4t"]
+[ext_resource type="AudioStream" uid="uid://bopcfr1edi06k" path="res://assets/sounds/mob_death1.mp3" id="4_j0p0u"]
+[ext_resource type="AudioStream" uid="uid://0jy0vfetqu11" path="res://assets/sounds/player_hit.mp3" id="5_v3epr"]
+[ext_resource type="AudioStream" uid="uid://bar08h45jmyyf" path="res://assets/sounds/mob_death2.mp3" id="6_snhjo"]
+[ext_resource type="AudioStream" uid="uid://bq20g8bh10sha" path="res://assets/sounds/mob_death3.mp3" id="7_qyi3d"]
 [ext_resource type="AudioStream" uid="uid://ndkbbmbb1fs1" path="res://player_death.mp3" id="8_4w7hn"]
-[ext_resource type="AudioStream" uid="uid://wis1a717bo7a" path="res://assets/sounds/Level Up Sound Effect.mp3" id="9_ed0jh"]
+[ext_resource type="AudioStream" uid="uid://1r5evx8ynty0" path="res://assets/sounds/Level Up Sound Effect.mp3" id="9_ed0jh"]
 
 [node name="AudioManager" type="Node"]
 script = ExtResource("1_vtb7f")

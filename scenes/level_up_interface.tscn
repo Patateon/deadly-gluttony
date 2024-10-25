@@ -1,5 +1,69 @@
-[gd_scene format=3 uid="uid://bv778lh3d7ppd"]
+[gd_scene load_steps=4 format=3 uid="uid://bv778lh3d7ppd"]
+
+[ext_resource type="FontFile" uid="uid://o2ddtj8ytn4r" path="res://fonts/cormorant/Cormorant-Bold.ttf" id="1_6534i"]
+[ext_resource type="Texture2D" uid="uid://dwak0wia8sx2s" path="res://assets/menu_assets/level_up_assets.webp" id="1_hukjp"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n6fwf"]
+texture = ExtResource("1_hukjp")
+region_rect = Rect2(434, 169, 426, 319)
+modulate_color = Color(1, 1, 1, 0.501961)
 
 [node name="LevelUpInterface" type="Control"]
 layout_mode = 3
-anchors_preset = 0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Level_UP_menu" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -94.0
+offset_right = 250.0
+offset_bottom = 94.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_n6fwf")
+
+[node name="Content" type="VBoxContainer" parent="Level_UP_menu"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="LevelUpText" type="VBoxContainer" parent="Level_UP_menu/Content"]
+custom_minimum_size = Vector2(500, 80)
+layout_mode = 2
+alignment = 1
+
+[node name="LevelUpLabel" type="RichTextLabel" parent="Level_UP_menu/Content/LevelUpText"]
+layout_mode = 2
+theme_override_fonts/bold_font = ExtResource("1_6534i")
+theme_override_font_sizes/bold_font_size = 40
+bbcode_enabled = true
+text = "[center] [b]LEVEL UP ! [/b] [/center]"
+fit_content = true
+
+[node name="Choix1" type="Button" parent="Level_UP_menu/Content"]
+custom_minimum_size = Vector2(490, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Choix2" type="Button" parent="Level_UP_menu/Content"]
+custom_minimum_size = Vector2(490, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Choix3" type="Button" parent="Level_UP_menu/Content"]
+custom_minimum_size = Vector2(490, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="PlaceHolder" type="Control" parent="Level_UP_menu/Content"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
