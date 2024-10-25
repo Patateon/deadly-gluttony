@@ -3,6 +3,7 @@ extends Node
 var time = 3 # en minutes
 var totalTime = 0 # en secondes
 var number_of_kills = 0
+var time_since_start
 
 @onready var world_timer = $WorldTimer
 

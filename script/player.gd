@@ -7,7 +7,8 @@ var atk_speed
 var movespeed 
 var projectile_speed
 var area
-var experience = 96
+var experience = 0
+var Money = 0
 
 var level = 1
 var current_xp = 0
@@ -25,6 +26,7 @@ var right
 var current_life
 var is_alive: bool = true  
 
+signal money_gained(money)
 signal player_died
 signal xp_gained(current_xp, max_xp)
 signal level_gained(level)
@@ -67,7 +69,6 @@ func _ready():
 	
 func _process(delta: float) -> void:
 	set_health_bar()
-	stats.experience = experience
 
 	for i in range(atk_speed_acc.size()):  
 		atk_speed_acc[i] += delta 
@@ -264,7 +265,7 @@ func _on_AttractionArea_body_entered(body):
 		body.set_target(self)
 
 func gain_experience(amount):
-
+	money_gained.emit(amount)
 	current_xp += amount
 	if (current_xp >= max_xp):
 		current_xp -= max_xp
