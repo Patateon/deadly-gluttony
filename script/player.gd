@@ -128,6 +128,18 @@ func set_health_bar() -> void:
 func deg2rad(degrees):
 	return degrees * PI / 180.0
 	
+func get_closest_enemy(enemies):
+	var closest_enemy = null
+	var closest_distance = INF
+	
+	for enemy in enemies:
+		var distance = global_position.distance_to(enemy.global_position)
+		if distance < closest_distance:
+			closest_distance = distance
+			closest_enemy = enemy
+	
+	return closest_enemy
+	
 func fire_projectile():
 	var i = 0
 	for projectile in weapons: # tableau armes
@@ -138,20 +150,19 @@ func fire_projectile():
 				var projectile_instance = projectile.instantiate() # première instance
 				projectile_instance.set_damage(weapon_stats.damage[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]])
 				projectile_instance.global_position = global_position
-				var enemy = enemies.back()
+				var enemy = get_closest_enemy(enemies)
 				var traj = enemy.global_position - global_position
 				if traj.length() != 0:
 					traj = traj.normalized()
-				
 				if weapon_indices[projectile] == 0:
 					for n in range(weapon_stats.number_proj[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]]): # Si plusieurs projectiles on refait le tout avec une attente
-						if n < weapon_stats.number_proj[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]] - 1:
+						if n < weapon_stats.number_proj[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]] :
 							await get_tree().create_timer(0.1).timeout
 						enemies = get_tree().get_nodes_in_group("NPC") # On doit revoir la liste d'ennemis car avec le délai il peut ne plus y avoir d'ennemy ou celui selectionné au départ peut juste etre mort
-						enemy = enemies.back()
 						if enemy == null:
 							traj = Vector2(1, 1)
 						else:
+							enemy = get_closest_enemy(enemies)
 							traj = enemy.global_position - global_position
 						if traj.length() != 0:
 							traj = traj.normalized()
