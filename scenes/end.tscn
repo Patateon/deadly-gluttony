@@ -104,10 +104,10 @@ theme_override_fonts/font = ExtResource("2_q5gna")
 text = "0"
 horizontal_alignment = 1
 
-[node name="Money" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Diabete" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Money" type="Label" parent="VBoxContainer/Money"]
+[node name="Diabete" type="Label" parent="VBoxContainer/Diabete"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -116,7 +116,7 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
 text = "Diabètes provoqués  : "
 
-[node name="Money_value" type="Label" parent="VBoxContainer/Money"]
+[node name="Diabete_value" type="Label" parent="VBoxContainer/Diabete"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -147,6 +147,48 @@ theme_override_fonts/font = ExtResource("2_q5gna")
 text = "0"
 horizontal_alignment = 1
 
+[node name="Money" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Money" type="Label" parent="VBoxContainer/Money"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "Argent gagné : "
+
+[node name="Money_value" type="Label" parent="VBoxContainer/Money"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Score" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="VBoxContainer/Score"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "Score : "
+
+[node name="Score_value" type="Label" parent="VBoxContainer/Score"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("2_q5gna")
+text = "0"
+horizontal_alignment = 1
+
 [node name="Lecon1" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.886275, 0.223529, 0.290196, 1)
@@ -155,7 +197,6 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("2_q5gna")
 theme_override_font_sizes/font_size = 22
 text = "
-
 Perdu, mais tu peux encore gagner"
 horizontal_alignment = 1
 
