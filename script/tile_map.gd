@@ -6,11 +6,19 @@ var chunk_size = 1
 var tile_floor = 0 
 var tile_decoration = 0 
 var cell_size = Vector2i(32,32)
+var grass_tile_size = Vector2i(15,20)
 var player = null  
 var noise := FastNoiseLite.new()
 
 @onready var floor: TileMapLayer = $floor
 @onready var decoration: TileMapLayer = $decoration
+
+@onready var grass: TileMapLayer = $grass
+
+@onready var plant: TileMapLayer = $plant
+
+@onready var tree: TileMapLayer = $tree
+
 
 func _ready():
 	# Définir les paramètres du bruit
@@ -90,14 +98,41 @@ func generate_chunk(chunk_position):
 			elif noise_value > -0.10: 
 				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 19), 0)  # Tile du chemin
 			elif noise_value > -0.20: 
-				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 18), 0)  # Tile du chemin
+				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 18), 0) 
+				var type_plant = randi() % 33
+				match type_plant:
+					0:
+						plant.set_cell(tile_pos,tile_decoration,Vector2i(0,0),0)
+					1:
+						plant.set_cell(tile_pos,tile_decoration,Vector2i(1,0),0)
+					2:
+						plant.set_cell(tile_pos,tile_decoration,Vector2i(0,2),0)
+					3:
+						plant.set_cell(tile_pos,tile_decoration,Vector2i(1,2),0)
 			elif noise_value > -0.30: 
-				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 16), 0)  # Tile du chemin
+				floor.set_cell(tile_pos, tile_floor, Vector2i(3, 16), 0) 
+				place_grass_tiles(tile_pos)
+				
 			else:
 				floor.set_cell(tile_pos, tile_floor, Vector2i(1, 19), 0)  # Tile du reste
+				if(noise_value > -0.99):
+					var type_tree = randi() % 45
+					match type_tree:
+						0:
+							tree.set_cell(tile_pos,tile_decoration,Vector2i(0,0),0)
+						1:
+							tree.set_cell(tile_pos,tile_decoration,Vector2i(0,0),0)
+						2:
+							tree.set_cell(tile_pos,tile_decoration,Vector2i(0,5),0)
+						3:
+							tree.set_cell(tile_pos,tile_decoration,Vector2i(0,5),0)
+						4,5,6,7,8,9,10,11,12:
+							place_grass_tiles(tile_pos)
+						#5:
+							#tree.set_cell(tile_pos,tile_decoration,Vector2i(0,0),0)
 			
 			# Créer des décorations avec des TextureRect
-			if noise_value > 0.4 and randi() % 215 == 0:
+			if noise_value > 0.4 and randi() % 112 == 0:
 				var decoration_type = randi() % 5
 				var sens = randi() % 2
 				match decoration_type:
@@ -113,6 +148,34 @@ func generate_chunk(chunk_position):
 						create_texture_rect(tile_pos, "res://assets/sprites/bilboardburgouzz.png",5,0) 
 				#create_texture_rect(tile_pos, "res://assets/sprites/bilboard.png",5)
 
+func place_grass_tiles(position: Vector2i):
+	var cell_center = position * cell_size
+	var grass_tile_size = Vector2i(15, 20)
+	
+	# Calculate offsets for grass tiles within a 32x32 area
+	var offset_x = (cell_size.x - grass_tile_size.x) / 3
+	var offset_y = (cell_size.y - grass_tile_size.y) / 3
+	
+	# Place multiple grass tiles within 32x32 cell to create a denser look
+	for i in range(3):
+		for j in range(3):
+			var grass_pos = cell_center + Vector2i(i * grass_tile_size.x - offset_x, j * grass_tile_size.y - offset_y)
+			var type_grass = randi() % 45
+			match type_grass:
+				0:
+					grass.set_cell(grass_pos,tile_decoration,Vector2i(0,0),0)
+				1:
+					grass.set_cell(grass_pos,tile_decoration,Vector2i(1,0),0)
+				2:
+					grass.set_cell(grass_pos,tile_decoration,Vector2i(2,0),0)
+				3:
+					grass.set_cell(grass_pos,tile_decoration,Vector2i(0,1),0)
+				4:
+					grass.set_cell(grass_pos,tile_decoration,Vector2i(1,1),0)
+				5:
+					grass.set_cell(grass_pos,tile_decoration,Vector2i(2,2),0)
+				6:
+					grass.set_cell(grass_pos,tile_decoration,Vector2i(0,6),0)
 
 func _on_Player_died():
 	print("Player died.")
