@@ -19,11 +19,9 @@ var is_paused = false  # A flag to track the pause state
 var is_level_uping = false # A flag to track the level up state
 var notOver =true # A flag to track the game state
 var statNumber = 6 # Number of existing player stats
-var weaponsNumber = 2 # Number of weapons
-var maxStatsLevel = 5 # Max level of player stats
-var maxWeaponLevel = 8 # Max level of player stats
-#signal level_options(option_1, option_2, option_3)
-signal level_options(options_available)
+var maxStatsLevel = 5
+
+signal level_options(option_1, option_2, option_3)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -63,7 +61,7 @@ func setLevelUpInterface():
 	## Get every level up options
 	
 	# Get every stats and weapons level the player currently have
-	var availables_options = []
+	var availables_stats = []
 	for stat in range(statNumber):
 		var statsLevel = player.player_stats.getStatsLevel(stat)
 		
@@ -74,39 +72,22 @@ func setLevelUpInterface():
 		# Keep only stats that can level up
 		# If stats below her max level it is an options
 		if (statsLevel < maxStatsLevel):
-			availables_options.append(stat)
-	
-	for weapon in range(weaponsNumber):
-		if player.weapon_stats.weapon_level[weapon] < maxWeaponLevel:
-			availables_options.append(weapon+statNumber)
+			availables_stats.append(stat)
 	
 	## Choose 3 options
-	availables_options.shuffle()
-	availables_options = availables_options.slice(0, 3)
-	availables_options.sort()
+	availables_stats.shuffle()
+	availables_stats = availables_stats.slice(0, 3)
+	availables_stats.sort()
+	level_options.emit(
+		availables_stats[0],
+		availables_stats[1],
+		availables_stats[2]
+	)
+	print(availables_stats)
 	
 	## Emit them
-	level_options.emit(availables_options)
-
-# Function to increase weapon or stat level depending on id
-func increaseStatOrWeaponsLevel(id: int):
-	if(id < statNumber):
-		increaseStatLevel(id)
-	else:
-		increaseWeaponLevel(id)
-
-func increaseStatLevel(id: int):
-	player.player_stats.increaseStatsLevel(id)
-	player.update_player_stat()
 	
-# Increase or get new weapon
-func increaseWeaponLevel(id: int):
-	# Check if the player has the weapon
-	var weapon_id = id - statNumber
-	if (player.weapon_stats.weapon_level[weapon_id] == -1):
-		player.addWeapons(weapon_id)
-	else:
-		player.weapon_stats.weapon_level[weapon_id] += 1
+	pass
 
 # Recursively set process, physics_process, and animation playback for all children and grandchildren
 func _set_children_process(node: Node, pause: bool):
@@ -159,18 +140,15 @@ func _on_pause_menu_return_game() -> void:
 	toggle_pause()
 
 
-func _on_level_up_interface_choice_1(option_chosen: Variant) -> void:
-	increaseStatOrWeaponsLevel(option_chosen)
+func _on_level_up_interface_choice_1() -> void:
 	toggle_level_up()
 
 
-func _on_level_up_interface_choice_2(option_chosen: Variant) -> void:
-	increaseStatOrWeaponsLevel(option_chosen)
+func _on_level_up_interface_choice_2() -> void:
 	toggle_level_up()
 
 
-func _on_level_up_interface_choice_3(option_chosen: Variant) -> void:
-	increaseStatOrWeaponsLevel(option_chosen)
+func _on_level_up_interface_choice_3() -> void:
 	toggle_level_up()
 "
 

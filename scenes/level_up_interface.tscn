@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://bv778lh3d7ppd"]
+[gd_scene load_steps=5 format=3 uid="uid://bv778lh3d7ppd"]
 
 [ext_resource type="FontFile" uid="uid://o2ddtj8ytn4r" path="res://fonts/cormorant/Cormorant-Bold.ttf" id="1_6534i"]
 [ext_resource type="Texture2D" uid="uid://dwak0wia8sx2s" path="res://assets/menu_assets/level_up_assets.webp" id="1_hukjp"]
+[ext_resource type="Script" path="res://script/level_up_interface.gd" id="1_pvai2"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_n6fwf"]
 texture = ExtResource("1_hukjp")
@@ -16,6 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
+script = ExtResource("1_pvai2")
 
 [node name="Level_UP_menu" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -67,3 +69,7 @@ size_flags_horizontal = 4
 [node name="PlaceHolder" type="Control" parent="Level_UP_menu/Content"]
 custom_minimum_size = Vector2(0, 70)
 layout_mode = 2
+
+[connection signal="pressed" from="Level_UP_menu/Content/Choix1" to="." method="_on_choix_1_pressed"]
+[connection signal="pressed" from="Level_UP_menu/Content/Choix2" to="." method="_on_choix_2_pressed"]
+[connection signal="pressed" from="Level_UP_menu/Content/Choix3" to="." method="_on_choix_3_pressed"]
