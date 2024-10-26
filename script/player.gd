@@ -12,7 +12,7 @@ var Money = 0
 
 var level = 1
 var current_xp = 0
-var max_xp = 100
+var max_xp = 20
 
 var weapons = []
 var atk_speed_acc=[]
@@ -52,17 +52,15 @@ func _ready():
 	projectile_speed =  player_stats.projectile_speed[player_stats.projectile_speed_level]
 	movespeed = player_stats.movespeed[player_stats.movespeed_level]
 	attraction_area.body_entered.connect(_on_AttractionArea_body_entered)
+	
+	# Preload chaque armes disponibles
+	preloadWeapons()
+	# Attribut l'arme 0 (burger) au joueur
+	addWeapons(0)
+	# Initialise la barre de vie du joueur
 	$HealthBar.max_value = 100
-	#preload toutes les scenes d'armes et les append a weapons quand il l'obtient, penser compteur attack speed en append un
-	var projectile_scene = preload("res://scenes/weapon1.tscn") # arme initial proj burger , indice 0
-	var projectile_scene2 = preload("res://scenes/weapon2.tscn") # indice 1 , etc
-	weapon_indices[projectile_scene] = 0
-	weapon_indices[projectile_scene2] = 1
-	weapons.append(projectile_scene)#ajout de l'arme initiale
-	#weapons.append(projectile_scene2)#append pour rajouter l'arme au joueur
-	atk_speed_acc.append(0.0)
-	#atk_speed_acc.append(0.0)
 	set_health_bar()
+	# Initialise le niveau du joueur à 1
 	level_gained.emit(level)
 	xp_gained.emit(current_xp, max_xp)
 	
@@ -125,10 +123,31 @@ func take_damage(amount: float):
 func set_health_bar() -> void:
 	$HealthBar.value = current_life
 
-
 func deg2rad(degrees):
 	return degrees * PI / 180.0
 	
+	
+func preloadWeapons():
+	#preload toutes les scenes d'armes et les append a weapons quand il l'obtient, penser compteur attack speed en append un
+	var projectile_scene = preload("res://scenes/weapon1.tscn") # arme initial proj burger , indice 0
+	var projectile_scene2 = preload("res://scenes/weapon2.tscn") # indice 1 , etc
+	weapon_indices[projectile_scene] = 0
+	weapon_indices[projectile_scene2] = 1
+	
+
+func addWeapons(id: int):
+	for proj in weapon_indices:
+		var indices = weapon_indices[proj]
+		if (indices == id):
+			weapons.append(proj)
+			atk_speed_acc.append(0.0)
+			weapon_stats.weapon_level[id] = 0
+
+func getWeapons(id: int):
+	for proj in weapon_indices:
+		if (weapon_indices[proj] == id):
+			return proj
+
 func get_closest_enemy(enemies):
 	var closest_enemy = null
 	var closest_distance = INF
@@ -138,7 +157,6 @@ func get_closest_enemy(enemies):
 		if distance < closest_distance:
 			closest_distance = distance
 			closest_enemy = enemy
-	
 	return closest_enemy
 	
 func fire_projectile():
@@ -241,6 +259,11 @@ func level_up():
 	level_gained.emit(level)
 	
 func update_player_stat():
+	# Increase current life if max life is increase
+	var diff_life = player_stats.life[player_stats.life_level] - life
+	current_life += diff_life
+	
+	# Update each stats
 	life = player_stats.life[player_stats.life_level]
 	damage = player_stats.damage[player_stats.damage_level]
 	atk_speed = player_stats.attack_speed[player_stats.attack_speed_level]
@@ -255,8 +278,6 @@ func die():
 	is_alive = false 
 	emit_signal("player_died") 
 	queue_free()  
-
-	
 	
 func _on_AttractionArea_body_entered(body):
 	#print("Detect body entered:", body.name)  

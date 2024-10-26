@@ -4,15 +4,27 @@
 
 [resource]
 script = ExtResource("1_v4qmg")
+damage_id = 0
+damage_label = "Damage"
 damage = [1.0, 1.1, 1.2, 1.3, 1.5]
 damage_level = 0
+attack_speed_id = 1
+attack_speed_label = "Attack Speed"
 attack_speed = [1.5, 1.3, 1.1, 0.9, 0.7]
 attack_speed_level = 0
+area_id = 2
+area_label = "Area of effect"
 area = [1.0, 1.1, 1.2, 1.3, 1.4]
 area_level = 0
+projectile_speed_id = 3
+projectile_speed_label = "Projectile speed"
 projectile_speed = [1.0, 1.1, 1.2, 1.3, 1.5]
 projectile_speed_level = 0
+life_id = 4
+life_label = "Life"
 life = [100.0, 120.0, 140.0, 160.0, 200.0]
 life_level = 0
+movespeed_id = 5
+movespeed_label = "Movement speed"
 movespeed = [1.0, 1.1, 1.2, 1.3, 1.4]
 movespeed_level = 0
