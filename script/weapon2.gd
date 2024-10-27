@@ -58,62 +58,48 @@ func _on_player_died():
 func deg2rad(degrees):
 	return degrees * PI / 180.0
 	
-func fire_projectile(scene_root: Node,player_node : Node,position_: Vector2,weapon_attack_speed : float,player_attack_speed : float,weapon_damage : float,player_damage : float ,nproj : int , weapon_projectile_speed : float , player_projectile_speed,proj_pierce : int,up : int , right : int):
-			var traj : Vector2
-			var projectile_scene = load("res://scenes/weapon2.tscn") as PackedScene
-			damage=weapon_damage*player_damage
-			if right == 1:
-				traj.x = 1
-			elif right == -1:
-				traj.x = -1
-			else:
-				traj.x = 0
-			if up == 1:
-				traj.y = 1
-			elif up == -1:
-				traj.y = -1
-			else:
-				traj.y = 0
-			if traj.length() != 0:
-				traj = traj.normalized()
-			var projectile_instance
-			traj=traj*-1
-			if nproj == 1:
-				# Pour un seul projectile, on utilise la trajectoire de base
-				projectile_instance = projectile_scene.instantiate()
-				projectile_instance.set_damage(weapon_damage * player_damage)
-				projectile_instance.apply_impulse( traj * player_projectile_speed * weapon_projectile_speed,Vector2.ZERO)
-				projectile_instance.npierce =proj_pierce
-				player_node.add_child(projectile_instance)
+func fire_projectile(scene_root: Node, position_: Vector2, weapon_attack_speed: float, player_attack_speed: float, weapon_damage: float, player_damage: float, nproj: int, weapon_projectile_speed: float, player_projectile_speed: float, proj_pierce: int, up: int, right: int):
+	var traj = Vector2(right, up).normalized() * -1  
+	var projectile_scene = load("res://scenes/weapon2.tscn") as PackedScene
+	damage = weapon_damage * player_damage
+	if nproj == 1:
+		var projectile_instance = projectile_scene.instantiate()
+		projectile_instance.global_position = position_
+		projectile_instance.set_damage(damage)
+		projectile_instance.npierce = proj_pierce
+		projectile_instance.apply_impulse(traj * player_projectile_speed * weapon_projectile_speed, Vector2.ZERO)
+		scene_root.add_child(projectile_instance)  # Ajouter au niveau de la scène racine, pas du joueur
+
+	else:
+		var angle_step = 45.0 / nproj
+		if nproj % 2 == 1:
+			var projectile_instance = projectile_scene.instantiate()
+			projectile_instance.global_position = position_
+			projectile_instance.set_damage(damage)
+			projectile_instance.npierce = proj_pierce
+			projectile_instance.apply_impulse(traj * player_projectile_speed * weapon_projectile_speed, Vector2.ZERO)
+			scene_root.add_child(projectile_instance)
+
+		for n in range(nproj / 2):
+			var angle = (n + 1) * angle_step
+			var rad = deg2rad(angle)
+
+			
+			var traj_left = Vector2(
+				traj.x * cos(rad) - traj.y * sin(rad),
+				traj.x * sin(rad) + traj.y * cos(rad)
+			).normalized()
+			var traj_right = Vector2(
+				traj.x * cos(-rad) - traj.y * sin(-rad),
+				traj.x * sin(-rad) + traj.y * cos(-rad)
+			).normalized()
+
+			for new_traj in [traj_left, traj_right]:
+				var projectile_instance = projectile_scene.instantiate()
 				projectile_instance.global_position = position_
-			else:
-				var angle_step = 45.0 / nproj
-				if nproj % 2 == 1:
-					projectile_instance = projectile_scene.instantiate()
-					projectile_instance.set_damage(weapon_damage * player_damage)
-					projectile_instance.apply_impulse( traj * player_projectile_speed * weapon_projectile_speed,Vector2.ZERO)
-					projectile_instance.npierce = proj_pierce
-					player_node.add_child(projectile_instance)
-					projectile_instance.global_position = position_
-				for n in range(nproj / 2):
-					var angle = (n + 1) * angle_step
-					var rad = deg2rad(angle)
-					var traj_x1 = traj.x * cos(rad) - traj.y * sin(rad)
-					var traj_y1 = traj.x * sin(rad) + traj.y * cos(rad)
-					var traj_x2 = traj.x * cos(-rad) - traj.y * sin(-rad)
-					var traj_y2 = traj.x * sin(-rad) + traj.y * cos(-rad)
-					var new_traj1 = Vector2(traj_x1, traj_y1).normalized()
-					var new_traj2 = Vector2(traj_x2, traj_y2).normalized()
-					projectile_instance = projectile_scene.instantiate()
-					projectile_instance.set_damage(weapon_damage * player_damage)
-					projectile_instance.apply_impulse( new_traj1 *player_projectile_speed * weapon_projectile_speed,Vector2.ZERO,)
-					projectile_instance.npierce =proj_pierce
-					player_node.add_child(projectile_instance)
-					projectile_instance.global_position = position_
-					projectile_instance = projectile_scene.instantiate()
-					projectile_instance.set_damage(weapon_damage * player_damage)
-					projectile_instance.apply_impulse( new_traj2 * player_projectile_speed * weapon_projectile_speed,Vector2.ZERO)
-					projectile_instance.npierce = proj_pierce
-					player_node.add_child(projectile_instance)
-					projectile_instance.global_position = position_
+				projectile_instance.set_damage(damage)
+				projectile_instance.npierce = proj_pierce
+				projectile_instance.apply_impulse(new_traj * player_projectile_speed * weapon_projectile_speed, Vector2.ZERO)
+				scene_root.add_child(projectile_instance)
+
 	
