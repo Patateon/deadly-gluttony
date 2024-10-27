@@ -3,7 +3,7 @@ static var dead_enemy_since_start = 0;
 var enemySpawnCooldown = 1;
 var enemyAcc = 0.0;
 var limitNPC = 200;
-var minDistanceFromPlayer = 350
+var minDistanceFromPlayer = 450
 @onready var timer = get_node("/root/World/GameContext")
 signal enemy_died(numbers)
 var damageTimeCoef=1
@@ -23,8 +23,8 @@ func _process(delta: float) -> void:
 	var elapsed_time = total_time - timer.world_timer.time_left 
 	var time_ratio = elapsed_time / total_time
 	
-	damageTimeCoef = 1 + 1.5*time_ratio
-	lifeTimeCoef = 1 + 1.8*time_ratio
+	damageTimeCoef = 1 + 1.2*time_ratio
+	lifeTimeCoef = 1 + 1.5*time_ratio
 	movementTimeCoef = 1 + 0.5*time_ratio
 	numberMinTimeCoef = floor(1 + 2*time_ratio)
 	numberMaxTimeCoef = floor(1 + 3*time_ratio)
