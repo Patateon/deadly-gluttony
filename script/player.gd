@@ -87,7 +87,6 @@ func _physics_process(delta: float) -> void:
 				right = -1
 				_animated_sprite.flip_h = true   
 		else:
-			print("juan")  
 			right = 0
 			velocity.x = move_toward(velocity.x, 0, speed * movespeed)
 		
@@ -154,7 +153,7 @@ func fire_projectile():
 		if atk_speed_acc[i] > atk_speed / weapon_stats.attack_speed[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]]: # compteur temps pour vitesse d'attaque
 			atk_speed_acc[i] = 0
 			var projectile_instance = projectile.instantiate()
-			projectile_instance.fire_projectile(get_node("/root/World"),get_node("/root/World/Player"),global_position,
+			projectile_instance.fire_projectile(get_node("/root/World"),global_position,
 			weapon_stats.attack_speed[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]],
 			player_stats.attack_speed[player_stats.attack_speed_level],
 			weapon_stats.damage[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]],

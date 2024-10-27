@@ -65,37 +65,36 @@ func get_closest_enemy(enemies):
 			closest_enemy = enemy
 	return closest_enemy
 	
-func fire_projectile(scene_root: Node,player_node : Node,position_: Vector2,weapon_attack_speed : float,player_attack_speed : float,weapon_damage : float,player_damage : float ,nproj : int , weapon_projectile_speed : float , player_projectile_speed,proj_pierce : int,up : int , right : int):
+func fire_projectile(scene_root: Node, position_: Vector2, weapon_attack_speed: float, player_attack_speed: float, weapon_damage: float, player_damage: float, nproj: int, weapon_projectile_speed: float, player_projectile_speed: float, proj_pierce: int, up: int, right: int):
 	var projectile_scene = load("res://scenes/weapon1.tscn") as PackedScene  # Chargement dynamique
 	var enemies = scene_root.get_tree().get_nodes_in_group("NPC")
-	damage=weapon_damage*player_damage
+	damage = weapon_damage * player_damage
+
 	if !enemies.is_empty():
-		var projectile_instance = projectile_scene.instantiate() # première instance
-		
-		projectile_instance.set_damage(weapon_damage*player_damage)
 		var enemy = get_closest_enemy(enemies)
-		var traj = enemy.global_position - position_
-		if traj.length() != 0:
-			traj = traj.normalized()
-		for n in range(nproj): # Si plusieurs projectiles on refait le tout avec une attente
-			if n < nproj :
+		var traj = (enemy.global_position - position_).normalized()
+
+		for n in range(nproj): # Si plusieurs projectiles, on attend avant chaque tir
+			if n > 0:
 				await scene_root.get_tree().create_timer(0.1).timeout
-			enemies = scene_root.get_tree().get_nodes_in_group("NPC") # On doit revoir la liste d'ennemis car avec le délai il peut ne plus y avoir d'ennemy ou celui selectionné au départ peut juste etre mort
-			if enemy == null:
-				traj = Vector2(1, 1)
-			else:
-				enemy = get_closest_enemy(enemies)
-				traj = enemy.global_position - position_
-			if traj.length() != 0:
-				traj = traj.normalized()
-			projectile_instance = projectile_scene.instantiate()
+			
+			var projectile_instance = projectile_scene.instantiate()
+			projectile_instance.set_damage(damage)
+			projectile_instance.npierce = proj_pierce
+
+			# 1. Position initiale du projectile
+			projectile_instance.global_position = position_
+
+			# 2. Appliquer la direction du projectile calculée
+			projectile_instance.apply_impulse(traj * player_projectile_speed * weapon_projectile_speed, Vector2.ZERO)
+
+			# 3. Ajouter à la racine de la scène (scene_root) pour éviter l'influence des mouvements de player_node
+			scene_root.add_child(projectile_instance)
+			
+			# Ajuster l'orientation du sprite si besoin
 			if traj.x > 0:
 				projectile_instance.get_node("ProjectileSprite").flip_h = true
-			projectile_instance.set_damage(damage)
-			projectile_instance.global_position = position_
-			projectile_instance.apply_impulse( traj * player_projectile_speed * weapon_projectile_speed,Vector2.ZERO,)
-			projectile_instance.npierce = proj_pierce
-			player_node.add_child(projectile_instance)
-			projectile_instance.global_position = position_
+
+
 		
 	
