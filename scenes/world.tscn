@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ifwq3geifvtp"]
+[gd_scene load_steps=13 format=3 uid="uid://ifwq3geifvtp"]
 
 [ext_resource type="Script" path="res://script/enemy_generator.gd" id="1_7djdm"]
 [ext_resource type="PackedScene" uid="uid://c1nuygk5f3vma" path="res://scenes/tilemap_scene.tscn" id="1_grwk2"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://script/camera_2d.gd" id="3_fm33l"]
 [ext_resource type="PackedScene" uid="uid://gmu2dupf71i8" path="res://scenes/pause_menu.tscn" id="5_ecj2u"]
 [ext_resource type="Script" path="res://script/stats.gd" id="5_qmb43"]
+[ext_resource type="PackedScene" uid="uid://bv778lh3d7ppd" path="res://scenes/level_up_interface.tscn" id="7_81lfr"]
 [ext_resource type="PackedScene" uid="uid://cd4t4iidtkdlk" path="res://scenes/hud.tscn" id="8_tfaip"]
 [ext_resource type="Script" path="res://script/game_context.gd" id="9_qnmlx"]
 
@@ -15,6 +16,14 @@ script/source = "extends Node2D
 @onready var enemy_generator = get_node(\"/root/World/EnemyGenerator\")
 @onready var stats = get_node(\"/root/World/Stats\")
 var is_paused = false  # A flag to track the pause state
+var is_level_uping = false # A flag to track the level up state
+var notOver =true # A flag to track the game state
+var statNumber = 6 # Number of existing player stats
+var weaponsNumber = 2 # Number of weapons
+var maxStatsLevel = 5 # Max level of player stats
+var maxWeaponLevel = 8 # Max level of player stats
+#signal level_options(option_1, option_2, option_3)
+signal level_options(options_available)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -31,11 +40,73 @@ func _process(delta):
 # Function to toggle pause for all children and their descendants
 func toggle_pause():
 	is_paused = !is_paused
-	if is_paused:
+	if is_paused && notOver:
 		$UI/Pause_Menu.show()
 	else:
 		$UI/Pause_Menu.hide()
-	_set_children_process(self, is_paused)
+	if notOver:
+		_set_children_process(self, is_paused)
+		
+# Function to toggle the levelup interface and stop entity during that time
+func toggle_level_up():
+	is_level_uping = !is_level_uping
+	if is_level_uping && notOver:
+		setLevelUpInterface()
+		$UI/LevelUpInterface.show()
+	else:
+		$UI/LevelUpInterface.hide()
+	if notOver:
+		_set_children_process(self, is_level_uping)
+
+# Function to set the level up interface button
+func setLevelUpInterface():
+	## Get every level up options
+	
+	# Get every stats and weapons level the player currently have
+	var availables_options = []
+	for stat in range(statNumber):
+		var statsLevel = player.player_stats.getStatsLevel(stat)
+		
+		# Check if stat exists
+		if (statsLevel == -1):
+			continue
+		
+		# Keep only stats that can level up
+		# If stats below her max level it is an options
+		if (statsLevel < maxStatsLevel):
+			availables_options.append(stat)
+	
+	for weapon in range(weaponsNumber):
+		if player.weapon_stats.weapon_level[weapon] < maxWeaponLevel:
+			availables_options.append(weapon+statNumber)
+	
+	## Choose 3 options
+	availables_options.shuffle()
+	availables_options = availables_options.slice(0, 3)
+	availables_options.sort()
+	
+	## Emit them
+	level_options.emit(availables_options)
+
+# Function to increase weapon or stat level depending on id
+func increaseStatOrWeaponsLevel(id: int):
+	if(id < statNumber):
+		increaseStatLevel(id)
+	else:
+		increaseWeaponLevel(id)
+
+func increaseStatLevel(id: int):
+	player.player_stats.increaseStatsLevel(id)
+	player.update_player_stat()
+	
+# Increase or get new weapon
+func increaseWeaponLevel(id: int):
+	# Check if the player has the weapon
+	var weapon_id = id - statNumber
+	if (player.weapon_stats.weapon_level[weapon_id] == -1):
+		player.addWeapons(weapon_id)
+	else:
+		player.weapon_stats.weapon_level[weapon_id] += 1
 
 # Recursively set process, physics_process, and animation playback for all children and grandchildren
 func _set_children_process(node: Node, pause: bool):
@@ -47,6 +118,8 @@ func _set_children_process(node: Node, pause: bool):
 			child.speed_scale = 0 if pause else 1  # Pause or resume animations
 		if child is RigidBody2D:
 			child.set_sleeping( pause)
+		if child is Timer:
+			child.set_paused( pause) 
 		# Recursively pause/resume all children
 		if child.get_child_count() > 0:
 			_set_children_process(child, pause)
@@ -54,30 +127,51 @@ func _set_children_process(node: Node, pause: bool):
 			#if child.get_child_count() > 0:
 			#	child._set_children_process(pause)
 
-func level_gain_pause():
-	#_set_children_process(true)
-	pass
 
 func _on_player_level_gained(level: Variant) -> void:
 	if (level > 1):
+		toggle_level_up()
 		pass
 		#toggle_pause()
 
 
 func _on_world_timer_timeout() -> void:
-	toggle_pause() # Replace with function body.
+	var UI = get_node(\"UI\")
+	UI.get_node(\"Pause_Menu\").hide()
+	get_node(\"HUD\").hide()
+	_set_children_process(self,true)
+	notOver=false
+	var GameOver= preload(\"res://scenes/end_victory.tscn\").instantiate()
+	UI.add_child(GameOver)
 
 
 func _on_player_player_died() -> void:
 	var UI = get_node(\"UI\")
 	UI.get_node(\"Pause_Menu\").hide()
 	get_node(\"HUD\").hide()
+	_set_children_process(self,true)
+	notOver=false
 	var GameOver= preload(\"res://scenes/end.tscn\").instantiate()
 	UI.add_child(GameOver)
 
 
 func _on_pause_menu_return_game() -> void:
 	toggle_pause()
+
+
+func _on_level_up_interface_choice_1(option_chosen: Variant) -> void:
+	increaseStatOrWeaponsLevel(option_chosen)
+	toggle_level_up()
+
+
+func _on_level_up_interface_choice_2(option_chosen: Variant) -> void:
+	increaseStatOrWeaponsLevel(option_chosen)
+	toggle_level_up()
+
+
+func _on_level_up_interface_choice_3(option_chosen: Variant) -> void:
+	increaseStatOrWeaponsLevel(option_chosen)
+	toggle_level_up()
 "
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_m0080"]
@@ -133,6 +227,9 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="LevelUpInterface" parent="UI" instance=ExtResource("7_81lfr")]
+visible = false
+
 [node name="HUD" parent="." instance=ExtResource("8_tfaip")]
 
 [node name="GameContext" type="Node" parent="."]
@@ -141,12 +238,18 @@ script = ExtResource("9_qnmlx")
 [node name="WorldTimer" type="Timer" parent="GameContext"]
 wait_time = 30.0
 
+[connection signal="level_options" from="." to="UI/LevelUpInterface" method="_on_world_level_options"]
 [connection signal="enemy_died" from="EnemyGenerator" to="HUD" method="_on_enemy_generator_enemy_died"]
 [connection signal="dollar_gained" from="Player" to="HUD" method="_on_player_dollar_gained"]
 [connection signal="level_gained" from="Player" to="." method="_on_player_level_gained"]
 [connection signal="level_gained" from="Player" to="HUD" method="_on_player_level_gained"]
+[connection signal="money_gained" from="Player" to="Player" method="_on_money_gained"]
+[connection signal="money_gained" from="Player" to="Stats" method="_on_player_money_gained"]
 [connection signal="player_died" from="Player" to="." method="_on_player_player_died"]
 [connection signal="xp_gained" from="Player" to="HUD" method="_on_player_xp_gained"]
 [connection signal="return_game" from="UI/Pause_Menu" to="." method="_on_pause_menu_return_game"]
+[connection signal="choice_1" from="UI/LevelUpInterface" to="." method="_on_level_up_interface_choice_1"]
+[connection signal="choice_2" from="UI/LevelUpInterface" to="." method="_on_level_up_interface_choice_2"]
+[connection signal="choice_3" from="UI/LevelUpInterface" to="." method="_on_level_up_interface_choice_3"]
 [connection signal="current_time" from="GameContext" to="HUD" method="_on_game_context_current_time"]
 [connection signal="timeout" from="GameContext/WorldTimer" to="." method="_on_world_timer_timeout"]

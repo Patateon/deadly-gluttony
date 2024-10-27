@@ -21,7 +21,7 @@ var player = null
 signal enemy_died  
 
 func _ready():
-	_animated_sprite_id = randi()%2 + 1
+	_animated_sprite_id = randi()%11+ 1
 	_animation_to_play = "Run_" + str(_animated_sprite_id)
 	navigation_agent.path_desired_distance = 100.0
 	navigation_agent.target_desired_distance = 30.0
@@ -65,9 +65,9 @@ func _physics_process(delta: float) -> void:
 		var animation_to_play
 		velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 		if velocity.x >0.0 : 
-			_animated_sprite.flip_h = true
-		else : 
 			_animated_sprite.flip_h = false
+		else : 
+			_animated_sprite.flip_h = true
 		_animated_sprite.play(_animation_to_play)
 		move_and_slide()
 	else:
@@ -92,7 +92,7 @@ func _on_Player_died():
 
 func take_damage(amount: float):
 	current_life -= amount
-	print(current_life)
+	#print(current_life)
 	if current_life <= 0:
 		die() 
 		
