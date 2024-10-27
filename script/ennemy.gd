@@ -57,7 +57,6 @@ func _physics_process(delta: float) -> void:
 		update_movement_target()
 
 		if navigation_agent.is_navigation_finished():
-			#print("Navigation finished. Recalculating target.")
 			return
 
 		var current_agent_position: Vector2 = global_position
@@ -74,25 +73,16 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 
 func _on_Area2D_area_entered(area: Area2D):
-	#print("Area entered:", area.name)
-	#print("Groups of the entered area:")
-	for group in area.get_groups():
-		print(group)
 	if area.is_in_group("Player"):
-		#print("player")
 		player = area.get_parent()  
-		#print("Player node:", player)
 		if player and player.has_method("take_damage"):
-			#print("Player has take_damage method")
 			player.take_damage(damage)
 
 func _on_Player_died():
-	print("Player died")
 	player = null  
 
 func take_damage(amount: float):
 	current_life -= amount
-	#print(current_life)
 	if current_life <= 0:
 		die() 
 		
