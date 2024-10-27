@@ -22,6 +22,9 @@ var player_stats: PlayerStats
 
 var up = 1
 var right = 1
+var lastup = 0
+var lastright = 0
+var lastmov
 
 var current_life
 var is_alive: bool = true  
@@ -85,7 +88,8 @@ func _physics_process(delta: float) -> void:
 				_animated_sprite.flip_h = false  
 			elif directionx < 0:
 				right = -1
-				_animated_sprite.flip_h = true   
+				_animated_sprite.flip_h = true 
+			lastright=right  
 		else:
 			right = 0
 			velocity.x = move_toward(velocity.x, 0, speed * movespeed)
@@ -94,11 +98,15 @@ func _physics_process(delta: float) -> void:
 		velocity.y = directiony * speed * movespeed
 		if directiony > 0:
 			up = 1
+			lastup=up
 		elif directiony < 0:
 			up = -1
+			lastup=up
 		else:
 			up = 0
-		
+		#mouvement unidirectionnel
+		if(up==0 and right!=0) : lastmov=1
+		if(up!=0 and right==0): lastmov=0
 	
 		move_and_slide()
 		if directionx != 0 or directiony != 0:
@@ -153,6 +161,12 @@ func fire_projectile():
 		if atk_speed_acc[i] > atk_speed / weapon_stats.attack_speed[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]]: # compteur temps pour vitesse d'attaque
 			atk_speed_acc[i] = 0
 			var projectile_instance = projectile.instantiate()
+			if(right==0 and up==0) : 
+				if(lastmov==1): 
+					right=lastright 
+				else : 
+					up=lastup
+				
 			projectile_instance.fire_projectile(get_node("/root/World"),global_position,
 			weapon_stats.attack_speed[weapon_indices[projectile]][weapon_stats.weapon_level[weapon_indices[projectile]]],
 			player_stats.attack_speed[player_stats.attack_speed_level],

@@ -81,17 +81,10 @@ func fire_projectile(scene_root: Node, position_: Vector2, weapon_attack_speed: 
 			var projectile_instance = projectile_scene.instantiate()
 			projectile_instance.set_damage(damage)
 			projectile_instance.npierce = proj_pierce
-
-			# 1. Position initiale du projectile
 			projectile_instance.global_position = position_
-
-			# 2. Appliquer la direction du projectile calculée
 			projectile_instance.apply_impulse(traj * player_projectile_speed * weapon_projectile_speed, Vector2.ZERO)
-
-			# 3. Ajouter à la racine de la scène (scene_root) pour éviter l'influence des mouvements de player_node
 			scene_root.add_child(projectile_instance)
-			
-			# Ajuster l'orientation du sprite si besoin
+		
 			if traj.x > 0:
 				projectile_instance.get_node("ProjectileSprite").flip_h = true
 
