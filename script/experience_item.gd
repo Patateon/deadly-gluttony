@@ -14,7 +14,6 @@ func set_target(new_target):
 
 func _ready() -> void:
 	add_to_group("Item")  # Ajouter l'instance au groupe "Item"
-	print("XP Value:", xp_value)
 	_animated_sprite.scale = Vector2(0.8,0.8)
 	_animated_sprite.play("dollar")
 
