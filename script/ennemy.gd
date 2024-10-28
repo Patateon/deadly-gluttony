@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var movement_speed: float = 150.0
+var movement_speed: float = 120.0
 var attack_distance: float = 1.0
 var damage: float = 5.0  
 var movement_target_position: Vector2
