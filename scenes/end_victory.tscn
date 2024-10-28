@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://8elwbdmldgdi"]
+[gd_scene load_steps=4 format=3 uid="uid://p61xkjfbsuoh"]
 
 [ext_resource type="Script" path="res://script/end.gd" id="1_wnnxw"]
 [ext_resource type="Texture2D" uid="uid://bbpt30g72x1vn" path="res://assets/victory.webp" id="2_uql3q"]
@@ -73,16 +73,6 @@ offset_bottom = 152.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Stats" type="Label" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 4
-theme_override_fonts/font = ExtResource("3_k3vn6")
-theme_override_font_sizes/font_size = 25
-text = "Stats"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="Projejectile" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
@@ -106,10 +96,10 @@ theme_override_fonts/font = ExtResource("3_k3vn6")
 text = "0"
 horizontal_alignment = 1
 
-[node name="Money" type="HBoxContainer" parent="VBoxContainer"]
+[node name="Diabete" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 
-[node name="Money" type="Label" parent="VBoxContainer/Money"]
+[node name="Diabete" type="Label" parent="VBoxContainer/Diabete"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -118,7 +108,7 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_k3vn6")
 text = "Diabètes provoqués  : "
 
-[node name="Money_value" type="Label" parent="VBoxContainer/Money"]
+[node name="Diabete_value" type="Label" parent="VBoxContainer/Diabete"]
 clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
@@ -148,6 +138,58 @@ theme_override_constants/outline_size = 4
 theme_override_fonts/font = ExtResource("3_k3vn6")
 text = "0"
 horizontal_alignment = 1
+
+[node name="Money" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Money" type="Label" parent="VBoxContainer/Money"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_k3vn6")
+text = "Argent gagné : "
+
+[node name="Money_value" type="Label" parent="VBoxContainer/Money"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_k3vn6")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Score" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="Score" type="Label" parent="VBoxContainer/Score"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_k3vn6")
+text = "Score : "
+
+[node name="Score_value" type="Label" parent="VBoxContainer/Score"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_k3vn6")
+text = "0"
+horizontal_alignment = 1
+
+[node name="Stats" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+theme_override_fonts/font = ExtResource("3_k3vn6")
+theme_override_font_sizes/font_size = 25
+text = "Stats"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Lecon1" type="Label" parent="VBoxContainer"]
 layout_mode = 2
