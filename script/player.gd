@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 300.0
+var speed = 270.0
 var life 
 var damage 
 var atk_speed 
