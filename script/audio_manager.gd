@@ -15,22 +15,24 @@ var nbrenemysounds = 2
 func _process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("Pause"):
-		if is_paused:
-			# Reprendre la lecture à la position où elle a été arrêtée
-			play_music(pause_position)
-			is_paused = false
-		else:
-			# Mettre en pause en sauvegardant la position actuelle
-			pause_position = musicplayer.get_playback_position()
-			stop_music()
-			is_paused = true
-				
-	
+		pause_music()
+
 	
 		
 func _ready():
 	pass
-	
+
+func pause_music():
+	if is_paused:
+		# Reprendre la lecture à la position où elle a été arrêtée
+		play_music(pause_position)
+		is_paused = false
+	else:
+		# Mettre en pause en sauvegardant la position actuelle
+		pause_position = musicplayer.get_playback_position()
+		stop_music()
+		is_paused = true
+		
 func play_music(pause_position):
 	musicplayer.play(pause_position)
 	

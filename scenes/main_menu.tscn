@@ -1,9 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://chdcdu3t18rbm"]
+[gd_scene load_steps=7 format=3 uid="uid://chdcdu3t18rbm"]
 
 [ext_resource type="Script" path="res://script/main_menu.gd" id="1_0vlti"]
 [ext_resource type="Texture2D" uid="uid://brn6hab56t7wo" path="res://assets/ronald.webp" id="2_1gq3c"]
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="3_qjoa7"]
 [ext_resource type="PackedScene" uid="uid://cgkkopjoljreq" path="res://scenes/settings.tscn" id="4_y3vuu"]
+[ext_resource type="Script" path="res://scenes/tab_container.gd" id="5_5fc63"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ecikm"]
+font_size = 23
 
 [node name="MainMenu" type="Node2D"]
 
@@ -69,6 +73,13 @@ size_flags_vertical = 4
 text = "Start
 "
 
+[node name="Credits" type="Button" parent="UI/MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(100, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Credits"
+
 [node name="Options" type="Button" parent="UI/MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(100, 32)
 layout_mode = 2
@@ -89,6 +100,55 @@ pre_scene = NodePath("../MainMenu")
 metadata/s = false
 metadata/ssss = false
 
+[node name="Credits" type="TabContainer" parent="UI"]
+offset_top = 1.0
+offset_right = 1154.0
+offset_bottom = 648.0
+current_tab = 0
+script = ExtResource("5_5fc63")
+
+[node name="Credits" type="Label" parent="UI/Credits"]
+layout_mode = 2
+metadata/_tab_index = 0
+
+[node name="Back" type="Button" parent="UI/Credits/Credits"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1049.0
+offset_top = 557.0
+offset_right = -2.0
+offset_bottom = -21.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_qjoa7")
+theme_override_font_sizes/font_size = 24
+text = "Retour"
+
+[node name="Label" type="Label" parent="UI/Credits/Credits"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 25.0
+offset_right = 1152.0
+offset_bottom = 474.0
+text = "Projet réalisé par :
+Maxime Bendjilali
+Thomas Caro
+Renaud Deroubaix
+Oren Amsalhem
+
+Dans le cadre de l'UE Jeux sérieux
+
+Remerciements spéciaux :
+Un immense merci à notre professeur bien-aimé, Nicolas Lutz,
+ pour ses enseignements inspirants et sa générosité, 
+ainsi que pour avoir prêté sa voix à certains sons du jeu !"
+label_settings = SubResource("LabelSettings_ecikm")
+horizontal_alignment = 1
+
 [connection signal="pressed" from="UI/MainMenu/VBoxContainer/Start" to="UI/MainMenu" method="_on_start_pressed"]
+[connection signal="pressed" from="UI/MainMenu/VBoxContainer/Credits" to="UI/MainMenu" method="_on_creditt_pressed"]
 [connection signal="pressed" from="UI/MainMenu/VBoxContainer/Options" to="UI/MainMenu" method="_on_option_pressed"]
 [connection signal="pressed" from="UI/MainMenu/VBoxContainer/Quit" to="UI/MainMenu" method="_on_quit_pressed"]
+[connection signal="pressed" from="UI/Credits/Credits/Back" to="UI/Credits" method="_on_back_pressed"]
