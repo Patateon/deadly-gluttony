@@ -20,7 +20,7 @@ script = ExtResource("2_d850m")
 
 [node name="Video" type="TabBar" parent="."]
 layout_mode = 2
-focus_neighbor_left = NodePath("../Controls")
+focus_neighbor_left = NodePath("../Controles")
 focus_neighbor_right = NodePath("../Audio")
 theme_override_fonts/font = ExtResource("1_y1n18")
 theme_override_font_sizes/font_size = 20
@@ -98,7 +98,7 @@ text = "Retour"
 visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Video")
-focus_neighbor_right = NodePath("../Controls")
+focus_neighbor_right = NodePath("../Controles")
 theme_override_fonts/font = ExtResource("1_y1n18")
 theme_override_font_sizes/font_size = 20
 script = ExtResource("5_i5vk1")
@@ -179,7 +179,7 @@ theme_override_fonts/font = ExtResource("1_y1n18")
 theme_override_font_sizes/font_size = 24
 text = "Retour"
 
-[node name="Controls" type="TabBar" parent="."]
+[node name="Controles" type="TabBar" parent="."]
 visible = false
 layout_mode = 2
 focus_neighbor_left = NodePath("../Audio")
@@ -188,7 +188,7 @@ theme_override_fonts/font = ExtResource("1_y1n18")
 theme_override_font_sizes/font_size = 20
 metadata/_tab_index = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Controls"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Controles"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -202,10 +202,10 @@ offset_bottom = 140.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Controls/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Controles/HBoxContainer"]
 layout_mode = 2
 
-[node name="Up" type="Label" parent="Controls/HBoxContainer/VBoxContainer"]
+[node name="Up" type="Label" parent="Controles/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
@@ -213,7 +213,7 @@ theme_override_fonts/font = ExtResource("3_b5nwg")
 theme_override_font_sizes/font_size = 24
 text = "Haut"
 
-[node name="Down" type="Label" parent="Controls/HBoxContainer/VBoxContainer"]
+[node name="Down" type="Label" parent="Controles/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
@@ -221,7 +221,7 @@ theme_override_fonts/font = ExtResource("1_y1n18")
 theme_override_font_sizes/font_size = 24
 text = "Bas"
 
-[node name="Gauche" type="Label" parent="Controls/HBoxContainer/VBoxContainer"]
+[node name="Gauche" type="Label" parent="Controles/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -230,7 +230,7 @@ theme_override_font_sizes/font_size = 24
 text = "Gauche
 "
 
-[node name="Droite" type="Label" parent="Controls/HBoxContainer/VBoxContainer"]
+[node name="Droite" type="Label" parent="Controles/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
@@ -238,27 +238,27 @@ theme_override_fonts/font = ExtResource("1_y1n18")
 theme_override_font_sizes/font_size = 24
 text = "Droite"
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Controls/HBoxContainer"]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Controles/HBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Up" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
+[node name="Up" parent="Controles/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
 layout_mode = 2
 
-[node name="Down" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
+[node name="Down" parent="Controles/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
 layout_mode = 2
 action = "Down"
 
-[node name="Left" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
+[node name="Left" parent="Controles/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
 layout_mode = 2
 action = "Left"
 
-[node name="Right" parent="Controls/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
+[node name="Right" parent="Controles/HBoxContainer/VBoxContainer2" instance=ExtResource("4_4o4ae")]
 layout_mode = 2
 action = "Right"
 
-[node name="Back" type="Button" parent="Controls"]
+[node name="Back" type="Button" parent="Controles"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 1
 anchors_preset = 3
@@ -282,4 +282,4 @@ text = "Retour"
 [connection signal="value_changed" from="Audio/HBoxContainer/VBoxContainer2/Master" to="Audio" method="_on_master_value_changed"]
 [connection signal="value_changed" from="Audio/HBoxContainer/VBoxContainer2/Music" to="Audio" method="_on_music_value_changed"]
 [connection signal="pressed" from="Audio/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="Controls/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Controles/Back" to="." method="_on_back_pressed"]

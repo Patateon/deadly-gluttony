@@ -1,0 +1,76 @@
+[gd_scene load_steps=11 format=3 uid="uid://dxj0oj4m0p03"]
+
+[ext_resource type="Script" path="res://script/weapon2.gd" id="1_j2enm"]
+[ext_resource type="Texture2D" uid="uid://dchqncqvarv4c" path="res://assets/animated-sprites/weapon_anim/200329.png" id="1_q42xp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1l20l"]
+atlas = ExtResource("1_q42xp")
+region = Rect2(50, 0, 250, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af3sg"]
+atlas = ExtResource("1_q42xp")
+region = Rect2(375, 0, 250, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2gm7"]
+atlas = ExtResource("1_q42xp")
+region = Rect2(700, 0, 250, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pan01"]
+atlas = ExtResource("1_q42xp")
+region = Rect2(1025, 0, 250, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gimej"]
+atlas = ExtResource("1_q42xp")
+region = Rect2(1350, 0, 250, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqnh3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1l20l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af3sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2gm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pan01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gimej")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_52v77"]
+radius = 54.63
+height = 240.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fbgjj"]
+radius = 53.0
+height = 240.0
+
+[node name="Projectile2" type="RigidBody2D"]
+scale = Vector2(0.1, 0.1)
+collision_layer = 4
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_j2enm")
+
+[node name="ProjectileSprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qqnh3")
+frame_progress = 0.498856
+
+[node name="ProjectileCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-20, 10)
+shape = SubResource("CapsuleShape2D_52v77")
+
+[node name="HurtBox" type="Area2D" parent="."]
+
+[node name="ProjectileColliders" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(-20, 10)
+shape = SubResource("CapsuleShape2D_fbgjj")

@@ -1,14 +1,14 @@
 extends CharacterBody2D
 
-var movement_speed: float = 200.0
+var movement_speed: float = 150.0
 var attack_distance: float = 1.0
-var damage: float = 10.0  
+var damage: float = 5.0  
 var movement_target_position: Vector2
 
 var life: float = 10.0
 var current_life: float = life
-var xp_rate: float = 1 # Taux de chance de générer l'objet d'expérience
-var xp_value: float = 3 
+var xp_rate: float = 0.5 # Taux de chance de générer l'objet d'expérience
+var xp_value: float = 10
 
 @onready var _animated_sprite = $AnimatedSprite2D
 var _animation_to_play: String
@@ -21,7 +21,7 @@ var player = null
 signal enemy_died  
 
 func _ready():
-	_animated_sprite_id = randi()%2 + 1
+	_animated_sprite_id = randi()%11+ 1
 	_animation_to_play = "Run_" + str(_animated_sprite_id)
 	navigation_agent.path_desired_distance = 100.0
 	navigation_agent.target_desired_distance = 30.0
@@ -57,7 +57,6 @@ func _physics_process(delta: float) -> void:
 		update_movement_target()
 
 		if navigation_agent.is_navigation_finished():
-			#print("Navigation finished. Recalculating target.")
 			return
 
 		var current_agent_position: Vector2 = global_position
@@ -65,39 +64,31 @@ func _physics_process(delta: float) -> void:
 		var animation_to_play
 		velocity = current_agent_position.direction_to(next_path_position) * movement_speed
 		if velocity.x >0.0 : 
-			_animated_sprite.flip_h = true
-		else : 
 			_animated_sprite.flip_h = false
+		else : 
+			_animated_sprite.flip_h = true
 		_animated_sprite.play(_animation_to_play)
 		move_and_slide()
 	else:
 		velocity = Vector2.ZERO
 
 func _on_Area2D_area_entered(area: Area2D):
-	#print("Area entered:", area.name)
-	#print("Groups of the entered area:")
-	for group in area.get_groups():
-		print(group)
 	if area.is_in_group("Player"):
-		#print("player")
 		player = area.get_parent()  
-		#print("Player node:", player)
 		if player and player.has_method("take_damage"):
-			#print("Player has take_damage method")
 			player.take_damage(damage)
 
 func _on_Player_died():
-	print("Player died")
 	player = null  
 
 func take_damage(amount: float):
 	current_life -= amount
-	print(current_life)
 	if current_life <= 0:
 		die() 
 		
 func die():
 	emit_signal("enemy_died")
+	AudioManager.play_enemy_death()
 	if randi() % 100 < int(xp_rate * 100):
 		call_deferred("spawn_experience_item")
 	queue_free()  

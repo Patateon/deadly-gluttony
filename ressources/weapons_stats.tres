@@ -1,0 +1,203 @@
+[gd_resource type="Resource" script_class="WeaponStats" load_steps=34 format=3 uid="uid://fk7chsxl8r6w"]
+
+[ext_resource type="Script" path="res://script/weapons_stats.gd" id="1_b7j8u"]
+[ext_resource type="Texture2D" uid="uid://bc88vl7rwh83y" path="res://assets/animated-sprites/weapon_anim/burger.png" id="2_bygjf"]
+[ext_resource type="Texture2D" uid="uid://dxx3vclfsbnt6" path="res://assets/animated-sprites/weapon_anim/jelly.png" id="3_81tmw"]
+[ext_resource type="Texture2D" uid="uid://dchqncqvarv4c" path="res://assets/animated-sprites/weapon_anim/200329.png" id="4_cbel0"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j6phu"]
+atlas = ExtResource("2_bygjf")
+region = Rect2(2, 3, 46, 47)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nm0ni"]
+atlas = ExtResource("2_bygjf")
+region = Rect2(49, 2, 42, 49)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tbxoy"]
+atlas = ExtResource("2_bygjf")
+region = Rect2(92, 13, 65, 25)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p6jbt"]
+atlas = ExtResource("2_bygjf")
+region = Rect2(158, 13, 73, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_855ao"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1e4hr"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_bu52c"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_043p3"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dv5j5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_2gaqw"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4a60y"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_vd86q"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mwd7y"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_usg06"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dkyxb"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_465pe"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1ukj5"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_es1ik"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_xvdf5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32f7j"]
+atlas = ExtResource("3_81tmw")
+region = Rect2(8, 0, 69, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcits"]
+atlas = ExtResource("3_81tmw")
+region = Rect2(87, 0, 77, 61)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7dh3i"]
+atlas = ExtResource("3_81tmw")
+region = Rect2(178, 0, 69, 61)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2bpxc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j6phu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nm0ni")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tbxoy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p6jbt")
+}],
+"loop": true,
+"name": &"burger",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_855ao")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_1e4hr")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_bu52c")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_043p3")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_dv5j5")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_2gaqw")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_4a60y")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_vd86q")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_mwd7y")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_usg06")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_dkyxb")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_465pe")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_1ukj5")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_es1ik")
+}, {
+"duration": 1.0,
+"texture": SubResource("CompressedTexture2D_xvdf5")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32f7j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcits")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7dh3i")
+}],
+"loop": true,
+"name": &"jelly",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1l20l"]
+atlas = ExtResource("4_cbel0")
+region = Rect2(50, 0, 250, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_af3sg"]
+atlas = ExtResource("4_cbel0")
+region = Rect2(375, 0, 250, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2gm7"]
+atlas = ExtResource("4_cbel0")
+region = Rect2(700, 0, 250, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pan01"]
+atlas = ExtResource("4_cbel0")
+region = Rect2(1025, 0, 250, 400)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gimej"]
+atlas = ExtResource("4_cbel0")
+region = Rect2(1350, 0, 250, 400)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqnh3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1l20l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_af3sg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2gm7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pan01")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gimej")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[resource]
+script = ExtResource("1_b7j8u")
+damage = [[5.0, 5.0, 7.0, 7.0, 10.0, 10.0, 15.0, 15.0], [15.0, 15.0, 20.0, 20.0, 25.0, 25.0, 30.0, 30.0]]
+attack_speed = [[1.0, 1.3, 1.3, 1.3, 1.3, 1.5, 1.5, 1.5], [1.5, 1.5, 1.5, 1.7, 1.7, 1.7, 2.0, 2.0]]
+area = [[0.7, 0.7, 0.7, 1.0, 1.0, 1.0, 1.0, 1.3], [0.2, 0.2, 0.2, 0.25, 0.25, 0.25, 0.3, 0.3]]
+projectile_speed = [[500.0, 500.0, 700.0, 700.0, 900.0, 900.0, 1100.0, 1100.0], [1000.0, 1000.0, 1000.0, 1300.0, 1300.0, 1300.0, 1600.0, 1600.0]]
+number_proj = [[1, 1, 1, 2, 2, 2, 3, 3], [1, 1, 1, 2, 2, 2, 3, 3]]
+proj_pierce = [[3, 3, 4, 4, 5, 5, 6, 6], [1, 1, 1, 1, 2, 2, 2, 3]]
+weapon_level = [-1, -1]
+weapon_names = ["Burger", "Ice Cream"]
+weapon_sprit = [SubResource("SpriteFrames_2bpxc"), SubResource("SpriteFrames_qqnh3")]
