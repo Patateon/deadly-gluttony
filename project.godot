@@ -20,6 +20,11 @@ config/icon="res://icon.svg"
 AudioManager="*res://scenes/audio_manager.tscn"
 Utilities="*res://scenes/utilities.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+
 [editor]
 
 version_control/plugin_name="GitPlugin"

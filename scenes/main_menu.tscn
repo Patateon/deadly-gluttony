@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://chdcdu3t18rbm"]
+[gd_scene load_steps=8 format=3 uid="uid://chdcdu3t18rbm"]
 
 [ext_resource type="Script" path="res://script/main_menu.gd" id="1_0vlti"]
 [ext_resource type="Texture2D" uid="uid://brn6hab56t7wo" path="res://assets/ronald.webp" id="2_1gq3c"]
 [ext_resource type="FontFile" uid="uid://sgvfhvecop85" path="res://assets/font/insaniburger/Insanibu.ttf" id="3_qjoa7"]
+[ext_resource type="Script" path="res://script/game_title_label.gd" id="4_s2h4c"]
 [ext_resource type="PackedScene" uid="uid://cgkkopjoljreq" path="res://scenes/settings.tscn" id="4_y3vuu"]
-[ext_resource type="Script" path="res://scenes/tab_container.gd" id="5_5fc63"]
+[ext_resource type="Script" path="res://script/tab_container.gd" id="5_5fc63"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ecikm"]
 font_size = 23
@@ -60,10 +61,13 @@ grow_vertical = 2
 [node name="GameTitle" type="Label" parent="UI/MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
 theme_override_fonts/font = ExtResource("3_qjoa7")
 theme_override_font_sizes/font_size = 50
 text = "Deadly Glutonny: Main Menu
 "
+script = ExtResource("4_s2h4c")
 
 [node name="Start" type="Button" parent="UI/MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(100, 32)
@@ -101,9 +105,11 @@ metadata/s = false
 metadata/ssss = false
 
 [node name="Credits" type="TabContainer" parent="UI"]
-offset_top = 1.0
-offset_right = 1154.0
-offset_bottom = 648.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 current_tab = 0
 script = ExtResource("5_5fc63")
 
@@ -113,13 +119,16 @@ metadata/_tab_index = 0
 
 [node name="Back" type="Button" parent="UI/Credits/Credits"]
 custom_minimum_size = Vector2(100, 0)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1049.0
-offset_top = 557.0
-offset_right = -2.0
-offset_bottom = -21.0
+offset_left = -118.0
+offset_top = -59.0
+offset_right = -18.0
+offset_bottom = -24.0
 grow_horizontal = 0
 grow_vertical = 0
 theme_override_fonts/font = ExtResource("3_qjoa7")
